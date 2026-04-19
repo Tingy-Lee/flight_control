@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "FlightControl_V5F",
+			"path": "/Users/litianyi/Desktop/flight_control"
+		}
+	],
+	"settings": {
+		"mrs.workspace.type": "workspace",
+		"files.associations": {
+			"*.c": "c",
+			"*.h": "cpp",
+			"*.hxx": "cpp",
+			"*.hpp": "cpp",
+			"*.c++": "cpp",
+			"*.cpp": "cpp",
+			"*.cxx": "cpp",
+			"*.cc": "cpp",
+			"*.hh": "cpp",
+			"*.h++": "cpp"
+		}
+	}
+}
