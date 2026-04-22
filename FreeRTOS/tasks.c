@@ -529,6 +529,31 @@ static const volatile UBaseType_t uxTopUsedPriority = configMAX_PRIORITIES - 1U;
  * from either an ISR or a task. */
 PRIVILEGED_DATA static volatile UBaseType_t uxSchedulerSuspended = ( UBaseType_t ) 0U;
 
+volatile UBaseType_t g_dbg_switch_count;
+volatile UBaseType_t g_dbg_switch_top_ready_priority;
+volatile UBaseType_t g_dbg_switch_current_priority;
+volatile UBaseType_t g_dbg_switch_scheduler_suspended;
+volatile UBaseType_t g_dbg_switch_ready_lengths[ configMAX_PRIORITIES ];
+volatile void * g_dbg_switch_current_tcb;
+
+static void prvRecordSwitchDebugState( void )
+{
+    UBaseType_t uxPriority;
+
+    g_dbg_switch_count++;
+    g_dbg_switch_top_ready_priority = uxTopReadyPriority;
+    g_dbg_switch_scheduler_suspended = uxSchedulerSuspended;
+    g_dbg_switch_current_tcb = ( void * ) pxCurrentTCB;
+    g_dbg_switch_current_priority = ( pxCurrentTCB != NULL ) ?
+                                    pxCurrentTCB->uxPriority :
+                                    ( UBaseType_t ) 0xffffffffUL;
+
+    for( uxPriority = 0; uxPriority < configMAX_PRIORITIES; uxPriority++ )
+    {
+        g_dbg_switch_ready_lengths[ uxPriority ] = listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ uxPriority ] ) );
+    }
+}
+
 #if ( configGENERATE_RUN_TIME_STATS == 1 )
 
 /* Do not move these variables to function scope as doing so prevents the
@@ -5164,6 +5189,7 @@ BaseType_t xTaskIncrementTick( void )
             /* MISRA Ref 11.5.3 [Void pointer assignment] */
             /* More details at: https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/main/MISRA.md#rule-115 */
             /* coverity[misra_c_2012_rule_11_5_violation] */
+            prvRecordSwitchDebugState();
             taskSELECT_HIGHEST_PRIORITY_TASK();
             traceTASK_SWITCHED_IN();
 

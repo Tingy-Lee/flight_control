@@ -86,8 +86,8 @@ typedef struct {
 } motor_outputs_t;
 
 typedef struct {
-    imu_sample_t imu;
-    baro_sample_t baro;
+    imu_sample_t imu;//姿态
+    baro_sample_t baro;//气压计，姿态和气压都由十轴imu获得，I2C接口通信
     gps_sample_t gps;
     rc_input_t rc;
     estimator_state_t estimate;

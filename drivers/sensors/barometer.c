@@ -2,8 +2,10 @@
 #include "app/app_config.h"
 #include "bsp/bsp_board.h"
 #include "bsp/bsp_i2c.h"
+#include "drivers/sensors/imu.h"
 #include <string.h>
 
+#if FC_ENABLE_I2C2_SENSORS
 #define IMU_I2C_ADDR_7BIT        0x23U
 #define IMU_REG_BARO_HEIGHT      0x32U
 #define IMU_BARO_BLOCK_LEN       16U
@@ -32,19 +34,29 @@ static float decode_f32_le(const uint8_t *raw)
     memcpy(&value, &bits, sizeof(value));
     return value;
 }
+#endif
 
 bool barometer_init(void)
 {
+#if FC_ENABLE_IMU_UART
+    return true;
+#elif FC_ENABLE_I2C2_SENSORS
     memset(&g_baro_ctx, 0, sizeof(g_baro_ctx));
     g_baro_ctx.temperature_c = 25.0f;
     g_baro_ctx.pressure_pa = FC_SEA_LEVEL_PRESSURE_PA;
     g_baro_ctx.pressure_reference_pa = FC_SEA_LEVEL_PRESSURE_PA;
 
     return true;
+#else
+    return false;
+#endif
 }
 
 bool barometer_read(baro_sample_t *sample)
 {
+#if FC_ENABLE_IMU_UART
+    return imu_read_barometer(sample);
+#elif FC_ENABLE_I2C2_SENSORS
     uint8_t raw[IMU_BARO_BLOCK_LEN] = {0};
 
     if (sample == 0) {
@@ -74,4 +86,16 @@ bool barometer_read(baro_sample_t *sample)
     sample->healthy = g_baro_ctx.valid;
 
     return g_baro_ctx.valid;
+#else
+    if (sample != 0) {
+        sample->timestamp_ms = bsp_board_millis();
+        sample->pressure_pa = FC_SEA_LEVEL_PRESSURE_PA;
+        sample->pressure_reference_pa = FC_SEA_LEVEL_PRESSURE_PA;
+        sample->temperature_c = 25.0f;
+        sample->altitude_m = 0.0f;
+        sample->healthy = false;
+    }
+
+    return false;
+#endif
 }

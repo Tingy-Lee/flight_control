@@ -2,6 +2,8 @@
 #include "bsp/bsp_board.h"
 #include "bsp/bsp_uart.h"
 
+#define GPS_POLL_MAX_BYTES 128U
+
 bool gps_init(void)
 {
     return true;
@@ -10,8 +12,9 @@ bool gps_init(void)
 bool gps_poll(gps_sample_t *sample)
 {
     uint8_t byte;
+    uint16_t budget = GPS_POLL_MAX_BYTES;
 
-    while (bsp_uart_gps_read_byte(&byte)) {
+    while ((budget-- != 0U) && bsp_uart_gps_read_byte(&byte)) {
         /* TODO: feed a tiny NMEA parser. For now we only drain the UART FIFO. */
         (void)byte;
     }

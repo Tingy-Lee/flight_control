@@ -56,7 +56,8 @@ tasks/Src/initial_task.o: ../tasks/Src/initial_task.c \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h \
- /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h \
+ /Users/litianyi/Desktop/flight_control/app/app_config.h
 /Users/litianyi/Desktop/flight_control/tasks/Inc/tasks.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
 /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
@@ -115,3 +116,4 @@ tasks/Src/initial_task.o: ../tasks/Src/initial_task.c \
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h:
+/Users/litianyi/Desktop/flight_control/app/app_config.h:

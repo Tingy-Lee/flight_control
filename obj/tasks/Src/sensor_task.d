@@ -60,6 +60,7 @@ tasks/Src/sensor_task.o: ../tasks/Src/sensor_task.c \
  /Users/litianyi/Desktop/flight_control/app/app.h \
  /Users/litianyi/Desktop/flight_control/app/app_types.h \
  /Users/litianyi/Desktop/flight_control/app/app_config.h \
+ /Users/litianyi/Desktop/flight_control/bsp/bsp_uart.h \
  /Users/litianyi/Desktop/flight_control/drivers/sensors/barometer.h \
  /Users/litianyi/Desktop/flight_control/drivers/sensors/gps.h \
  /Users/litianyi/Desktop/flight_control/drivers/sensors/imu.h \
@@ -125,6 +126,7 @@ tasks/Src/sensor_task.o: ../tasks/Src/sensor_task.c \
 /Users/litianyi/Desktop/flight_control/app/app.h:
 /Users/litianyi/Desktop/flight_control/app/app_types.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
+/Users/litianyi/Desktop/flight_control/bsp/bsp_uart.h:
 /Users/litianyi/Desktop/flight_control/drivers/sensors/barometer.h:
 /Users/litianyi/Desktop/flight_control/drivers/sensors/gps.h:
 /Users/litianyi/Desktop/flight_control/drivers/sensors/imu.h:

@@ -46,7 +46,16 @@ Debug/debug.o: ../Debug/debug.c ../Debug/debug.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_wwdg.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h \
- /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h
+ /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h \
+ /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h
 ../Debug/debug.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417.h:
 /Users/litianyi/Desktop/flight_control/Core/core_riscv.h:
@@ -96,3 +105,12 @@ Debug/debug.o: ../Debug/debug.c ../Debug/debug.h \
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
+/Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h:

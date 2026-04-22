@@ -11,9 +11,56 @@
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
 #include "debug.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 static uint16_t  p_us = 0;
 static uint32_t p_ms = 0;
+
+#define DEBUG_SYSTICK_ENABLE_BIT  (1U << 0)
+#define DEBUG_SYSTICK_DONE_BIT    (1U << 1)
+#define DEBUG_DELAY_TIMEOUT_PAD   1024U
+#define DEBUG_UART_TIMEOUT_LOOPS  1000000U
+
+volatile uint32_t g_dbg_delay_timeout_count;
+volatile uint32_t g_dbg_printf_timeout_count;
+
+static int debug_scheduler_started(void)
+{
+    return xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED;
+}
+
+static void delay_spin(uint32_t cycles)
+{
+    while (cycles-- != 0U) {
+        __asm volatile("nop");
+    }
+}
+
+static void delay_systick_cycles(uint32_t cycles)
+{
+    uint32_t timeout;
+
+    if (cycles == 0U) {
+        return;
+    }
+
+    timeout = cycles + (cycles >> 3) + DEBUG_DELAY_TIMEOUT_PAD;
+    SysTick1->ISR &= ~DEBUG_SYSTICK_DONE_BIT;
+    SysTick1->CNT = 0;
+    SysTick1->CMP = cycles;
+    SysTick1->CTLR = (1 << 2);
+    SysTick1->CTLR |= DEBUG_SYSTICK_ENABLE_BIT;
+
+    while ((SysTick1->ISR & DEBUG_SYSTICK_DONE_BIT) != DEBUG_SYSTICK_DONE_BIT) {
+        if (timeout-- == 0U) {
+            g_dbg_delay_timeout_count++;
+            break;
+        }
+    }
+
+    SysTick1->CTLR &= ~DEBUG_SYSTICK_ENABLE_BIT;
+}
 
 /*********************************************************************
  * @fn      Delay_Init
@@ -39,18 +86,14 @@ void Delay_Init(void)
  */
 void Delay_Us(uint32_t n)
 {
-    uint32_t i;
-    SysTick0->ISR &= ~(1 << 1);
-    i = (uint32_t)n * p_us;
+    const uint32_t cycles = (uint32_t)n * p_us;
 
-    SysTick1->CNT = 0;
-    SysTick1->CMP = i;
-    SysTick1->CTLR = (1 << 2);
-    SysTick1->CTLR |= (1 << 0);
+    if (debug_scheduler_started()) {
+        delay_spin(cycles);
+        return;
+    }
 
-    while((SysTick0->ISR & (1 << 1)) != (1 << 1))
-        ;
-    SysTick1->CTLR &= ~(1 << 0);
+    delay_systick_cycles(cycles);
 }
 
 /*********************************************************************
@@ -64,18 +107,18 @@ void Delay_Us(uint32_t n)
  */
 void Delay_Ms(uint32_t n)
 {
-    uint32_t i;
-    SysTick0->ISR &= ~(1 << 1);
-    i = (uint32_t)n * p_ms;
+    const uint32_t cycles = (uint32_t)n * p_ms;
 
-    SysTick1->CNT = 0;
-    SysTick1->CMP = i;
-    SysTick1->CTLR = (1 << 2);
-    SysTick1->CTLR |= (1 << 0);
+    if (debug_scheduler_started()) {
+        TickType_t ticks = pdMS_TO_TICKS(n);
+        if ((ticks == 0U) && (n != 0U)) {
+            ticks = 1U;
+        }
+        vTaskDelay(ticks);
+        return;
+    }
 
-    while((SysTick0->ISR & (1 << 1)) != (1 << 1))
-        ;
-    SysTick1->CTLR &= ~(1 << 0);
+    delay_systick_cycles(cycles);
 }
 
 /*********************************************************************
@@ -161,14 +204,30 @@ __attribute__((used)) int _write(int fd, char *buf, int size)
 
     for(i = 0; i < size; i++)
     {
+        uint32_t timeout = DEBUG_UART_TIMEOUT_LOOPS;
 #if(DEBUG == DEBUG_UART1)
-        while(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);
+        while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET) {
+            if (timeout-- == 0U) {
+                g_dbg_printf_timeout_count++;
+                return i;
+            }
+        }
         USART_SendData(USART1, *buf++);
 #elif(DEBUG == DEBUG_UART8)
-        while(USART_GetFlagStatus(USART8, USART_FLAG_TC) == RESET);
+        while(USART_GetFlagStatus(USART8, USART_FLAG_TXE) == RESET) {
+            if (timeout-- == 0U) {
+                g_dbg_printf_timeout_count++;
+                return i;
+            }
+        }
         USART_SendData(USART8, *buf++);
 #elif(DEBUG == DEBUG_UART6)
-        while(USART_GetFlagStatus(USART6, USART_FLAG_TC) == RESET);
+        while(USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET) {
+            if (timeout-- == 0U) {
+                g_dbg_printf_timeout_count++;
+                return i;
+            }
+        }
         USART_SendData(USART6, *buf++);
 #endif
     }

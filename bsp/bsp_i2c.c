@@ -2,13 +2,46 @@
 #include "debug.h"
 
 #define I2C_TIMEOUT_LOOPS  100000U
+#define I2C_ERROR_FLAGS    (I2C_FLAG_AF | I2C_FLAG_BERR | I2C_FLAG_ARLO | I2C_FLAG_OVR | I2C_FLAG_TIMEOUT)
+
+volatile uint32_t g_dbg_i2c2_error_count;
+volatile uint32_t g_dbg_i2c2_timeout_count;
+volatile uint32_t g_dbg_i2c2_recover_count;
+
+static bool i2c2_has_error(void)
+{
+    return (I2C_GetFlagStatus(I2C2, I2C_FLAG_AF) != RESET) ||
+           (I2C_GetFlagStatus(I2C2, I2C_FLAG_BERR) != RESET) ||
+           (I2C_GetFlagStatus(I2C2, I2C_FLAG_ARLO) != RESET) ||
+           (I2C_GetFlagStatus(I2C2, I2C_FLAG_OVR) != RESET) ||
+           (I2C_GetFlagStatus(I2C2, I2C_FLAG_TIMEOUT) != RESET);
+}
+
+static void i2c2_recover(void)
+{
+    uint32_t timeout = I2C_TIMEOUT_LOOPS;
+
+    g_dbg_i2c2_recover_count++;
+    I2C_AcknowledgeConfig(I2C2, ENABLE);
+    I2C_GenerateSTOP(I2C2, ENABLE);
+    I2C_ClearFlag(I2C2, I2C_ERROR_FLAGS);
+
+    while ((I2C_GetFlagStatus(I2C2, I2C_FLAG_BUSY) != RESET) && (timeout-- != 0U)) {
+    }
+}
 
 static bool wait_event(uint32_t event)
 {
     uint32_t timeout = I2C_TIMEOUT_LOOPS;
 
     while (!I2C_CheckEvent(I2C2, event)) {
+        if (i2c2_has_error()) {
+            g_dbg_i2c2_error_count++;
+            return false;
+        }
+
         if (timeout-- == 0U) {
+            g_dbg_i2c2_timeout_count++;
             return false;
         }
     }
@@ -22,6 +55,7 @@ static bool wait_not_busy(void)
 
     while (I2C_GetFlagStatus(I2C2, I2C_FLAG_BUSY) != RESET) {
         if (timeout-- == 0U) {
+            g_dbg_i2c2_timeout_count++;
             return false;
         }
     }
@@ -58,28 +92,37 @@ void bsp_i2c2_init(uint32_t clock_hz)
 
 bool bsp_i2c2_mem_write(uint8_t dev_addr_7bit, uint8_t reg_addr, const uint8_t *data, uint16_t len)
 {
+    if ((data == 0) && (len != 0U)) {
+        return false;
+    }
+
     if (!wait_not_busy()) {
+        i2c2_recover();
         return false;
     }
 
     I2C_GenerateSTART(I2C2, ENABLE);
     if (!wait_event(I2C_EVENT_MASTER_MODE_SELECT)) {
+        i2c2_recover();
         return false;
     }
 
     I2C_Send7bitAddress(I2C2, (uint8_t)(dev_addr_7bit << 1), I2C_Direction_Transmitter);
     if (!wait_event(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
+        i2c2_recover();
         return false;
     }
 
     I2C_SendData(I2C2, reg_addr);
     if (!wait_event(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {
+        i2c2_recover();
         return false;
     }
 
     for (uint16_t i = 0; i < len; i++) {
         I2C_SendData(I2C2, data[i]);
         if (!wait_event(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {
+            i2c2_recover();
             return false;
         }
     }
@@ -94,17 +137,41 @@ bool bsp_i2c2_mem_read(uint8_t dev_addr_7bit, uint8_t reg_addr, uint8_t *data, u
         return false;
     }
 
-    if (!bsp_i2c2_mem_write(dev_addr_7bit, reg_addr, 0, 0)) {
+    if (!wait_not_busy()) {
+        i2c2_recover();
         return false;
     }
 
+    I2C_AcknowledgeConfig(I2C2, ENABLE);
+
     I2C_GenerateSTART(I2C2, ENABLE);
     if (!wait_event(I2C_EVENT_MASTER_MODE_SELECT)) {
+        i2c2_recover();
+        return false;
+    }
+
+    I2C_Send7bitAddress(I2C2, (uint8_t)(dev_addr_7bit << 1), I2C_Direction_Transmitter);
+    if (!wait_event(I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
+        i2c2_recover();
+        return false;
+    }
+
+    I2C_SendData(I2C2, reg_addr);
+    if (!wait_event(I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {
+        i2c2_recover();
+        return false;
+    }
+
+    /* Register reads use repeated START, matching the IMU reference protocol. */
+    I2C_GenerateSTART(I2C2, ENABLE);
+    if (!wait_event(I2C_EVENT_MASTER_MODE_SELECT)) {
+        i2c2_recover();
         return false;
     }
 
     I2C_Send7bitAddress(I2C2, (uint8_t)(dev_addr_7bit << 1), I2C_Direction_Receiver);
     if (!wait_event(I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED)) {
+        i2c2_recover();
         return false;
     }
 
@@ -115,7 +182,7 @@ bool bsp_i2c2_mem_read(uint8_t dev_addr_7bit, uint8_t reg_addr, uint8_t *data, u
         }
 
         if (!wait_event(I2C_EVENT_MASTER_BYTE_RECEIVED)) {
-            I2C_AcknowledgeConfig(I2C2, ENABLE);
+            i2c2_recover();
             return false;
         }
 

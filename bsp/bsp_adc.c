@@ -1,5 +1,6 @@
 #include "bsp/bsp_adc.h"
 #include "debug.h"
+#include <stdbool.h>
 
 #define ADC_TIMEOUT_LOOPS  100000U
 #define ADC_REF_VOLTAGE    3.3f
@@ -10,6 +11,36 @@
  */
 #define BATTERY_VOLTAGE_SCALE  1.0f
 #define BATTERY_CURRENT_SCALE  1.0f
+
+volatile uint32_t g_dbg_adc_timeout_count;
+
+static bool adc_wait_reset_calibration(void)
+{
+    uint32_t timeout = ADC_TIMEOUT_LOOPS;
+
+    while (ADC_GetResetCalibrationStatus(ADC1)) {
+        if (timeout-- == 0U) {
+            g_dbg_adc_timeout_count++;
+            return false;
+        }
+    }
+
+    return true;
+}
+
+static bool adc_wait_calibration(void)
+{
+    uint32_t timeout = ADC_TIMEOUT_LOOPS;
+
+    while (ADC_GetCalibrationStatus(ADC1)) {
+        if (timeout-- == 0U) {
+            g_dbg_adc_timeout_count++;
+            return false;
+        }
+    }
+
+    return true;
+}
 
 void bsp_adc_init(void)
 {
@@ -38,11 +69,9 @@ void bsp_adc_init(void)
 
     ADC_Cmd(ADC1, ENABLE);
     ADC_ResetCalibration(ADC1);
-    while (ADC_GetResetCalibrationStatus(ADC1)) {
-    }
+    (void)adc_wait_reset_calibration();
     ADC_StartCalibration(ADC1);
-    while (ADC_GetCalibrationStatus(ADC1)) {
-    }
+    (void)adc_wait_calibration();
 }
 
 uint16_t bsp_adc_read_channel(uint8_t adc_channel)
@@ -54,6 +83,7 @@ uint16_t bsp_adc_read_channel(uint8_t adc_channel)
 
     while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET) {
         if (timeout-- == 0U) {
+            g_dbg_adc_timeout_count++;
             return 0U;
         }
     }

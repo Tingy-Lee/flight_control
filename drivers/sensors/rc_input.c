@@ -3,6 +3,8 @@
 #include "bsp/bsp_board.h"
 #include "bsp/bsp_uart.h"
 
+#define RC_INPUT_POLL_MAX_BYTES 128U
+
 bool rc_input_init(void)
 {
     return true;
@@ -11,8 +13,9 @@ bool rc_input_init(void)
 bool rc_input_poll(rc_input_t *rc)
 {
     uint8_t byte;
+    uint16_t budget = RC_INPUT_POLL_MAX_BYTES;
 
-    while (bsp_uart_rc_read_byte(&byte)) {
+    while ((budget-- != 0U) && bsp_uart_rc_read_byte(&byte)) {
         /* TODO: add SBUS/CRSF parser. */
         (void)byte;
     }

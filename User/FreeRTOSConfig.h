@@ -97,7 +97,7 @@
 #define configTICK_RATE_HZ				( ( TickType_t ) 1000 )
 #define configMAX_PRIORITIES			( 15 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 256 ) /* Can be as low as 60 but some of the demo tasks that use this constant require it to be higher. */
-#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 48 * 1024 ) )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) ( 96 * 1024 ) )
 #define configMAX_TASK_NAME_LEN			( 16 )
 #define configUSE_TRACE_FACILITY		0
 #define configUSE_16_BIT_TICKS			0
@@ -117,7 +117,7 @@
 #define configMAX_CO_ROUTINE_PRIORITIES ( 2 )
 
 /* Software timer definitions. */
-#define configUSE_TIMERS				1
+#define configUSE_TIMERS				0
 #define configTIMER_TASK_PRIORITY		( configMAX_PRIORITIES - 1 )
 #define configTIMER_QUEUE_LENGTH		4
 #define configTIMER_TASK_STACK_DEPTH	( configMINIMAL_STACK_SIZE )
@@ -134,15 +134,18 @@ to exclude the API function. */
 #define INCLUDE_vTaskDelayUntil				1
 #define INCLUDE_vTaskDelay					1
 #define INCLUDE_eTaskGetState				1
-#define INCLUDE_xTimerPendFunctionCall		1
+#define INCLUDE_xTimerPendFunctionCall		0
 #define INCLUDE_xTaskAbortDelay				1
 #define INCLUDE_xTaskGetHandle				1
+#define INCLUDE_xTaskGetSchedulerState		1
 #define INCLUDE_xSemaphoreGetMutexHolder	1
+#define INCLUDE_uxTaskGetStackHighWaterMark	1
 
 
-/* Normal assert() semantics without relying on the provision of an assert.h
-header file. */
-#define configASSERT( x ) if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); printf("err at line %d of file \"%s\". \r\n ",__LINE__,__FILE__); while(1); }
+/* Keep assert state in globals so the debugger can inspect the real failing
+ * file and line after the CPU is halted. */
+void vApplicationAssertFailed(const char *file, int line);
+#define configASSERT( x ) do { if( ( x ) == 0 ) { vApplicationAssertFailed(__FILE__, __LINE__); } } while(0)
 
 /* Map to the platform printf function. */
 #define configPRINT_STRING( pcString )  printf( pcString )

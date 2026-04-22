@@ -1,6 +1,40 @@
 #include "bsp/bsp_spi.h"
 #include "debug.h"
 
+#define SPI_TIMEOUT_LOOPS 100000U
+
+volatile uint32_t g_dbg_spi2_timeout_count;
+
+static bool spi2_transfer_byte(uint8_t tx, uint8_t *rx)
+{
+    uint32_t timeout = SPI_TIMEOUT_LOOPS;
+
+    while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET) {
+        if (timeout-- == 0U) {
+            g_dbg_spi2_timeout_count++;
+            return false;
+        }
+    }
+
+    SPI_I2S_SendData(SPI2, tx);
+    timeout = SPI_TIMEOUT_LOOPS;
+
+    while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET) {
+        if (timeout-- == 0U) {
+            g_dbg_spi2_timeout_count++;
+            return false;
+        }
+    }
+
+    if (rx != 0) {
+        *rx = (uint8_t)SPI_I2S_ReceiveData(SPI2);
+    } else {
+        (void)SPI_I2S_ReceiveData(SPI2);
+    }
+
+    return true;
+}
+
 void bsp_spi2_init(void)
 {
     GPIO_InitTypeDef gpio = {0};
@@ -51,15 +85,10 @@ void bsp_spi2_init(void)
 
 uint8_t bsp_spi2_transfer(uint8_t tx)
 {
-    while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET) {
-    }
+    uint8_t rx = 0xFFU;
 
-    SPI_I2S_SendData(SPI2, tx);
-
-    while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET) {
-    }
-
-    return (uint8_t)SPI_I2S_ReceiveData(SPI2);
+    (void)spi2_transfer_byte(tx, &rx);
+    return rx;
 }
 
 bool bsp_spi2_transfer_buf(const uint8_t *tx, uint8_t *rx, uint16_t len)
@@ -70,7 +99,10 @@ bool bsp_spi2_transfer_buf(const uint8_t *tx, uint8_t *rx, uint16_t len)
 
     for (uint16_t i = 0; i < len; i++) {
         const uint8_t out = (tx != 0) ? tx[i] : 0xFFU;
-        const uint8_t in = bsp_spi2_transfer(out);
+        uint8_t in = 0xFFU;
+        if (!spi2_transfer_byte(out, &in)) {
+            return false;
+        }
         if (rx != 0) {
             rx[i] = in;
         }

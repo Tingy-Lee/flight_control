@@ -11,6 +11,14 @@
 *******************************************************************************/
 #include "ch32h417_it.h"
 
+volatile uint32_t g_dbg_nmi_count;
+volatile uint32_t g_dbg_hardfault_count;
+volatile uint32_t g_dbg_hardfault_mcause;
+volatile uint32_t g_dbg_hardfault_mepc;
+volatile uint32_t g_dbg_hardfault_mtval;
+volatile uint32_t g_dbg_hardfault_mstatus;
+volatile uint32_t g_dbg_hardfault_sp;
+
 void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
@@ -23,6 +31,8 @@ void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
  */
 void NMI_Handler(void)
 {
+  g_dbg_nmi_count++;
+  __disable_irq();
   while (1)
   {
     
@@ -38,7 +48,13 @@ void NMI_Handler(void)
  */
 void HardFault_Handler(void)
 {
-  NVIC_SystemReset();
+  g_dbg_hardfault_count++;
+  __asm volatile("csrr %0, mcause" : "=r"(g_dbg_hardfault_mcause));
+  __asm volatile("csrr %0, mepc" : "=r"(g_dbg_hardfault_mepc));
+  __asm volatile("csrr %0, mtval" : "=r"(g_dbg_hardfault_mtval));
+  __asm volatile("csrr %0, mstatus" : "=r"(g_dbg_hardfault_mstatus));
+  __asm volatile("mv %0, sp" : "=r"(g_dbg_hardfault_sp));
+  __disable_irq();
   while (1)
   {
   }

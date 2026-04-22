@@ -68,7 +68,7 @@ main-build: FlightControl_V5F.elf secondary-outputs
 
 # Tool invocations
 FlightControl_V5F.elf: $(OBJS) $(USER_OBJS_ESCAPE)
-	@	riscv-wch-elf-gcc -march=rv32imac_zba_zbb_zbc_zbs_xw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -T "/Users/litianyi/Desktop/flight_control/Ld/Link_v5f.ld" -nostartfiles -Xlinker --gc-sections -Wl,-Map,"FlightControl_V5F.map" --specs=nano.specs --specs=nosys.specs -o "FlightControl_V5F.elf" $(OBJS) $(LIBS)
+	@	riscv-wch-elf-gcc -march=rv32imac_zba_zbb_zbc_zbs_xw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -T "/Users/litianyi/Desktop/flight_control/Ld/Link_v5f.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"FlightControl_V5F.map" --specs=nano.specs --specs=nosys.specs -o "FlightControl_V5F.elf" $(OBJS) $(LIBS)
 FlightControl_V5F.bin: FlightControl_V5F.elf
 	@	riscv-wch-elf-objcopy -O binary "FlightControl_V5F.elf" "FlightControl_V5F.bin"
 FlightControl_V5F.hex: FlightControl_V5F.elf

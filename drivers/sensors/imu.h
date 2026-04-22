@@ -6,5 +6,6 @@
 
 bool imu_init(void);
 bool imu_read(imu_sample_t *sample);
+bool imu_read_barometer(baro_sample_t *sample);
 
 #endif

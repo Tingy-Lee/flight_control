@@ -34,15 +34,23 @@
 /* Board-level feature switches. I2C2 uses PC0/PC1 in WCH examples. SPI2 also
  * uses PC1 as MOSI, so keep SPI disabled until pins are separated on the
  * carrier wiring or custom PCB.
+ *
+ * The ten-axis IMU is currently used through its UART auto-report protocol on
+ * USART4: PF4 TX, PF3 RX.
  */
-#define FC_ENABLE_I2C2_SENSORS          1
+#define FC_ENABLE_I2C2_SENSORS          0
+#define FC_ENABLE_IMU_UART              1
 #define FC_ENABLE_SPI2_IMU              0
 #define FC_ENABLE_GPS_USART2            1
 #define FC_ENABLE_RC_USART3             1
 #define FC_ENABLE_BATTERY_ADC           1
+#define FC_ENABLE_RUNTIME_LOGGER        0
 
 /* Sensor defaults */
 #define FC_SEA_LEVEL_PRESSURE_PA        101325.0f
 #define FC_GRAVITY_MPS2                 9.80665f
+#define FC_IMU_UART_BAUD                115200U
+#define FC_IMU_UART_OUTPUT_HZ           50U
+#define FC_IMU_UART_STALE_TIMEOUT_MS    500U
 
 #endif
