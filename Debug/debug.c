@@ -13,6 +13,7 @@
 #include "debug.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "debug_diagnostics.h"
 
 static uint16_t  p_us = 0;
 static uint32_t p_ms = 0;
@@ -22,8 +23,14 @@ static uint32_t p_ms = 0;
 #define DEBUG_DELAY_TIMEOUT_PAD   1024U
 #define DEBUG_UART_TIMEOUT_LOOPS  1000000U
 
-volatile uint32_t g_dbg_delay_timeout_count;
-volatile uint32_t g_dbg_printf_timeout_count;
+volatile debug_boot_diag_t g_dbg_boot;
+volatile debug_fault_diag_t g_dbg_fault;
+volatile debug_trap_diag_t g_dbg_trap;
+volatile debug_task_diag_t g_dbg_tasks;
+volatile debug_uart_diag_t g_dbg_uart;
+volatile debug_bus_diag_t g_dbg_bus;
+volatile debug_console_diag_t g_dbg_console;
+volatile debug_kernel_diag_t g_dbg_kernel;
 
 static int debug_scheduler_started(void)
 {
@@ -54,7 +61,7 @@ static void delay_systick_cycles(uint32_t cycles)
 
     while ((SysTick1->ISR & DEBUG_SYSTICK_DONE_BIT) != DEBUG_SYSTICK_DONE_BIT) {
         if (timeout-- == 0U) {
-            g_dbg_delay_timeout_count++;
+            g_dbg_console.delay_timeout_count++;
             break;
         }
     }
@@ -208,7 +215,7 @@ __attribute__((used)) int _write(int fd, char *buf, int size)
 #if(DEBUG == DEBUG_UART1)
         while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET) {
             if (timeout-- == 0U) {
-                g_dbg_printf_timeout_count++;
+                g_dbg_console.printf_timeout_count++;
                 return i;
             }
         }
@@ -216,7 +223,7 @@ __attribute__((used)) int _write(int fd, char *buf, int size)
 #elif(DEBUG == DEBUG_UART8)
         while(USART_GetFlagStatus(USART8, USART_FLAG_TXE) == RESET) {
             if (timeout-- == 0U) {
-                g_dbg_printf_timeout_count++;
+                g_dbg_console.printf_timeout_count++;
                 return i;
             }
         }
@@ -224,7 +231,7 @@ __attribute__((used)) int _write(int fd, char *buf, int size)
 #elif(DEBUG == DEBUG_UART6)
         while(USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET) {
             if (timeout-- == 0U) {
-                g_dbg_printf_timeout_count++;
+                g_dbg_console.printf_timeout_count++;
                 return i;
             }
         }

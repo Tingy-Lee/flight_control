@@ -55,7 +55,8 @@ Debug/debug.o: ../Debug/debug.c ../Debug/debug.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h \
- /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h \
+ ../Debug/debug_diagnostics.h
 ../Debug/debug.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417.h:
 /Users/litianyi/Desktop/flight_control/Core/core_riscv.h:
@@ -114,3 +115,4 @@ Debug/debug.o: ../Debug/debug.c ../Debug/debug.h \
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h:
+../Debug/debug_diagnostics.h:

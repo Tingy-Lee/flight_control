@@ -6,20 +6,19 @@
 #include "bsp/bsp_spi.h"
 #include "bsp/bsp_uart.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 
 static volatile uint32_t g_board_millis;
-extern volatile uint32_t g_dbg_startup_phase;
-volatile uint32_t g_dbg_tick_hook_count;
 
 void bsp_board_init(void)
 {
     GPIO_InitTypeDef gpio = {0};
 
-    g_dbg_startup_phase = 2U;
+    g_dbg_boot.startup_phase = 2U;
     SystemAndCoreClockUpdate();
     Delay_Init();
     USART_Printf_Init(115200);
-    g_dbg_startup_phase = 3U;
+    g_dbg_boot.startup_phase = 3U;
 
     RCC_HB2PeriphClockCmd(RCC_HB2Periph_GPIOB, ENABLE);
     gpio.GPIO_Pin = GPIO_Pin_1;
@@ -36,7 +35,7 @@ void bsp_board_init(void)
 
 #if FC_ENABLE_IMU_UART
     bsp_uart_imu_init(FC_IMU_UART_BAUD);
-    g_dbg_startup_phase = 10U;
+    g_dbg_boot.startup_phase = 10U;
 #endif
 
 #if FC_ENABLE_SPI2_IMU
@@ -58,7 +57,7 @@ void bsp_board_init(void)
     printf("\r\n%s %s\r\n", FC_PROJECT_NAME, FC_PROJECT_VERSION);
     printf("CoreClk:%lu Hz, Airframe:%s\r\n", (unsigned long)SystemCoreClock, FC_AIRFRAME_NAME);
     printf("Motors locked at %u us, PWM %u Hz\r\n", FC_MOTOR_PWM_MIN_US, FC_MOTOR_PWM_HZ);
-    g_dbg_startup_phase = 19U;
+    g_dbg_boot.startup_phase = 19U;
 }
 
 void bsp_board_led_set(uint8_t on)
@@ -83,5 +82,5 @@ uint32_t bsp_board_millis(void)
 void vApplicationTickHook(void)
 {
     g_board_millis++;
-    g_dbg_tick_hook_count++;
+    g_dbg_boot.tick_hook_count++;
 }

@@ -1,5 +1,6 @@
 #include "bsp/bsp_uart.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 
 #define IMU_UART_RX_BUFFER_SIZE  512U
 #define IMU_UART_IRQ_PRIORITY    0xF0U
@@ -9,31 +10,6 @@ static volatile uint8_t g_imu_uart_rx_buffer[IMU_UART_RX_BUFFER_SIZE];
 static volatile uint16_t g_imu_uart_rx_write;
 static volatile uint16_t g_imu_uart_rx_read;
 static volatile uint8_t g_imu_uart_rx_started;
-
-volatile uint32_t g_dbg_usart4_irq_count;
-volatile uint32_t g_dbg_usart4_rx_count;
-volatile uint32_t g_dbg_usart4_ore_count;
-volatile uint32_t g_dbg_usart4_fe_count;
-volatile uint32_t g_dbg_usart4_ne_count;
-volatile uint32_t g_dbg_usart4_pe_count;
-volatile uint32_t g_dbg_usart4_spurious_count;
-volatile uint32_t g_dbg_usart4_error_flags;
-volatile uint32_t g_dbg_usart4_statr;
-volatile uint8_t g_dbg_usart4_last_byte;
-volatile uint8_t g_dbg_pf3_level;
-volatile uint16_t g_dbg_gpiof_indr;
-volatile uint8_t g_dbg_gpiof_pf3_af;
-volatile uint32_t g_dbg_afio_pcfr1;
-volatile uint32_t g_dbg_usart4_ctlr1;
-volatile uint32_t g_dbg_usart4_ctlr2;
-volatile uint32_t g_dbg_usart4_ctlr3;
-volatile uint32_t g_dbg_usart4_brr;
-volatile uint32_t g_dbg_usart4_nvic_enabled;
-volatile uint32_t g_dbg_usart4_nvic_pending;
-volatile uint32_t g_dbg_usart4_nvic_active;
-volatile uint32_t g_dbg_usart4_nvic_own_core;
-volatile uint32_t g_dbg_usart4_rx_irq_start_count;
-volatile uint32_t g_dbg_uart_tx_timeout_count;
 
 void USART4_IRQHandler(void) __attribute__((interrupt()));
 
@@ -66,7 +42,7 @@ static bool uart_wait_txe(USART_TypeDef *usart)
 
     while (USART_GetFlagStatus(usart, USART_FLAG_TXE) == RESET) {
         if (timeout-- == 0U) {
-            g_dbg_uart_tx_timeout_count++;
+            g_dbg_uart.tx_timeout_count++;
             return false;
         }
     }
@@ -174,7 +150,7 @@ void bsp_uart_imu_init(uint32_t baudrate)
 
 void bsp_uart_imu_start_rx_irq(void)
 {
-    g_dbg_usart4_rx_irq_start_count++;
+    g_dbg_uart.imu.rx_irq_start_count++;
 
     if (g_imu_uart_rx_started == 0U) {
         USART_ITConfig(USART4, USART_IT_RXNE, DISABLE);
@@ -189,19 +165,19 @@ void bsp_uart_imu_start_rx_irq(void)
 
 void bsp_uart_debug_sample_imu_rx(void)
 {
-    g_dbg_gpiof_indr = GPIO_ReadInputData(GPIOF);
-    g_dbg_pf3_level = (uint8_t)((g_dbg_gpiof_indr & GPIO_Pin_3) != 0U);
-    g_dbg_gpiof_pf3_af = (uint8_t)((AFIO->GPIOF_AFLR >> (GPIO_PinSource3 * 4U)) & 0x0FU);
-    g_dbg_afio_pcfr1 = AFIO->PCFR1;
-    g_dbg_usart4_statr = USART4->STATR;
-    g_dbg_usart4_ctlr1 = USART4->CTLR1;
-    g_dbg_usart4_ctlr2 = USART4->CTLR2;
-    g_dbg_usart4_ctlr3 = USART4->CTLR3;
-    g_dbg_usart4_brr = USART4->BRR;
-    g_dbg_usart4_nvic_enabled = NVIC_GetStatusIRQ(USART4_IRQn);
-    g_dbg_usart4_nvic_pending = NVIC_GetPendingIRQ(USART4_IRQn);
-    g_dbg_usart4_nvic_active = NVIC_GetActive(USART4_IRQn);
-    g_dbg_usart4_nvic_own_core = NVIC_OwnCoreGetAllocateIRQ(USART4_IRQn);
+    g_dbg_uart.imu.rx_pin.gpiof_indr = GPIO_ReadInputData(GPIOF);
+    g_dbg_uart.imu.rx_pin.pf3_level = (uint8_t)((g_dbg_uart.imu.rx_pin.gpiof_indr & GPIO_Pin_3) != 0U);
+    g_dbg_uart.imu.rx_pin.pf3_af = (uint8_t)((AFIO->GPIOF_AFLR >> (GPIO_PinSource3 * 4U)) & 0x0FU);
+    g_dbg_uart.imu.rx_pin.afio_pcfr1 = AFIO->PCFR1;
+    g_dbg_uart.imu.regs.statr = USART4->STATR;
+    g_dbg_uart.imu.regs.ctlr1 = USART4->CTLR1;
+    g_dbg_uart.imu.regs.ctlr2 = USART4->CTLR2;
+    g_dbg_uart.imu.regs.ctlr3 = USART4->CTLR3;
+    g_dbg_uart.imu.regs.brr = USART4->BRR;
+    g_dbg_uart.imu.nvic.enabled = NVIC_GetStatusIRQ(USART4_IRQn);
+    g_dbg_uart.imu.nvic.pending = NVIC_GetPendingIRQ(USART4_IRQn);
+    g_dbg_uart.imu.nvic.active = NVIC_GetActive(USART4_IRQn);
+    g_dbg_uart.imu.nvic.own_core = NVIC_OwnCoreGetAllocateIRQ(USART4_IRQn);
 }
 
 bool bsp_uart_gps_read_byte(uint8_t *byte)
@@ -282,40 +258,40 @@ void USART4_IRQHandler(void)
 {
     const uint16_t status = USART4->STATR;
 
-    g_dbg_usart4_irq_count++;
-    g_dbg_usart4_statr = status;
-    g_dbg_usart4_error_flags = (uint32_t)(status & (USART_FLAG_ORE | USART_FLAG_NE | USART_FLAG_FE | USART_FLAG_PE));
+    g_dbg_uart.imu.irq_count++;
+    g_dbg_uart.imu.regs.statr = status;
+    g_dbg_uart.imu.error_flags = (uint32_t)(status & (USART_FLAG_ORE | USART_FLAG_NE | USART_FLAG_FE | USART_FLAG_PE));
 
     if ((status & USART_FLAG_ORE) != 0U) {
-        g_dbg_usart4_ore_count++;
+        g_dbg_uart.imu.ore_count++;
     }
     if ((status & USART_FLAG_FE) != 0U) {
-        g_dbg_usart4_fe_count++;
+        g_dbg_uart.imu.fe_count++;
     }
     if ((status & USART_FLAG_NE) != 0U) {
-        g_dbg_usart4_ne_count++;
+        g_dbg_uart.imu.ne_count++;
     }
     if ((status & USART_FLAG_PE) != 0U) {
-        g_dbg_usart4_pe_count++;
+        g_dbg_uart.imu.pe_count++;
     }
 
     if ((status & (USART_FLAG_RXNE | USART_FLAG_ORE | USART_FLAG_NE | USART_FLAG_FE | USART_FLAG_PE)) == 0U) {
-        g_dbg_usart4_spurious_count++;
+        g_dbg_uart.imu.spurious_count++;
         return;
     }
 
-    g_dbg_usart4_last_byte = (uint8_t)USART4->DATAR;
+    g_dbg_uart.imu.last_byte = (uint8_t)USART4->DATAR;
     if ((status & USART_FLAG_RXNE) != 0U) {
         const uint16_t write = g_imu_uart_rx_write;
         const uint16_t next = (uint16_t)((write + 1U) & (IMU_UART_RX_BUFFER_SIZE - 1U));
 
-        g_dbg_usart4_rx_count++;
+        g_dbg_uart.imu.rx_count++;
 
         if (next == g_imu_uart_rx_read) {
             g_imu_uart_rx_read = (uint16_t)((g_imu_uart_rx_read + 1U) & (IMU_UART_RX_BUFFER_SIZE - 1U));
         }
 
-        g_imu_uart_rx_buffer[write] = g_dbg_usart4_last_byte;
+        g_imu_uart_rx_buffer[write] = g_dbg_uart.imu.last_byte;
         g_imu_uart_rx_write = next;
     }
 }

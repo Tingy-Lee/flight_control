@@ -35,6 +35,7 @@
 #include "task.h"
 #include "portmacro.h"
 #include "core_riscv.h"
+#include "debug_diagnostics.h"
 /* Standard includes. */
 #include "string.h"
 
@@ -105,15 +106,6 @@ static UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
 /* Used to catch tasks that attempt to return from their implementing function. */
 size_t xTaskReturnAddress = ( size_t ) portTASK_RETURN_ADDRESS;
 
-volatile uint32_t g_dbg_systick_setup_count;
-volatile uint32_t g_dbg_systick_isr_count;
-volatile uint32_t g_dbg_systick_yield_count;
-volatile uint32_t g_dbg_systick_last_ctlr;
-volatile uint32_t g_dbg_systick_last_cmp;
-volatile uint32_t g_dbg_systick_last_isr;
-volatile uint32_t g_dbg_systick_last_cnt;
-volatile uint32_t g_dbg_systick_pended_switch_count;
-
 #define portMSTATUS_MPP_MACHINE_MPIE    0x1880UL
 
 /* Set configCHECK_FOR_STACK_OVERFLOW to 3 to add ISR stack checking to task
@@ -182,9 +174,9 @@ void vPortSetupTimerInterrupt( void )
     SysTick1->CNT=0;
     SysTick1->CMP=configCPU_CLOCK_HZ/configTICK_RATE_HZ;;
     SysTick1->CTLR= 0xf;
-    g_dbg_systick_setup_count++;
-    g_dbg_systick_last_cmp = SysTick1->CMP;
-    g_dbg_systick_last_ctlr = SysTick1->CTLR;
+    g_dbg_kernel.systick.setup_count++;
+    g_dbg_kernel.systick.last_cmp = SysTick1->CMP;
+    g_dbg_kernel.systick.last_ctlr = SysTick1->CTLR;
     // printf("1:%08X\r\n",SysTick1->CTLR);
     // while(1)
     // {
@@ -269,13 +261,13 @@ void SysTick1_Handler( void )
     // printf("33\r\n");
     GET_INT_SP();
     portDISABLE_INTERRUPTS();
-    g_dbg_systick_isr_count++;
-    g_dbg_systick_last_isr = SysTick1->ISR;
-    g_dbg_systick_last_cnt = SysTick1->CNT;
+    g_dbg_kernel.systick.isr_count++;
+    g_dbg_kernel.systick.last_isr = SysTick1->ISR;
+    g_dbg_kernel.systick.last_cnt = SysTick1->CNT;
     SysTick1->ISR=0;
     if( xTaskIncrementTick() != pdFALSE )
     {
-        g_dbg_systick_yield_count++;
+        g_dbg_kernel.systick.yield_count++;
         portYIELD();
     }
     FREE_INT_SP();
@@ -285,7 +277,7 @@ void SysTick1_Handler( void )
      * can nest SW_Handler on the ISR/compiler frame and corrupt the task lists.
      * MPIE lets mret re-enable interrupts after the original task context is
      * restored. */
-    g_dbg_systick_pended_switch_count = g_dbg_systick_yield_count;
+    g_dbg_kernel.systick.pended_switch_count = g_dbg_kernel.systick.yield_count;
     __asm volatile( "csrw mstatus,%0" ::"r"( portMSTATUS_MPP_MACHINE_MPIE ) );
 }
 

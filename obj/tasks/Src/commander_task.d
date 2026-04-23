@@ -61,6 +61,7 @@ tasks/Src/commander_task.o: ../tasks/Src/commander_task.c \
  /Users/litianyi/Desktop/flight_control/app/app_types.h \
  /Users/litianyi/Desktop/flight_control/app/app_config.h \
  /Users/litianyi/Desktop/flight_control/bsp/bsp_board.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h \
  /Users/litianyi/Desktop/flight_control/modules/navigation/mission.h \
  /Users/litianyi/Desktop/flight_control/modules/safety/safety.h
 /Users/litianyi/Desktop/flight_control/tasks/Inc/tasks.h:
@@ -125,5 +126,6 @@ tasks/Src/commander_task.o: ../tasks/Src/commander_task.c \
 /Users/litianyi/Desktop/flight_control/app/app_types.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
 /Users/litianyi/Desktop/flight_control/bsp/bsp_board.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:
 /Users/litianyi/Desktop/flight_control/modules/navigation/mission.h:
 /Users/litianyi/Desktop/flight_control/modules/safety/safety.h:

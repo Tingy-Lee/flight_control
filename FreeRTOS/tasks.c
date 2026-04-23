@@ -40,6 +40,7 @@
 #include "task.h"
 #include "timers.h"
 #include "stack_macros.h"
+#include "debug_diagnostics.h"
 
 /* The default definitions are only available for non-MPU ports. The
  * reason is that the stack alignment requirements vary for different
@@ -529,28 +530,21 @@ static const volatile UBaseType_t uxTopUsedPriority = configMAX_PRIORITIES - 1U;
  * from either an ISR or a task. */
 PRIVILEGED_DATA static volatile UBaseType_t uxSchedulerSuspended = ( UBaseType_t ) 0U;
 
-volatile UBaseType_t g_dbg_switch_count;
-volatile UBaseType_t g_dbg_switch_top_ready_priority;
-volatile UBaseType_t g_dbg_switch_current_priority;
-volatile UBaseType_t g_dbg_switch_scheduler_suspended;
-volatile UBaseType_t g_dbg_switch_ready_lengths[ configMAX_PRIORITIES ];
-volatile void * g_dbg_switch_current_tcb;
-
 static void prvRecordSwitchDebugState( void )
 {
     UBaseType_t uxPriority;
 
-    g_dbg_switch_count++;
-    g_dbg_switch_top_ready_priority = uxTopReadyPriority;
-    g_dbg_switch_scheduler_suspended = uxSchedulerSuspended;
-    g_dbg_switch_current_tcb = ( void * ) pxCurrentTCB;
-    g_dbg_switch_current_priority = ( pxCurrentTCB != NULL ) ?
-                                    pxCurrentTCB->uxPriority :
-                                    ( UBaseType_t ) 0xffffffffUL;
+    g_dbg_kernel.context_switch.count++;
+    g_dbg_kernel.context_switch.top_ready_priority = uxTopReadyPriority;
+    g_dbg_kernel.context_switch.scheduler_suspended = uxSchedulerSuspended;
+    g_dbg_kernel.context_switch.current_tcb = ( void * ) pxCurrentTCB;
+    g_dbg_kernel.context_switch.current_priority = ( pxCurrentTCB != NULL ) ?
+                                                   pxCurrentTCB->uxPriority :
+                                                   ( UBaseType_t ) 0xffffffffUL;
 
     for( uxPriority = 0; uxPriority < configMAX_PRIORITIES; uxPriority++ )
     {
-        g_dbg_switch_ready_lengths[ uxPriority ] = listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ uxPriority ] ) );
+        g_dbg_kernel.context_switch.ready_lengths[ uxPriority ] = listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ uxPriority ] ) );
     }
 }
 

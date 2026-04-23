@@ -1,9 +1,8 @@
 #include "bsp/bsp_spi.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 
 #define SPI_TIMEOUT_LOOPS 100000U
-
-volatile uint32_t g_dbg_spi2_timeout_count;
 
 static bool spi2_transfer_byte(uint8_t tx, uint8_t *rx)
 {
@@ -11,7 +10,7 @@ static bool spi2_transfer_byte(uint8_t tx, uint8_t *rx)
 
     while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET) {
         if (timeout-- == 0U) {
-            g_dbg_spi2_timeout_count++;
+            g_dbg_bus.spi2.timeout_count++;
             return false;
         }
     }
@@ -21,7 +20,7 @@ static bool spi2_transfer_byte(uint8_t tx, uint8_t *rx)
 
     while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET) {
         if (timeout-- == 0U) {
-            g_dbg_spi2_timeout_count++;
+            g_dbg_bus.spi2.timeout_count++;
             return false;
         }
     }

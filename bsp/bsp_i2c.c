@@ -1,12 +1,9 @@
 #include "bsp/bsp_i2c.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 
 #define I2C_TIMEOUT_LOOPS  100000U
 #define I2C_ERROR_FLAGS    (I2C_FLAG_AF | I2C_FLAG_BERR | I2C_FLAG_ARLO | I2C_FLAG_OVR | I2C_FLAG_TIMEOUT)
-
-volatile uint32_t g_dbg_i2c2_error_count;
-volatile uint32_t g_dbg_i2c2_timeout_count;
-volatile uint32_t g_dbg_i2c2_recover_count;
 
 static bool i2c2_has_error(void)
 {
@@ -21,7 +18,7 @@ static void i2c2_recover(void)
 {
     uint32_t timeout = I2C_TIMEOUT_LOOPS;
 
-    g_dbg_i2c2_recover_count++;
+    g_dbg_bus.i2c2.recover_count++;
     I2C_AcknowledgeConfig(I2C2, ENABLE);
     I2C_GenerateSTOP(I2C2, ENABLE);
     I2C_ClearFlag(I2C2, I2C_ERROR_FLAGS);
@@ -36,12 +33,12 @@ static bool wait_event(uint32_t event)
 
     while (!I2C_CheckEvent(I2C2, event)) {
         if (i2c2_has_error()) {
-            g_dbg_i2c2_error_count++;
+            g_dbg_bus.i2c2.error_count++;
             return false;
         }
 
         if (timeout-- == 0U) {
-            g_dbg_i2c2_timeout_count++;
+            g_dbg_bus.i2c2.timeout_count++;
             return false;
         }
     }
@@ -55,7 +52,7 @@ static bool wait_not_busy(void)
 
     while (I2C_GetFlagStatus(I2C2, I2C_FLAG_BUSY) != RESET) {
         if (timeout-- == 0U) {
-            g_dbg_i2c2_timeout_count++;
+            g_dbg_bus.i2c2.timeout_count++;
             return false;
         }
     }

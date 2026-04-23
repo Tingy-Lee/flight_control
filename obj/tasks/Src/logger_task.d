@@ -60,6 +60,7 @@ tasks/Src/logger_task.o: ../tasks/Src/logger_task.c \
  /Users/litianyi/Desktop/flight_control/app/app.h \
  /Users/litianyi/Desktop/flight_control/app/app_types.h \
  /Users/litianyi/Desktop/flight_control/app/app_config.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h \
  /Users/litianyi/Desktop/flight_control/modules/comm/logger.h
 /Users/litianyi/Desktop/flight_control/tasks/Inc/tasks.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
@@ -122,4 +123,5 @@ tasks/Src/logger_task.o: ../tasks/Src/logger_task.c \
 /Users/litianyi/Desktop/flight_control/app/app.h:
 /Users/litianyi/Desktop/flight_control/app/app_types.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:
 /Users/litianyi/Desktop/flight_control/modules/comm/logger.h:

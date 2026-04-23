@@ -46,7 +46,15 @@ User/ch32h417_it.o: ../User/ch32h417_it.c ../User/ch32h417_it.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_wwdg.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h \
- /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h
+ /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h \
+ /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h
 ../User/ch32h417_it.h:
 /Users/litianyi/Desktop/flight_control/Debug/debug.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417.h:
@@ -96,3 +104,11 @@ User/ch32h417_it.o: ../User/ch32h417_it.c ../User/ch32h417_it.h \
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
+/Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h:

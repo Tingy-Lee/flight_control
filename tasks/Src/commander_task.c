@@ -3,17 +3,15 @@
 #include "app/app.h"
 #include "app/app_config.h"
 #include "bsp/bsp_board.h"
+#include "debug_diagnostics.h"
 #include "modules/navigation/mission.h"
 #include "modules/safety/safety.h"
-
-extern volatile uint32_t g_dbg_startup_phase;
-extern volatile uint32_t g_dbg_task_entry_mask;
 
 void CommanderTask(void *argument)
 {
     (void)argument;
-    g_dbg_startup_phase = 103U;
-    g_dbg_task_entry_mask |= (1UL << 2);
+    g_dbg_boot.startup_phase = 103U;
+    g_dbg_boot.task_entry_mask |= (1UL << 2);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_COMMANDER_TASK_HZ);
     flight_state_t *state = app_state();

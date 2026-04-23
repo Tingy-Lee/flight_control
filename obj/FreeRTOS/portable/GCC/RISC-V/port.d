@@ -57,7 +57,8 @@ FreeRTOS/portable/GCC/RISC-V/port.o: \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h \
- ../FreeRTOS/portable/GCC/RISC-V/portmacro.h
+ ../FreeRTOS/portable/GCC/RISC-V/portmacro.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
 /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
 /Users/litianyi/Desktop/flight_control/Debug/debug.h:
@@ -116,3 +117,4 @@ FreeRTOS/portable/GCC/RISC-V/port.o: \
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h:
 ../FreeRTOS/portable/GCC/RISC-V/portmacro.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:

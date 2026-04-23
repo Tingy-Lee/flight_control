@@ -2,16 +2,14 @@
 
 #include "app/app.h"
 #include "app/app_config.h"
+#include "debug_diagnostics.h"
 #include "modules/comm/logger.h"
-
-extern volatile uint32_t g_dbg_startup_phase;
-extern volatile uint32_t g_dbg_task_entry_mask;
 
 void LoggerTask(void *argument)
 {
     (void)argument;
-    g_dbg_startup_phase = 104U;
-    g_dbg_task_entry_mask |= (1UL << 3);
+    g_dbg_boot.startup_phase = 104U;
+    g_dbg_boot.task_entry_mask |= (1UL << 3);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_LOGGER_TASK_HZ);
     flight_state_t *state = app_state();

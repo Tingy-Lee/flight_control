@@ -58,7 +58,8 @@ FreeRTOS/tasks.o: ../FreeRTOS/tasks.c \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/list.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/timers.h \
  /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h \
- /Users/litianyi/Desktop/flight_control/FreeRTOS/include/stack_macros.h
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/stack_macros.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
 /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
 /Users/litianyi/Desktop/flight_control/Debug/debug.h:
@@ -119,3 +120,4 @@ FreeRTOS/tasks.o: ../FreeRTOS/tasks.c \
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/timers.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/task.h:
 /Users/litianyi/Desktop/flight_control/FreeRTOS/include/stack_macros.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:

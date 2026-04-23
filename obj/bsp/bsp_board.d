@@ -53,7 +53,15 @@ bsp/bsp_board.o: ../bsp/bsp_board.c \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_wwdg.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h \
  /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h \
- /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h
+ /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h \
+ /Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h \
+ /Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h
 /Users/litianyi/Desktop/flight_control/bsp/bsp_board.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
 /Users/litianyi/Desktop/flight_control/bsp/bsp_adc.h:
@@ -109,3 +117,11 @@ bsp/bsp_board.o: ../bsp/bsp_board.c \
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usbpd.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_usb.h:
 /Users/litianyi/Desktop/flight_control/Peripheral/inc/ch32h417_pioc.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/FreeRTOS.h:
+/Users/litianyi/Desktop/flight_control/User/FreeRTOSConfig.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/projdefs.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/portable.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/deprecated_definitions.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/portable/GCC/RISC-V/portmacro.h:
+/Users/litianyi/Desktop/flight_control/FreeRTOS/include/mpu_wrappers.h:

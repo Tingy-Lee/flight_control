@@ -3,17 +3,15 @@
 #include "app/app.h"
 #include "app/app_config.h"
 #include "bsp/bsp_pwm.h"
+#include "debug_diagnostics.h"
 #include "modules/control/flight_controller.h"
 #include "modules/estimator/attitude_estimator.h"
-
-extern volatile uint32_t g_dbg_startup_phase;
-extern volatile uint32_t g_dbg_task_entry_mask;
 
 void ControlTask(void *argument)
 {
     (void)argument;
-    g_dbg_startup_phase = 102U;
-    g_dbg_task_entry_mask |= (1UL << 1);
+    g_dbg_boot.startup_phase = 102U;
+    g_dbg_boot.task_entry_mask |= (1UL << 1);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_CONTROL_TASK_HZ);
     const float dt_s = 1.0f / (float)FC_CONTROL_TASK_HZ;

@@ -3,19 +3,17 @@
 #include "app/app.h"
 #include "app/app_config.h"
 #include "bsp/bsp_uart.h"
+#include "debug_diagnostics.h"
 #include "drivers/sensors/barometer.h"
 #include "drivers/sensors/gps.h"
 #include "drivers/sensors/imu.h"
 #include "drivers/sensors/rc_input.h"
 
-extern volatile uint32_t g_dbg_startup_phase;
-extern volatile uint32_t g_dbg_task_entry_mask;
-
 void SensorTask(void *argument)
 {
     (void)argument;
-    g_dbg_startup_phase = 101U;
-    g_dbg_task_entry_mask |= (1UL << 0);
+    g_dbg_boot.startup_phase = 101U;
+    g_dbg_boot.task_entry_mask |= (1UL << 0);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_SENSOR_TASK_HZ);
     flight_state_t *state = app_state();

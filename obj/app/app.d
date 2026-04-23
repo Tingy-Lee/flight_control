@@ -68,7 +68,8 @@ app/app.o: ../app/app.c /Users/litianyi/Desktop/flight_control/app/app.h \
  /Users/litianyi/Desktop/flight_control/modules/control/flight_controller.h \
  /Users/litianyi/Desktop/flight_control/modules/estimator/attitude_estimator.h \
  /Users/litianyi/Desktop/flight_control/modules/navigation/mission.h \
- /Users/litianyi/Desktop/flight_control/modules/safety/safety.h
+ /Users/litianyi/Desktop/flight_control/modules/safety/safety.h \
+ /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h
 /Users/litianyi/Desktop/flight_control/app/app.h:
 /Users/litianyi/Desktop/flight_control/app/app_types.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
@@ -140,3 +141,4 @@ app/app.o: ../app/app.c /Users/litianyi/Desktop/flight_control/app/app.h \
 /Users/litianyi/Desktop/flight_control/modules/estimator/attitude_estimator.h:
 /Users/litianyi/Desktop/flight_control/modules/navigation/mission.h:
 /Users/litianyi/Desktop/flight_control/modules/safety/safety.h:
+/Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:

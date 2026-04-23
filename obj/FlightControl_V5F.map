@@ -184,24 +184,18 @@ Discarded input sections
                 0x0000000000000000       0xd6 ./bsp/bsp_i2c.o
  .text.bsp_i2c2_mem_read
                 0x0000000000000000      0x14e ./bsp/bsp_i2c.o
- .sbss.g_dbg_i2c2_recover_count
-                0x0000000000000000        0x4 ./bsp/bsp_i2c.o
- .sbss.g_dbg_i2c2_timeout_count
-                0x0000000000000000        0x4 ./bsp/bsp_i2c.o
- .sbss.g_dbg_i2c2_error_count
-                0x0000000000000000        0x4 ./bsp/bsp_i2c.o
- .debug_info    0x0000000000000000      0xbbf ./bsp/bsp_i2c.o
- .debug_abbrev  0x0000000000000000      0x2c6 ./bsp/bsp_i2c.o
+ .debug_info    0x0000000000000000      0xc5c ./bsp/bsp_i2c.o
+ .debug_abbrev  0x0000000000000000      0x2d5 ./bsp/bsp_i2c.o
  .debug_loclists
                 0x0000000000000000      0x23d ./bsp/bsp_i2c.o
  .debug_aranges
                 0x0000000000000000       0x48 ./bsp/bsp_i2c.o
  .debug_rnglists
                 0x0000000000000000       0x85 ./bsp/bsp_i2c.o
- .debug_line    0x0000000000000000      0x770 ./bsp/bsp_i2c.o
- .debug_str     0x0000000000000000      0x61f ./bsp/bsp_i2c.o
+ .debug_line    0x0000000000000000      0x790 ./bsp/bsp_i2c.o
+ .debug_str     0x0000000000000000      0x656 ./bsp/bsp_i2c.o
  .debug_line_str
-                0x0000000000000000      0x289 ./bsp/bsp_i2c.o
+                0x0000000000000000      0x2ca ./bsp/bsp_i2c.o
  .comment       0x0000000000000000       0x33 ./bsp/bsp_i2c.o
  .debug_frame   0x0000000000000000      0x108 ./bsp/bsp_i2c.o
  .riscv.attributes
@@ -224,20 +218,18 @@ Discarded input sections
                 0x0000000000000000       0x12 ./bsp/bsp_spi.o
  .text.bsp_spi2_init
                 0x0000000000000000      0x114 ./bsp/bsp_spi.o
- .sbss.g_dbg_spi2_timeout_count
-                0x0000000000000000        0x4 ./bsp/bsp_spi.o
- .debug_info    0x0000000000000000      0x866 ./bsp/bsp_spi.o
- .debug_abbrev  0x0000000000000000      0x250 ./bsp/bsp_spi.o
+ .debug_info    0x0000000000000000      0x921 ./bsp/bsp_spi.o
+ .debug_abbrev  0x0000000000000000      0x261 ./bsp/bsp_spi.o
  .debug_loclists
                 0x0000000000000000      0x152 ./bsp/bsp_spi.o
  .debug_aranges
                 0x0000000000000000       0x48 ./bsp/bsp_spi.o
  .debug_rnglists
                 0x0000000000000000       0x43 ./bsp/bsp_spi.o
- .debug_line    0x0000000000000000      0x55b ./bsp/bsp_spi.o
- .debug_str     0x0000000000000000      0x59a ./bsp/bsp_spi.o
+ .debug_line    0x0000000000000000      0x564 ./bsp/bsp_spi.o
+ .debug_str     0x0000000000000000      0x601 ./bsp/bsp_spi.o
  .debug_line_str
-                0x0000000000000000      0x289 ./bsp/bsp_spi.o
+                0x0000000000000000      0x2ca ./bsp/bsp_spi.o
  .comment       0x0000000000000000       0x33 ./bsp/bsp_spi.o
  .debug_frame   0x0000000000000000       0xdc ./bsp/bsp_spi.o
  .riscv.attributes
@@ -250,6 +242,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./app/app.o
  .data          0x0000000000000000        0x0 ./app/app.o
  .bss           0x0000000000000000        0x0 ./app/app.o
+ .sdata.g_dbg_state
+                0x0000000000000000        0x4 ./app/app.o
  .text          0x0000000000000000        0x0 ./User/ch32h417_it.o
  .data          0x0000000000000000        0x0 ./User/ch32h417_it.o
  .bss           0x0000000000000000        0x0 ./User/ch32h417_it.o
@@ -3631,7 +3625,7 @@ END GROUP
                 0x00000000000000e4                . = ALIGN (0x4)
                 0x00000000000000e4                PROVIDE (_highcode_lma = .)
 
-.highcode       0x00000000200a0000     0x62e4 load address 0x00000000000000e4
+.highcode       0x00000000200a0000     0x638c load address 0x00000000000000e4
                 0x00000000200a0000                . = ALIGN (0x4)
                 0x00000000200a0000                PROVIDE (_highcode_vma_start = .)
  *(.vector)
@@ -3676,775 +3670,775 @@ END GROUP
                 0x00000000200a065c                memset
  *(.text.*)
  .text.CommanderTask
-                0x00000000200a066c       0x58 ./tasks/Src/commander_task.o
+                0x00000000200a066c       0x5a ./tasks/Src/commander_task.o
                 0x00000000200a066c                CommanderTask
  .text.ControlTask
-                0x00000000200a06c4       0x6a ./tasks/Src/control_task.o
-                0x00000000200a06c4                ControlTask
+                0x00000000200a06c6       0x6c ./tasks/Src/control_task.o
+                0x00000000200a06c6                ControlTask
  .text.task_period_ticks
-                0x00000000200a072e       0x1e ./tasks/Src/initial_task.o
-                0x00000000200a072e                task_period_ticks
+                0x00000000200a0732       0x1e ./tasks/Src/initial_task.o
+                0x00000000200a0732                task_period_ticks
  .text.task_record_heartbeat
-                0x00000000200a074c       0xaa ./tasks/Src/initial_task.o
-                0x00000000200a074c                task_record_heartbeat
+                0x00000000200a0750       0xa6 ./tasks/Src/initial_task.o
+                0x00000000200a0750                task_record_heartbeat
  .text.tasks_create_all
-                0x00000000200a07f6      0x14a ./tasks/Src/initial_task.o
+                0x00000000200a07f6      0x138 ./tasks/Src/initial_task.o
                 0x00000000200a07f6                tasks_create_all
  .text.LoggerTask
-                0x00000000200a0940       0x3e ./tasks/Src/logger_task.o
-                0x00000000200a0940                LoggerTask
+                0x00000000200a092e       0x40 ./tasks/Src/logger_task.o
+                0x00000000200a092e                LoggerTask
  .text.SensorTask
-                0x00000000200a097e       0x6c ./tasks/Src/sensor_task.o
-                0x00000000200a097e                SensorTask
+                0x00000000200a096e       0x6e ./tasks/Src/sensor_task.o
+                0x00000000200a096e                SensorTask
  .text.safety_init
-                0x00000000200a09ea        0x2 ./modules/safety/safety.o
-                0x00000000200a09ea                safety_init
+                0x00000000200a09dc        0x2 ./modules/safety/safety.o
+                0x00000000200a09dc                safety_init
  .text.safety_update
-                0x00000000200a09ec       0x38 ./modules/safety/safety.o
-                0x00000000200a09ec                safety_update
+                0x00000000200a09de       0x38 ./modules/safety/safety.o
+                0x00000000200a09de                safety_update
  .text.mission_init
-                0x00000000200a0a24        0x2 ./modules/navigation/mission.o
-                0x00000000200a0a24                mission_init
+                0x00000000200a0a16        0x2 ./modules/navigation/mission.o
+                0x00000000200a0a16                mission_init
  .text.mission_update
-                0x00000000200a0a26       0x1a ./modules/navigation/mission.o
-                0x00000000200a0a26                mission_update
+                0x00000000200a0a18       0x1a ./modules/navigation/mission.o
+                0x00000000200a0a18                mission_update
  .text.attitude_estimator_init
-                0x00000000200a0a40       0x16 ./modules/estimator/attitude_estimator.o
-                0x00000000200a0a40                attitude_estimator_init
+                0x00000000200a0a32       0x16 ./modules/estimator/attitude_estimator.o
+                0x00000000200a0a32                attitude_estimator_init
  .text.attitude_estimator_update
-                0x00000000200a0a56       0x60 ./modules/estimator/attitude_estimator.o
-                0x00000000200a0a56                attitude_estimator_update
+                0x00000000200a0a48       0x60 ./modules/estimator/attitude_estimator.o
+                0x00000000200a0a48                attitude_estimator_update
  .text.flight_controller_init
-                0x00000000200a0ab6       0x54 ./modules/control/flight_controller.o
-                0x00000000200a0ab6                flight_controller_init
+                0x00000000200a0aa8       0x54 ./modules/control/flight_controller.o
+                0x00000000200a0aa8                flight_controller_init
  .text.flight_controller_update
-                0x00000000200a0b0a      0x126 ./modules/control/flight_controller.o
-                0x00000000200a0b0a                flight_controller_update
+                0x00000000200a0afc      0x126 ./modules/control/flight_controller.o
+                0x00000000200a0afc                flight_controller_update
  .text.norm_to_pwm
-                0x00000000200a0c30       0x44 ./modules/control/mixer.o
+                0x00000000200a0c22       0x44 ./modules/control/mixer.o
  .text.mixer_init
-                0x00000000200a0c74        0x2 ./modules/control/mixer.o
-                0x00000000200a0c74                mixer_init
+                0x00000000200a0c66        0x2 ./modules/control/mixer.o
+                0x00000000200a0c66                mixer_init
  .text.mixer_mix_x_quad
-                0x00000000200a0c76       0xa2 ./modules/control/mixer.o
-                0x00000000200a0c76                mixer_mix_x_quad
+                0x00000000200a0c68       0xa2 ./modules/control/mixer.o
+                0x00000000200a0c68                mixer_mix_x_quad
  .text.pid_init
-                0x00000000200a0d18       0x1a ./modules/control/pid.o
-                0x00000000200a0d18                pid_init
+                0x00000000200a0d0a       0x1a ./modules/control/pid.o
+                0x00000000200a0d0a                pid_init
  .text.pid_reset
-                0x00000000200a0d32        0xc ./modules/control/pid.o
-                0x00000000200a0d32                pid_reset
+                0x00000000200a0d24        0xc ./modules/control/pid.o
+                0x00000000200a0d24                pid_reset
  .text.pid_update
-                0x00000000200a0d3e       0xb2 ./modules/control/pid.o
-                0x00000000200a0d3e                pid_update
+                0x00000000200a0d30       0xb2 ./modules/control/pid.o
+                0x00000000200a0d30                pid_update
  .text.logger_init
-                0x00000000200a0df0        0x2 ./modules/comm/logger.o
-                0x00000000200a0df0                logger_init
+                0x00000000200a0de2        0x2 ./modules/comm/logger.o
+                0x00000000200a0de2                logger_init
  .text.barometer_init
-                0x00000000200a0df2        0x4 ./drivers/sensors/barometer.o
-                0x00000000200a0df2                barometer_init
+                0x00000000200a0de4        0x4 ./drivers/sensors/barometer.o
+                0x00000000200a0de4                barometer_init
  .text.barometer_read
-                0x00000000200a0df6        0x2 ./drivers/sensors/barometer.o
-                0x00000000200a0df6                barometer_read
+                0x00000000200a0de8        0x2 ./drivers/sensors/barometer.o
+                0x00000000200a0de8                barometer_read
  .text.gps_init
-                0x00000000200a0df8        0x4 ./drivers/sensors/gps.o
-                0x00000000200a0df8                gps_init
+                0x00000000200a0dea        0x4 ./drivers/sensors/gps.o
+                0x00000000200a0dea                gps_init
  .text.gps_poll
-                0x00000000200a0dfc       0x4c ./drivers/sensors/gps.o
-                0x00000000200a0dfc                gps_poll
+                0x00000000200a0dee       0x4c ./drivers/sensors/gps.o
+                0x00000000200a0dee                gps_poll
  .text.imu_decode_f32_le
-                0x00000000200a0e48        0x4 ./drivers/sensors/imu.o
+                0x00000000200a0e3a        0x4 ./drivers/sensors/imu.o
  .text.imu_uart_process
-                0x00000000200a0e4c      0x23c ./drivers/sensors/imu.o
+                0x00000000200a0e3e      0x23c ./drivers/sensors/imu.o
  .text.imu_uart_send_command.constprop.0.isra.0
-                0x00000000200a1088       0x48 ./drivers/sensors/imu.o
+                0x00000000200a107a       0x48 ./drivers/sensors/imu.o
  .text.imu_retry_init
-                0x00000000200a10d0       0x9e ./drivers/sensors/imu.o
+                0x00000000200a10c2       0x9e ./drivers/sensors/imu.o
  .text.imu_init
-                0x00000000200a116e       0x74 ./drivers/sensors/imu.o
-                0x00000000200a116e                imu_init
+                0x00000000200a1160       0x74 ./drivers/sensors/imu.o
+                0x00000000200a1160                imu_init
  .text.imu_read
-                0x00000000200a11e2       0x94 ./drivers/sensors/imu.o
-                0x00000000200a11e2                imu_read
+                0x00000000200a11d4       0x94 ./drivers/sensors/imu.o
+                0x00000000200a11d4                imu_read
  .text.imu_read_barometer
-                0x00000000200a1276       0x5e ./drivers/sensors/imu.o
-                0x00000000200a1276                imu_read_barometer
+                0x00000000200a1268       0x5e ./drivers/sensors/imu.o
+                0x00000000200a1268                imu_read_barometer
  .text.rc_input_init
-                0x00000000200a12d4        0x4 ./drivers/sensors/rc_input.o
-                0x00000000200a12d4                rc_input_init
+                0x00000000200a12c6        0x4 ./drivers/sensors/rc_input.o
+                0x00000000200a12c6                rc_input_init
  .text.rc_input_poll
-                0x00000000200a12d8       0x48 ./drivers/sensors/rc_input.o
-                0x00000000200a12d8                rc_input_poll
+                0x00000000200a12ca       0x48 ./drivers/sensors/rc_input.o
+                0x00000000200a12ca                rc_input_poll
  .text.bsp_adc_init
-                0x00000000200a1320       0xde ./bsp/bsp_adc.o
-                0x00000000200a1320                bsp_adc_init
+                0x00000000200a1312       0xde ./bsp/bsp_adc.o
+                0x00000000200a1312                bsp_adc_init
  .text.bsp_board_led_set
-                0x00000000200a13fe       0x26 ./bsp/bsp_board.o
-                0x00000000200a13fe                bsp_board_led_set
+                0x00000000200a13f0       0x26 ./bsp/bsp_board.o
+                0x00000000200a13f0                bsp_board_led_set
  .text.bsp_board_init
-                0x00000000200a1424       0xc0 ./bsp/bsp_board.o
-                0x00000000200a1424                bsp_board_init
+                0x00000000200a1416       0xc8 ./bsp/bsp_board.o
+                0x00000000200a1416                bsp_board_init
  .text.bsp_board_millis
-                0x00000000200a14e4        0xa ./bsp/bsp_board.o
-                0x00000000200a14e4                bsp_board_millis
+                0x00000000200a14de        0xa ./bsp/bsp_board.o
+                0x00000000200a14de                bsp_board_millis
  .text.vApplicationTickHook
-                0x00000000200a14ee       0x1e ./bsp/bsp_board.o
-                0x00000000200a14ee                vApplicationTickHook
+                0x00000000200a14e8       0x1e ./bsp/bsp_board.o
+                0x00000000200a14e8                vApplicationTickHook
  .text.bsp_pwm_motor_set_us
-                0x00000000200a150c       0x62 ./bsp/bsp_pwm.o
-                0x00000000200a150c                bsp_pwm_motor_set_us
+                0x00000000200a1506       0x62 ./bsp/bsp_pwm.o
+                0x00000000200a1506                bsp_pwm_motor_set_us
  .text.bsp_pwm_motors_set_all_us
-                0x00000000200a156e       0x1e ./bsp/bsp_pwm.o
-                0x00000000200a156e                bsp_pwm_motors_set_all_us
+                0x00000000200a1568       0x1e ./bsp/bsp_pwm.o
+                0x00000000200a1568                bsp_pwm_motors_set_all_us
  .text.bsp_pwm_motors_init
-                0x00000000200a158c      0x130 ./bsp/bsp_pwm.o
-                0x00000000200a158c                bsp_pwm_motors_init
+                0x00000000200a1586      0x134 ./bsp/bsp_pwm.o
+                0x00000000200a1586                bsp_pwm_motors_init
  .text.bsp_pwm_motors_write
-                0x00000000200a16bc       0x22 ./bsp/bsp_pwm.o
-                0x00000000200a16bc                bsp_pwm_motors_write
+                0x00000000200a16ba       0x22 ./bsp/bsp_pwm.o
+                0x00000000200a16ba                bsp_pwm_motors_write
  .text.init_usart_common
-                0x00000000200a16de       0x28 ./bsp/bsp_uart.o
+                0x00000000200a16dc       0x28 ./bsp/bsp_uart.o
  .text.imu_uart_clear_rx_status
-                0x00000000200a1706       0x76 ./bsp/bsp_uart.o
+                0x00000000200a1704       0x76 ./bsp/bsp_uart.o
  .text.uart_wait_txe
-                0x00000000200a177c       0x34 ./bsp/bsp_uart.o
+                0x00000000200a177a       0x34 ./bsp/bsp_uart.o
  .text.bsp_uart_gps_init
-                0x00000000200a17b0       0x7e ./bsp/bsp_uart.o
-                0x00000000200a17b0                bsp_uart_gps_init
+                0x00000000200a17ae       0x7c ./bsp/bsp_uart.o
+                0x00000000200a17ae                bsp_uart_gps_init
  .text.bsp_uart_rc_init
-                0x00000000200a182e       0x7c ./bsp/bsp_uart.o
-                0x00000000200a182e                bsp_uart_rc_init
+                0x00000000200a182a       0x7c ./bsp/bsp_uart.o
+                0x00000000200a182a                bsp_uart_rc_init
  .text.bsp_uart_imu_init
-                0x00000000200a18aa       0xe4 ./bsp/bsp_uart.o
-                0x00000000200a18aa                bsp_uart_imu_init
+                0x00000000200a18a6       0xe4 ./bsp/bsp_uart.o
+                0x00000000200a18a6                bsp_uart_imu_init
  .text.bsp_uart_imu_start_rx_irq
-                0x00000000200a198e       0x66 ./bsp/bsp_uart.o
-                0x00000000200a198e                bsp_uart_imu_start_rx_irq
+                0x00000000200a198a       0x66 ./bsp/bsp_uart.o
+                0x00000000200a198a                bsp_uart_imu_start_rx_irq
  .text.bsp_uart_debug_sample_imu_rx
-                0x00000000200a19f4       0xdc ./bsp/bsp_uart.o
-                0x00000000200a19f4                bsp_uart_debug_sample_imu_rx
+                0x00000000200a19f0       0x98 ./bsp/bsp_uart.o
+                0x00000000200a19f0                bsp_uart_debug_sample_imu_rx
  .text.bsp_uart_gps_read_byte
-                0x00000000200a1ad0       0x32 ./bsp/bsp_uart.o
-                0x00000000200a1ad0                bsp_uart_gps_read_byte
+                0x00000000200a1a88       0x32 ./bsp/bsp_uart.o
+                0x00000000200a1a88                bsp_uart_gps_read_byte
  .text.bsp_uart_rc_read_byte
-                0x00000000200a1b02       0x32 ./bsp/bsp_uart.o
-                0x00000000200a1b02                bsp_uart_rc_read_byte
+                0x00000000200a1aba       0x32 ./bsp/bsp_uart.o
+                0x00000000200a1aba                bsp_uart_rc_read_byte
  .text.bsp_uart_imu_read_byte
-                0x00000000200a1b34       0x88 ./bsp/bsp_uart.o
-                0x00000000200a1b34                bsp_uart_imu_read_byte
+                0x00000000200a1aec       0x90 ./bsp/bsp_uart.o
+                0x00000000200a1aec                bsp_uart_imu_read_byte
  .text.bsp_uart_imu_write_byte
-                0x00000000200a1bbc       0x26 ./bsp/bsp_uart.o
-                0x00000000200a1bbc                bsp_uart_imu_write_byte
+                0x00000000200a1b7c       0x26 ./bsp/bsp_uart.o
+                0x00000000200a1b7c                bsp_uart_imu_write_byte
  .text.bsp_uart_imu_write
-                0x00000000200a1be2       0x1e ./bsp/bsp_uart.o
-                0x00000000200a1be2                bsp_uart_imu_write
+                0x00000000200a1ba2       0x1e ./bsp/bsp_uart.o
+                0x00000000200a1ba2                bsp_uart_imu_write
  .text.USART4_IRQHandler
-                0x00000000200a1c00      0x11e ./bsp/bsp_uart.o
-                0x00000000200a1c00                USART4_IRQHandler
+                0x00000000200a1bc0       0xe6 ./bsp/bsp_uart.o
+                0x00000000200a1bc0                USART4_IRQHandler
  .text.app_state
-                0x00000000200a1d1e        0x6 ./app/app.o
-                0x00000000200a1d1e                app_state
+                0x00000000200a1ca6        0x6 ./app/app.o
+                0x00000000200a1ca6                app_state
  .text.app_start
-                0x00000000200a1d24       0xac ./app/app.o
-                0x00000000200a1d24                app_start
+                0x00000000200a1cac       0xa0 ./app/app.o
+                0x00000000200a1cac                app_start
  .text.vApplicationMallocFailedHook
-                0x00000000200a1dd0       0x32 ./app/app.o
-                0x00000000200a1dd0                vApplicationMallocFailedHook
+                0x00000000200a1d4c       0x34 ./app/app.o
+                0x00000000200a1d4c                vApplicationMallocFailedHook
  .text.vApplicationStackOverflowHook
-                0x00000000200a1e02       0x3a ./app/app.o
-                0x00000000200a1e02                vApplicationStackOverflowHook
+                0x00000000200a1d80       0x38 ./app/app.o
+                0x00000000200a1d80                vApplicationStackOverflowHook
  .text.vApplicationAssertFailed
-                0x00000000200a1e3c       0x76 ./app/app.o
-                0x00000000200a1e3c                vApplicationAssertFailed
+                0x00000000200a1db8       0x74 ./app/app.o
+                0x00000000200a1db8                vApplicationAssertFailed
  .text.NMI_Handler
-                0x00000000200a1eb2       0x18 ./User/ch32h417_it.o
-                0x00000000200a1eb2                NMI_Handler
+                0x00000000200a1e2c       0x1c ./User/ch32h417_it.o
+                0x00000000200a1e2c                NMI_Handler
  .text.HardFault_Handler
-                0x00000000200a1eca       0x3e ./User/ch32h417_it.o
-                0x00000000200a1eca                HardFault_Handler
+                0x00000000200a1e48       0x38 ./User/ch32h417_it.o
+                0x00000000200a1e48                HardFault_Handler
  .text.startup.main
-                0x00000000200a1f08       0x36 ./User/main.o
-                0x00000000200a1f08                main
+                0x00000000200a1e80       0x38 ./User/main.o
+                0x00000000200a1e80                main
  .text.SystemAndCoreClockUpdate
-                0x00000000200a1f3e      0x15a ./User/system_ch32h417.o
-                0x00000000200a1f3e                SystemAndCoreClockUpdate
+                0x00000000200a1eb8      0x166 ./User/system_ch32h417.o
+                0x00000000200a1eb8                SystemAndCoreClockUpdate
  .text.vector_handler
-                0x00000000200a2098        0x2 ./Startup/startup_ch32h417_v5f.o
-                0x00000000200a2098                DMA2_Channel3_IRQHandler
-                0x00000000200a2098                TIM8_CC_IRQHandler
-                0x00000000200a2098                USART_WKUP_IRQHandler
-                0x00000000200a2098                SPI4_IRQHandler
-                0x00000000200a2098                DFSDM0_IRQHandler
-                0x00000000200a2098                TIM1_CC_IRQHandler
-                0x00000000200a2098                TIM10_IRQHandler
-                0x00000000200a2098                IPC_CH2_Handler
-                0x00000000200a2098                USBPD_IRQHandler
-                0x00000000200a2098                TIM6_IRQHandler
-                0x00000000200a2098                CAN3_RX1_IRQHandler
-                0x00000000200a2098                I3C_ER_IRQHandler
-                0x00000000200a2098                SDIO_IRQHandler
-                0x00000000200a2098                DMA2_Channel8_IRQHandler
-                0x00000000200a2098                CAN2_RX1_IRQHandler
-                0x00000000200a2098                HSEM_Handler
-                0x00000000200a2098                USBHS_IRQHandler
-                0x00000000200a2098                LPTIM2_IRQHandler
-                0x00000000200a2098                USBFSWakeup_IRQHandler
-                0x00000000200a2098                I2C3_ER_IRQHandler
-                0x00000000200a2098                USBFS_IRQHandler
-                0x00000000200a2098                USART8_IRQHandler
-                0x00000000200a2098                I2C2_EV_IRQHandler
-                0x00000000200a2098                CAN1_RX0_IRQHandler
-                0x00000000200a2098                CAN3_SCE_IRQHandler
-                0x00000000200a2098                CAN2_SCE_IRQHandler
-                0x00000000200a2098                ADC1_2_IRQHandler
-                0x00000000200a2098                Break_Point_Handler
-                0x00000000200a2098                IPC_CH0_Handler
-                0x00000000200a2098                SPI1_IRQHandler
-                0x00000000200a2098                USART5_IRQHandler
-                0x00000000200a2098                SysTick0_Handler
-                0x00000000200a2098                EXTI7_0_IRQHandler
-                0x00000000200a2098                CAN2_RX0_IRQHandler
-                0x00000000200a2098                TIM8_UP_IRQHandler
-                0x00000000200a2098                Ecall_M_Mode_Handler
-                0x00000000200a2098                ECDC_IRQHandler
-                0x00000000200a2098                SDMMC_IRQHandler
-                0x00000000200a2098                USART7_IRQHandler
-                0x00000000200a2098                DMA2_Channel2_IRQHandler
-                0x00000000200a2098                DMA1_Channel4_IRQHandler
-                0x00000000200a2098                USART6_IRQHandler
-                0x00000000200a2098                CAN3_RX0_IRQHandler
-                0x00000000200a2098                HSADC_IRQHandler
-                0x00000000200a2098                USART3_IRQHandler
-                0x00000000200a2098                RTC_IRQHandler
-                0x00000000200a2098                DMA1_Channel7_IRQHandler
-                0x00000000200a2098                CAN1_RX1_IRQHandler
-                0x00000000200a2098                DVP_IRQHandler
-                0x00000000200a2098                USBSS_IRQHandler
-                0x00000000200a2098                SWPMI_IRQHandler
-                0x00000000200a2098                USBPDWakeUp_IRQHandler
-                0x00000000200a2098                EXTI15_8_IRQHandler
-                0x00000000200a2098                TIM4_IRQHandler
-                0x00000000200a2098                DMA2_Channel1_IRQHandler
-                0x00000000200a2098                SWPMI_WKUP_IRQHandler
-                0x00000000200a2098                I2C1_EV_IRQHandler
-                0x00000000200a2098                USBSSWakeup_IRQHandler
-                0x00000000200a2098                DMA1_Channel6_IRQHandler
-                0x00000000200a2098                DMA2_Channel4_IRQHandler
-                0x00000000200a2098                TIM3_IRQHandler
-                0x00000000200a2098                RCC_IRQHandler
-                0x00000000200a2098                TIM1_TRG_COM_IRQHandler
-                0x00000000200a2098                DMA1_Channel1_IRQHandler
-                0x00000000200a2098                DMA2_Channel7_IRQHandler
-                0x00000000200a2098                QSPI1_IRQHandler
-                0x00000000200a2098                DMA1_Channel8_IRQHandler
-                0x00000000200a2098                IPC_CH3_Handler
-                0x00000000200a2098                I3C_EV_IRQHandler
-                0x00000000200a2098                I3C_WKUP_IRQHandler
-                0x00000000200a2098                TIM12_IRQHandler
-                0x00000000200a2098                TIM7_IRQHandler
-                0x00000000200a2098                CAN2_TX_IRQHandler
-                0x00000000200a2098                TIM5_IRQHandler
-                0x00000000200a2098                I2C3_EV_IRQHandler
-                0x00000000200a2098                PIOC_IRQHandler
-                0x00000000200a2098                TIM9_IRQHandler
-                0x00000000200a2098                LTDC_IRQHandler
-                0x00000000200a2098                SAI_IRQHandler
-                0x00000000200a2098                ETH_WKUP_IRQHandler
-                0x00000000200a2098                SPI2_IRQHandler
-                0x00000000200a2098                IPC_CH1_Handler
-                0x00000000200a2098                LPTIM1_WKUP_IRQHandler
-                0x00000000200a2098                CAN1_TX_IRQHandler
-                0x00000000200a2098                DMA2_Channel5_IRQHandler
-                0x00000000200a2098                DMA1_Channel5_IRQHandler
-                0x00000000200a2098                QSPI2_IRQHandler
-                0x00000000200a2098                RNG_IRQHandler
-                0x00000000200a2098                DMA1_Channel3_IRQHandler
-                0x00000000200a2098                ETH_IRQHandler
-                0x00000000200a2098                TIM1_UP_IRQHandler
-                0x00000000200a2098                WWDG_IRQHandler
-                0x00000000200a2098                USBHSWakeup_IRQHandler
-                0x00000000200a2098                Ecall_U_Mode_Handler
-                0x00000000200a2098                I2C4_EV_IRQHandler
-                0x00000000200a2098                CAN3_TX_IRQHandler
-                0x00000000200a2098                DMA2_Channel6_IRQHandler
-                0x00000000200a2098                TIM2_IRQHandler
-                0x00000000200a2098                TIM1_BRK_IRQHandler
-                0x00000000200a2098                GPHA_IRQHandler
-                0x00000000200a2098                LPTIM2_WKUP_IRQHandler
-                0x00000000200a2098                RTCAlarm_IRQHandler
-                0x00000000200a2098                TIM11_IRQHandler
-                0x00000000200a2098                USART2_IRQHandler
-                0x00000000200a2098                UHSIF_IRQHandler
-                0x00000000200a2098                I2C2_ER_IRQHandler
-                0x00000000200a2098                DMA1_Channel2_IRQHandler
-                0x00000000200a2098                TIM8_BRK_IRQHandler
-                0x00000000200a2098                CAN1_SCE_IRQHandler
-                0x00000000200a2098                FLASH_IRQHandler
-                0x00000000200a2098                USART1_IRQHandler
-                0x00000000200a2098                SPI3_IRQHandler
-                0x00000000200a2098                I2C1_ER_IRQHandler
-                0x00000000200a2098                FMC_IRQHandler
-                0x00000000200a2098                LPTIM1_IRQHandler
-                0x00000000200a2098                DFSDM1_IRQHandler
-                0x00000000200a2098                I2C4_ER_IRQHandler
-                0x00000000200a2098                SERDES_IRQHandler
-                0x00000000200a2098                USBSS_LINK_IRQHandler
-                0x00000000200a2098                TIM8_TRG_COM_IRQHandler
+                0x00000000200a201e        0x2 ./Startup/startup_ch32h417_v5f.o
+                0x00000000200a201e                DMA2_Channel3_IRQHandler
+                0x00000000200a201e                TIM8_CC_IRQHandler
+                0x00000000200a201e                USART_WKUP_IRQHandler
+                0x00000000200a201e                SPI4_IRQHandler
+                0x00000000200a201e                DFSDM0_IRQHandler
+                0x00000000200a201e                TIM1_CC_IRQHandler
+                0x00000000200a201e                TIM10_IRQHandler
+                0x00000000200a201e                IPC_CH2_Handler
+                0x00000000200a201e                USBPD_IRQHandler
+                0x00000000200a201e                TIM6_IRQHandler
+                0x00000000200a201e                CAN3_RX1_IRQHandler
+                0x00000000200a201e                I3C_ER_IRQHandler
+                0x00000000200a201e                SDIO_IRQHandler
+                0x00000000200a201e                DMA2_Channel8_IRQHandler
+                0x00000000200a201e                CAN2_RX1_IRQHandler
+                0x00000000200a201e                HSEM_Handler
+                0x00000000200a201e                USBHS_IRQHandler
+                0x00000000200a201e                LPTIM2_IRQHandler
+                0x00000000200a201e                USBFSWakeup_IRQHandler
+                0x00000000200a201e                I2C3_ER_IRQHandler
+                0x00000000200a201e                USBFS_IRQHandler
+                0x00000000200a201e                USART8_IRQHandler
+                0x00000000200a201e                I2C2_EV_IRQHandler
+                0x00000000200a201e                CAN1_RX0_IRQHandler
+                0x00000000200a201e                CAN3_SCE_IRQHandler
+                0x00000000200a201e                CAN2_SCE_IRQHandler
+                0x00000000200a201e                ADC1_2_IRQHandler
+                0x00000000200a201e                Break_Point_Handler
+                0x00000000200a201e                IPC_CH0_Handler
+                0x00000000200a201e                SPI1_IRQHandler
+                0x00000000200a201e                USART5_IRQHandler
+                0x00000000200a201e                SysTick0_Handler
+                0x00000000200a201e                EXTI7_0_IRQHandler
+                0x00000000200a201e                CAN2_RX0_IRQHandler
+                0x00000000200a201e                TIM8_UP_IRQHandler
+                0x00000000200a201e                Ecall_M_Mode_Handler
+                0x00000000200a201e                ECDC_IRQHandler
+                0x00000000200a201e                SDMMC_IRQHandler
+                0x00000000200a201e                USART7_IRQHandler
+                0x00000000200a201e                DMA2_Channel2_IRQHandler
+                0x00000000200a201e                DMA1_Channel4_IRQHandler
+                0x00000000200a201e                USART6_IRQHandler
+                0x00000000200a201e                CAN3_RX0_IRQHandler
+                0x00000000200a201e                HSADC_IRQHandler
+                0x00000000200a201e                USART3_IRQHandler
+                0x00000000200a201e                RTC_IRQHandler
+                0x00000000200a201e                DMA1_Channel7_IRQHandler
+                0x00000000200a201e                CAN1_RX1_IRQHandler
+                0x00000000200a201e                DVP_IRQHandler
+                0x00000000200a201e                USBSS_IRQHandler
+                0x00000000200a201e                SWPMI_IRQHandler
+                0x00000000200a201e                USBPDWakeUp_IRQHandler
+                0x00000000200a201e                EXTI15_8_IRQHandler
+                0x00000000200a201e                TIM4_IRQHandler
+                0x00000000200a201e                DMA2_Channel1_IRQHandler
+                0x00000000200a201e                SWPMI_WKUP_IRQHandler
+                0x00000000200a201e                I2C1_EV_IRQHandler
+                0x00000000200a201e                USBSSWakeup_IRQHandler
+                0x00000000200a201e                DMA1_Channel6_IRQHandler
+                0x00000000200a201e                DMA2_Channel4_IRQHandler
+                0x00000000200a201e                TIM3_IRQHandler
+                0x00000000200a201e                RCC_IRQHandler
+                0x00000000200a201e                TIM1_TRG_COM_IRQHandler
+                0x00000000200a201e                DMA1_Channel1_IRQHandler
+                0x00000000200a201e                DMA2_Channel7_IRQHandler
+                0x00000000200a201e                QSPI1_IRQHandler
+                0x00000000200a201e                DMA1_Channel8_IRQHandler
+                0x00000000200a201e                IPC_CH3_Handler
+                0x00000000200a201e                I3C_EV_IRQHandler
+                0x00000000200a201e                I3C_WKUP_IRQHandler
+                0x00000000200a201e                TIM12_IRQHandler
+                0x00000000200a201e                TIM7_IRQHandler
+                0x00000000200a201e                CAN2_TX_IRQHandler
+                0x00000000200a201e                TIM5_IRQHandler
+                0x00000000200a201e                I2C3_EV_IRQHandler
+                0x00000000200a201e                PIOC_IRQHandler
+                0x00000000200a201e                TIM9_IRQHandler
+                0x00000000200a201e                LTDC_IRQHandler
+                0x00000000200a201e                SAI_IRQHandler
+                0x00000000200a201e                ETH_WKUP_IRQHandler
+                0x00000000200a201e                SPI2_IRQHandler
+                0x00000000200a201e                IPC_CH1_Handler
+                0x00000000200a201e                LPTIM1_WKUP_IRQHandler
+                0x00000000200a201e                CAN1_TX_IRQHandler
+                0x00000000200a201e                DMA2_Channel5_IRQHandler
+                0x00000000200a201e                DMA1_Channel5_IRQHandler
+                0x00000000200a201e                QSPI2_IRQHandler
+                0x00000000200a201e                RNG_IRQHandler
+                0x00000000200a201e                DMA1_Channel3_IRQHandler
+                0x00000000200a201e                ETH_IRQHandler
+                0x00000000200a201e                TIM1_UP_IRQHandler
+                0x00000000200a201e                WWDG_IRQHandler
+                0x00000000200a201e                USBHSWakeup_IRQHandler
+                0x00000000200a201e                Ecall_U_Mode_Handler
+                0x00000000200a201e                I2C4_EV_IRQHandler
+                0x00000000200a201e                CAN3_TX_IRQHandler
+                0x00000000200a201e                DMA2_Channel6_IRQHandler
+                0x00000000200a201e                TIM2_IRQHandler
+                0x00000000200a201e                TIM1_BRK_IRQHandler
+                0x00000000200a201e                GPHA_IRQHandler
+                0x00000000200a201e                LPTIM2_WKUP_IRQHandler
+                0x00000000200a201e                RTCAlarm_IRQHandler
+                0x00000000200a201e                TIM11_IRQHandler
+                0x00000000200a201e                USART2_IRQHandler
+                0x00000000200a201e                UHSIF_IRQHandler
+                0x00000000200a201e                I2C2_ER_IRQHandler
+                0x00000000200a201e                DMA1_Channel2_IRQHandler
+                0x00000000200a201e                TIM8_BRK_IRQHandler
+                0x00000000200a201e                CAN1_SCE_IRQHandler
+                0x00000000200a201e                FLASH_IRQHandler
+                0x00000000200a201e                USART1_IRQHandler
+                0x00000000200a201e                SPI3_IRQHandler
+                0x00000000200a201e                I2C1_ER_IRQHandler
+                0x00000000200a201e                FMC_IRQHandler
+                0x00000000200a201e                LPTIM1_IRQHandler
+                0x00000000200a201e                DFSDM1_IRQHandler
+                0x00000000200a201e                I2C4_ER_IRQHandler
+                0x00000000200a201e                SERDES_IRQHandler
+                0x00000000200a201e                USBSS_LINK_IRQHandler
+                0x00000000200a201e                TIM8_TRG_COM_IRQHandler
  .text.ADC_DeInit
-                0x00000000200a209a       0x40 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a209a                ADC_DeInit
+                0x00000000200a2020       0x40 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a2020                ADC_DeInit
  .text.ADC_Init
-                0x00000000200a20da       0x56 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a20da                ADC_Init
- .text.ADC_Cmd  0x00000000200a2130       0x10 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a2130                ADC_Cmd
+                0x00000000200a2060       0x56 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a2060                ADC_Init
+ .text.ADC_Cmd  0x00000000200a20b6       0x10 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a20b6                ADC_Cmd
  .text.ADC_ResetCalibration
-                0x00000000200a2140        0xa ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a2140                ADC_ResetCalibration
+                0x00000000200a20c6        0xa ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a20c6                ADC_ResetCalibration
  .text.ADC_GetResetCalibrationStatus
-                0x00000000200a214a        0x8 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a214a                ADC_GetResetCalibrationStatus
+                0x00000000200a20d0        0x8 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a20d0                ADC_GetResetCalibrationStatus
  .text.ADC_StartCalibration
-                0x00000000200a2152       0x14 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a2152                ADC_StartCalibration
+                0x00000000200a20d8       0x14 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a20d8                ADC_StartCalibration
  .text.ADC_GetCalibrationStatus
-                0x00000000200a2166        0x8 ./Peripheral/src/ch32h417_adc.o
-                0x00000000200a2166                ADC_GetCalibrationStatus
+                0x00000000200a20ec        0x8 ./Peripheral/src/ch32h417_adc.o
+                0x00000000200a20ec                ADC_GetCalibrationStatus
  .text.GPIO_Init
-                0x00000000200a216e       0xe0 ./Peripheral/src/ch32h417_gpio.o
-                0x00000000200a216e                GPIO_Init
+                0x00000000200a20f4       0xe0 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000200a20f4                GPIO_Init
  .text.GPIO_ReadInputData
-                0x00000000200a224e        0x8 ./Peripheral/src/ch32h417_gpio.o
-                0x00000000200a224e                GPIO_ReadInputData
+                0x00000000200a21d4        0x8 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000200a21d4                GPIO_ReadInputData
  .text.GPIO_SetBits
-                0x00000000200a2256        0x4 ./Peripheral/src/ch32h417_gpio.o
-                0x00000000200a2256                GPIO_SetBits
+                0x00000000200a21dc        0x4 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000200a21dc                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x00000000200a225a        0x4 ./Peripheral/src/ch32h417_gpio.o
-                0x00000000200a225a                GPIO_ResetBits
+                0x00000000200a21e0        0x4 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000200a21e0                GPIO_ResetBits
  .text.GPIO_PinAFConfig
-                0x00000000200a225e      0x1e8 ./Peripheral/src/ch32h417_gpio.o
-                0x00000000200a225e                GPIO_PinAFConfig
+                0x00000000200a21e4      0x1e8 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000200a21e4                GPIO_PinAFConfig
  .text.RCC_ADCHCLKCLKAsSourceConfig
-                0x00000000200a2446       0x1a ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a2446                RCC_ADCHCLKCLKAsSourceConfig
+                0x00000000200a23cc       0x1a ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a23cc                RCC_ADCHCLKCLKAsSourceConfig
  .text.RCC_GetClocksFreq
-                0x00000000200a2460      0x1aa ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a2460                RCC_GetClocksFreq
+                0x00000000200a23e6      0x1aa ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a23e6                RCC_GetClocksFreq
  .text.RCC_HB2PeriphClockCmd
-                0x00000000200a260a       0x1c ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a260a                RCC_HB2PeriphClockCmd
+                0x00000000200a2590       0x1c ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a2590                RCC_HB2PeriphClockCmd
  .text.RCC_HB1PeriphClockCmd
-                0x00000000200a2626       0x1c ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a2626                RCC_HB1PeriphClockCmd
+                0x00000000200a25ac       0x1c ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a25ac                RCC_HB1PeriphClockCmd
  .text.RCC_HB2PeriphResetCmd
-                0x00000000200a2642       0x1c ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a2642                RCC_HB2PeriphResetCmd
+                0x00000000200a25c8       0x1c ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a25c8                RCC_HB2PeriphResetCmd
  .text.RCC_ADCCLKConfig
-                0x00000000200a265e       0x16 ./Peripheral/src/ch32h417_rcc.o
-                0x00000000200a265e                RCC_ADCCLKConfig
+                0x00000000200a25e4       0x16 ./Peripheral/src/ch32h417_rcc.o
+                0x00000000200a25e4                RCC_ADCCLKConfig
  .text.TIM_TimeBaseInit
-                0x00000000200a2674       0x7c ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2674                TIM_TimeBaseInit
+                0x00000000200a25fa       0x7c ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a25fa                TIM_TimeBaseInit
  .text.TIM_OC1Init
-                0x00000000200a26f0       0x72 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a26f0                TIM_OC1Init
+                0x00000000200a2676       0x72 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a2676                TIM_OC1Init
  .text.TIM_OC2Init
-                0x00000000200a2762       0x9a ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2762                TIM_OC2Init
+                0x00000000200a26e8       0x9a ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a26e8                TIM_OC2Init
  .text.TIM_OC3Init
-                0x00000000200a27fc       0x98 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a27fc                TIM_OC3Init
+                0x00000000200a2782       0x98 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a2782                TIM_OC3Init
  .text.TIM_OC4Init
-                0x00000000200a2894       0x70 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2894                TIM_OC4Init
- .text.TIM_Cmd  0x00000000200a2904       0x18 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2904                TIM_Cmd
+                0x00000000200a281a       0x70 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a281a                TIM_OC4Init
+ .text.TIM_Cmd  0x00000000200a288a       0x18 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a288a                TIM_Cmd
  .text.TIM_CtrlPWMOutputs
-                0x00000000200a291c       0x16 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a291c                TIM_CtrlPWMOutputs
+                0x00000000200a28a2       0x16 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a28a2                TIM_CtrlPWMOutputs
  .text.TIM_ARRPreloadConfig
-                0x00000000200a2932       0x1a ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2932                TIM_ARRPreloadConfig
+                0x00000000200a28b8       0x1a ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a28b8                TIM_ARRPreloadConfig
  .text.TIM_OC1PreloadConfig
-                0x00000000200a294c        0xe ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a294c                TIM_OC1PreloadConfig
+                0x00000000200a28d2        0xe ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a28d2                TIM_OC1PreloadConfig
  .text.TIM_OC2PreloadConfig
-                0x00000000200a295a       0x16 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a295a                TIM_OC2PreloadConfig
+                0x00000000200a28e0       0x16 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a28e0                TIM_OC2PreloadConfig
  .text.TIM_OC3PreloadConfig
-                0x00000000200a2970        0xe ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2970                TIM_OC3PreloadConfig
+                0x00000000200a28f6        0xe ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a28f6                TIM_OC3PreloadConfig
  .text.TIM_OC4PreloadConfig
-                0x00000000200a297e       0x16 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a297e                TIM_OC4PreloadConfig
+                0x00000000200a2904       0x16 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a2904                TIM_OC4PreloadConfig
  .text.TIM_SetCompare1
-                0x00000000200a2994        0x4 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2994                TIM_SetCompare1
+                0x00000000200a291a        0x4 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a291a                TIM_SetCompare1
  .text.TIM_SetCompare2
-                0x00000000200a2998        0x4 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a2998                TIM_SetCompare2
+                0x00000000200a291e        0x4 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a291e                TIM_SetCompare2
  .text.TIM_SetCompare3
-                0x00000000200a299c        0x4 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a299c                TIM_SetCompare3
+                0x00000000200a2922        0x4 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a2922                TIM_SetCompare3
  .text.TIM_SetCompare4
-                0x00000000200a29a0        0x6 ./Peripheral/src/ch32h417_tim.o
-                0x00000000200a29a0                TIM_SetCompare4
+                0x00000000200a2926        0x6 ./Peripheral/src/ch32h417_tim.o
+                0x00000000200a2926                TIM_SetCompare4
  .text.USART_Init
-                0x00000000200a29a6       0xb0 ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a29a6                USART_Init
+                0x00000000200a292c       0xb0 ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a292c                USART_Init
  .text.USART_Cmd
-                0x00000000200a2a56       0x14 ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a2a56                USART_Cmd
+                0x00000000200a29dc       0x14 ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a29dc                USART_Cmd
  .text.USART_ITConfig
-                0x00000000200a2a6a       0x42 ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a2a6a                USART_ITConfig
+                0x00000000200a29f0       0x42 ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a29f0                USART_ITConfig
  .text.USART_SendData
-                0x00000000200a2aac        0x8 ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a2aac                USART_SendData
+                0x00000000200a2a32        0x8 ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a2a32                USART_SendData
  .text.USART_ReceiveData
-                0x00000000200a2ab4        0x8 ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a2ab4                USART_ReceiveData
+                0x00000000200a2a3a        0x8 ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a2a3a                USART_ReceiveData
  .text.USART_GetFlagStatus
-                0x00000000200a2abc        0xa ./Peripheral/src/ch32h417_usart.o
-                0x00000000200a2abc                USART_GetFlagStatus
+                0x00000000200a2a42        0xa ./Peripheral/src/ch32h417_usart.o
+                0x00000000200a2a42                USART_GetFlagStatus
  .text.pvPortMalloc
-                0x00000000200a2ac6      0x1e8 ./FreeRTOS/portable/MemMang/heap_4.o
-                0x00000000200a2ac6                pvPortMalloc
+                0x00000000200a2a4c      0x208 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200a2a4c                pvPortMalloc
  .text.vPortFree
-                0x00000000200a2cae      0x120 ./FreeRTOS/portable/MemMang/heap_4.o
-                0x00000000200a2cae                vPortFree
+                0x00000000200a2c54      0x130 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200a2c54                vPortFree
  .text.xPortGetFreeHeapSize
-                0x00000000200a2dce        0x6 ./FreeRTOS/portable/MemMang/heap_4.o
-                0x00000000200a2dce                xPortGetFreeHeapSize
+                0x00000000200a2d84        0xa ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200a2d84                xPortGetFreeHeapSize
  .text.xPortGetMinimumEverFreeHeapSize
-                0x00000000200a2dd4        0x6 ./FreeRTOS/portable/MemMang/heap_4.o
-                0x00000000200a2dd4                xPortGetMinimumEverFreeHeapSize
+                0x00000000200a2d8e        0xa ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200a2d8e                xPortGetMinimumEverFreeHeapSize
  .text.vPortSetupTimerInterrupt
-                0x00000000200a2dda       0x4e ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200a2dda                vPortSetupTimerInterrupt
+                0x00000000200a2d98       0x52 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x00000000200a2d98                vPortSetupTimerInterrupt
  .text.xPortStartScheduler
-                0x00000000200a2e28       0x68 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200a2e28                xPortStartScheduler
+                0x00000000200a2dea       0x68 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x00000000200a2dea                xPortStartScheduler
  .text.SysTick1_Handler
-                0x00000000200a2e90       0xa6 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200a2e90                SysTick1_Handler
+                0x00000000200a2e52       0xa6 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x00000000200a2e52                SysTick1_Handler
  .text.vPortEnterCritical
-                0x00000000200a2f36       0x16 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200a2f36                vPortEnterCritical
+                0x00000000200a2ef8       0x16 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x00000000200a2ef8                vPortEnterCritical
  .text.vPortExitCritical
-                0x00000000200a2f4c       0x34 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200a2f4c                vPortExitCritical
+                0x00000000200a2f0e       0x34 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x00000000200a2f0e                vPortExitCritical
  .text.vListInitialise
-                0x00000000200a2f80       0x14 ./FreeRTOS/list.o
-                0x00000000200a2f80                vListInitialise
+                0x00000000200a2f42       0x14 ./FreeRTOS/list.o
+                0x00000000200a2f42                vListInitialise
  .text.vListInitialiseItem
-                0x00000000200a2f94        0x6 ./FreeRTOS/list.o
-                0x00000000200a2f94                vListInitialiseItem
+                0x00000000200a2f56        0x6 ./FreeRTOS/list.o
+                0x00000000200a2f56                vListInitialiseItem
  .text.vListInsert
-                0x00000000200a2f9a       0x2e ./FreeRTOS/list.o
-                0x00000000200a2f9a                vListInsert
+                0x00000000200a2f5c       0x2e ./FreeRTOS/list.o
+                0x00000000200a2f5c                vListInsert
  .text.uxListRemove
-                0x00000000200a2fc8       0x1e ./FreeRTOS/list.o
-                0x00000000200a2fc8                uxListRemove
+                0x00000000200a2f8a       0x1e ./FreeRTOS/list.o
+                0x00000000200a2f8a                uxListRemove
  .text.prvAddCurrentTaskToDelayedList
-                0x00000000200a2fe6       0x96 ./FreeRTOS/tasks.o
+                0x00000000200a2fa8       0xaa ./FreeRTOS/tasks.o
  .text.prvResetNextTaskUnblockTime
-                0x00000000200a307c       0x1a ./FreeRTOS/tasks.o
+                0x00000000200a3052       0x22 ./FreeRTOS/tasks.o
  .text.prvCheckTasksWaitingTermination
-                0x00000000200a3096       0x50 ./FreeRTOS/tasks.o
+                0x00000000200a3074       0x58 ./FreeRTOS/tasks.o
  .text.prvIdleTask
-                0x00000000200a30e6        0xa ./FreeRTOS/tasks.o
+                0x00000000200a30cc        0xa ./FreeRTOS/tasks.o
  .text.xTaskCreate
-                0x00000000200a30f0      0x1ce ./FreeRTOS/tasks.o
-                0x00000000200a30f0                xTaskCreate
+                0x00000000200a30d6      0x1ee ./FreeRTOS/tasks.o
+                0x00000000200a30d6                xTaskCreate
  .text.vTaskStartScheduler
-                0x00000000200a32be       0x84 ./FreeRTOS/tasks.o
-                0x00000000200a32be                vTaskStartScheduler
+                0x00000000200a32c4       0x94 ./FreeRTOS/tasks.o
+                0x00000000200a32c4                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x00000000200a3342        0xc ./FreeRTOS/tasks.o
-                0x00000000200a3342                vTaskSuspendAll
+                0x00000000200a3358       0x10 ./FreeRTOS/tasks.o
+                0x00000000200a3358                vTaskSuspendAll
  .text.xTaskGetTickCount
-                0x00000000200a334e        0x6 ./FreeRTOS/tasks.o
-                0x00000000200a334e                xTaskGetTickCount
+                0x00000000200a3368        0xa ./FreeRTOS/tasks.o
+                0x00000000200a3368                xTaskGetTickCount
  .text.xTaskIncrementTick
-                0x00000000200a3354      0x166 ./FreeRTOS/tasks.o
-                0x00000000200a3354                xTaskIncrementTick
+                0x00000000200a3372      0x196 ./FreeRTOS/tasks.o
+                0x00000000200a3372                xTaskIncrementTick
  .text.xTaskResumeAll
-                0x00000000200a34ba      0x11e ./FreeRTOS/tasks.o
-                0x00000000200a34ba                xTaskResumeAll
+                0x00000000200a3508      0x142 ./FreeRTOS/tasks.o
+                0x00000000200a3508                xTaskResumeAll
  .text.xTaskDelayUntil
-                0x00000000200a35d8       0x94 ./FreeRTOS/tasks.o
-                0x00000000200a35d8                xTaskDelayUntil
+                0x00000000200a364a       0x9c ./FreeRTOS/tasks.o
+                0x00000000200a364a                xTaskDelayUntil
  .text.vTaskDelay
-                0x00000000200a366c       0x50 ./FreeRTOS/tasks.o
-                0x00000000200a366c                vTaskDelay
+                0x00000000200a36e6       0x54 ./FreeRTOS/tasks.o
+                0x00000000200a36e6                vTaskDelay
  .text.vTaskSwitchContext
-                0x00000000200a36bc      0x114 ./FreeRTOS/tasks.o
-                0x00000000200a36bc                vTaskSwitchContext
+                0x00000000200a373a      0x120 ./FreeRTOS/tasks.o
+                0x00000000200a373a                vTaskSwitchContext
  .text.uxTaskGetStackHighWaterMark
-                0x00000000200a37d0       0x40 ./FreeRTOS/tasks.o
-                0x00000000200a37d0                uxTaskGetStackHighWaterMark
+                0x00000000200a385a       0x44 ./FreeRTOS/tasks.o
+                0x00000000200a385a                uxTaskGetStackHighWaterMark
  .text.xTaskGetCurrentTaskHandle
-                0x00000000200a3810        0x6 ./FreeRTOS/tasks.o
-                0x00000000200a3810                xTaskGetCurrentTaskHandle
+                0x00000000200a389e        0xa ./FreeRTOS/tasks.o
+                0x00000000200a389e                xTaskGetCurrentTaskHandle
  .text.xTaskGetSchedulerState
-                0x00000000200a3816       0x14 ./FreeRTOS/tasks.o
-                0x00000000200a3816                xTaskGetSchedulerState
+                0x00000000200a38a8       0x1c ./FreeRTOS/tasks.o
+                0x00000000200a38a8                xTaskGetSchedulerState
  .text.delay_systick_cycles.part.0
-                0x00000000200a382a       0x5c ./Debug/debug.o
+                0x00000000200a38c4       0x60 ./Debug/debug.o
  .text.Delay_Init
-                0x00000000200a3886       0x22 ./Debug/debug.o
-                0x00000000200a3886                Delay_Init
+                0x00000000200a3924       0x26 ./Debug/debug.o
+                0x00000000200a3924                Delay_Init
  .text.Delay_Ms
-                0x00000000200a38a8       0x2a ./Debug/debug.o
-                0x00000000200a38a8                Delay_Ms
+                0x00000000200a394a       0x2a ./Debug/debug.o
+                0x00000000200a394a                Delay_Ms
  .text.USART_Printf_Init
-                0x00000000200a38d2       0x76 ./Debug/debug.o
-                0x00000000200a38d2                USART_Printf_Init
- .text._write   0x00000000200a3948       0x54 ./Debug/debug.o
-                0x00000000200a3948                _write
- .text._sbrk    0x00000000200a399c       0x2a ./Debug/debug.o
-                0x00000000200a399c                _sbrk
+                0x00000000200a3974       0x76 ./Debug/debug.o
+                0x00000000200a3974                USART_Printf_Init
+ .text._write   0x00000000200a39ea       0x58 ./Debug/debug.o
+                0x00000000200a39ea                _write
+ .text._sbrk    0x00000000200a3a42       0x2a ./Debug/debug.o
+                0x00000000200a3a42                _sbrk
  .text.__udivdi3
-                0x00000000200a39c6      0x39a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(_udivdi3.o)
-                0x00000000200a39c6                __udivdi3
+                0x00000000200a3a6c      0x39a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(_udivdi3.o)
+                0x00000000200a3a6c                __udivdi3
  .text.__addsf3
-                0x00000000200a3d60      0x358 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(addsf3.o)
-                0x00000000200a3d60                __addsf3
+                0x00000000200a3e06      0x358 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(addsf3.o)
+                0x00000000200a3e06                __addsf3
  .text.__divsf3
-                0x00000000200a40b8      0x2be /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(divsf3.o)
-                0x00000000200a40b8                __divsf3
- .text.__gesf2  0x00000000200a4376       0x96 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(gesf2.o)
-                0x00000000200a4376                __gtsf2
-                0x00000000200a4376                __gesf2
- .text.__lesf2  0x00000000200a440c       0x98 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(lesf2.o)
-                0x00000000200a440c                __lesf2
-                0x00000000200a440c                __ltsf2
+                0x00000000200a415e      0x2be /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(divsf3.o)
+                0x00000000200a415e                __divsf3
+ .text.__gesf2  0x00000000200a441c       0x96 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(gesf2.o)
+                0x00000000200a441c                __gtsf2
+                0x00000000200a441c                __gesf2
+ .text.__lesf2  0x00000000200a44b2       0x98 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(lesf2.o)
+                0x00000000200a44b2                __lesf2
+                0x00000000200a44b2                __ltsf2
  .text.__mulsf3
-                0x00000000200a44a4      0x2c6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(mulsf3.o)
-                0x00000000200a44a4                __mulsf3
+                0x00000000200a454a      0x2c6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(mulsf3.o)
+                0x00000000200a454a                __mulsf3
  .text.__subsf3
-                0x00000000200a476a      0x378 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(subsf3.o)
-                0x00000000200a476a                __subsf3
+                0x00000000200a4810      0x378 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(subsf3.o)
+                0x00000000200a4810                __subsf3
  .text.__fixunssfsi
-                0x00000000200a4ae2       0x4e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(fixunssfsi.o)
-                0x00000000200a4ae2                __fixunssfsi
+                0x00000000200a4b88       0x4e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(fixunssfsi.o)
+                0x00000000200a4b88                __fixunssfsi
  .text.__floatsisf
-                0x00000000200a4b30       0xc0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(floatsisf.o)
-                0x00000000200a4b30                __floatsisf
+                0x00000000200a4bd6       0xc0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(floatsisf.o)
+                0x00000000200a4bd6                __floatsisf
  .text.__floatunsisf
-                0x00000000200a4bf0       0xa8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(floatunsisf.o)
-                0x00000000200a4bf0                __floatunsisf
- .text.printf   0x00000000200a4c98       0x38 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-printf.o)
-                0x00000000200a4c98                printf
-                0x00000000200a4c98                iprintf
- .text.std      0x00000000200a4cd0       0x66 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4c96       0xa8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(floatunsisf.o)
+                0x00000000200a4c96                __floatunsisf
+ .text.printf   0x00000000200a4d3e       0x38 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-printf.o)
+                0x00000000200a4d3e                printf
+                0x00000000200a4d3e                iprintf
+ .text.std      0x00000000200a4d76       0x66 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x00000000200a4d36        0xa /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d36                _cleanup_r
+                0x00000000200a4ddc        0xa /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4ddc                _cleanup_r
  .text.__sfmoreglue
-                0x00000000200a4d40       0x46 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d40                __sfmoreglue
+                0x00000000200a4de6       0x46 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4de6                __sfmoreglue
  .text.__sfp_lock_acquire
-                0x00000000200a4d86        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d86                __sfp_lock_acquire
+                0x00000000200a4e2c        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4e2c                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x00000000200a4d8c        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d8c                __sfp_lock_release
+                0x00000000200a4e32        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4e32                __sfp_lock_release
  .text.__sinit_lock_acquire
-                0x00000000200a4d92        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d92                __sinit_lock_acquire
+                0x00000000200a4e38        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4e38                __sinit_lock_acquire
  .text.__sinit_lock_release
-                0x00000000200a4d98        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d98                __sinit_lock_release
- .text.__sinit  0x00000000200a4d9e       0x72 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4d9e                __sinit
- .text.__sfp    0x00000000200a4e10       0xb0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a4e10                __sfp
+                0x00000000200a4e3e        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4e3e                __sinit_lock_release
+ .text.__sinit  0x00000000200a4e44       0x72 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4e44                __sinit
+ .text.__sfp    0x00000000200a4eb6       0xb0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a4eb6                __sfp
  .text._fwalk_reent
-                0x00000000200a4ec0       0x68 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fwalk.o)
-                0x00000000200a4ec0                _fwalk_reent
+                0x00000000200a4f66       0x68 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fwalk.o)
+                0x00000000200a4f66                _fwalk_reent
  .text.__retarget_lock_init_recursive
-                0x00000000200a4f28        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200a4f28                __retarget_lock_init_recursive
+                0x00000000200a4fce        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200a4fce                __retarget_lock_init_recursive
  .text.__retarget_lock_acquire_recursive
-                0x00000000200a4f2a        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200a4f2a                __retarget_lock_acquire_recursive
+                0x00000000200a4fd0        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200a4fd0                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x00000000200a4f2c        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200a4f2c                __retarget_lock_release_recursive
+                0x00000000200a4fd2        0x2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200a4fd2                __retarget_lock_release_recursive
  .text.sbrk_aligned
-                0x00000000200a4f2e       0x54 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200a4fd4       0x54 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
  .text._malloc_r
-                0x00000000200a4f82      0x10c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200a4f82                _malloc_r
+                0x00000000200a5028      0x10c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200a5028                _malloc_r
  .text.__sfputc_r
-                0x00000000200a508e       0x26 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000200a5134       0x26 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x00000000200a50b4       0x42 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
-                0x00000000200a50b4                __sfputs_r
+                0x00000000200a515a       0x42 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000200a515a                __sfputs_r
  .text._vfprintf_r
-                0x00000000200a50f6      0x2be /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
-                0x00000000200a50f6                _vfiprintf_r
-                0x00000000200a50f6                _vfprintf_r
- .text._sbrk_r  0x00000000200a53b4       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-sbrkr.o)
-                0x00000000200a53b4                _sbrk_r
- .text.__sread  0x00000000200a53dc       0x2c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
-                0x00000000200a53dc                __sread
+                0x00000000200a519c      0x2be /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
+                0x00000000200a519c                _vfiprintf_r
+                0x00000000200a519c                _vfprintf_r
+ .text._sbrk_r  0x00000000200a545a       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-sbrkr.o)
+                0x00000000200a545a                _sbrk_r
+ .text.__sread  0x00000000200a5482       0x2c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
+                0x00000000200a5482                __sread
  .text.__swrite
-                0x00000000200a5408       0x46 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
-                0x00000000200a5408                __swrite
- .text.__sseek  0x00000000200a544e       0x2e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
-                0x00000000200a544e                __sseek
+                0x00000000200a54ae       0x46 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
+                0x00000000200a54ae                __swrite
+ .text.__sseek  0x00000000200a54f4       0x2e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
+                0x00000000200a54f4                __sseek
  .text.__sclose
-                0x00000000200a547c        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
-                0x00000000200a547c                __sclose
+                0x00000000200a5522        0x6 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-stdio.o)
+                0x00000000200a5522                __sclose
  .text.__swbuf_r
-                0x00000000200a5482       0xbe /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-wbuf.o)
-                0x00000000200a5482                __swbuf_r
+                0x00000000200a5528       0xbe /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-wbuf.o)
+                0x00000000200a5528                __swbuf_r
  .text._write_r
-                0x00000000200a5540       0x2c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-writer.o)
-                0x00000000200a5540                _write_r
+                0x00000000200a55e6       0x2c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-writer.o)
+                0x00000000200a55e6                _write_r
  .text.__swsetup_r
-                0x00000000200a556c       0xf0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-wsetup.o)
-                0x00000000200a556c                __swsetup_r
+                0x00000000200a5612       0xf0 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-wsetup.o)
+                0x00000000200a5612                __swsetup_r
  .text._close_r
-                0x00000000200a565c       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-closer.o)
-                0x00000000200a565c                _close_r
+                0x00000000200a5702       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-closer.o)
+                0x00000000200a5702                _close_r
  .text.__sflush_r
-                0x00000000200a5684      0x132 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fflush.o)
-                0x00000000200a5684                __sflush_r
+                0x00000000200a572a      0x132 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fflush.o)
+                0x00000000200a572a                __sflush_r
  .text._fflush_r
-                0x00000000200a57b6       0x8e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fflush.o)
-                0x00000000200a57b6                _fflush_r
+                0x00000000200a585c       0x8e /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fflush.o)
+                0x00000000200a585c                _fflush_r
  .text._lseek_r
-                0x00000000200a5844       0x2a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lseekr.o)
-                0x00000000200a5844                _lseek_r
+                0x00000000200a58ea       0x2a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lseekr.o)
+                0x00000000200a58ea                _lseek_r
  .text.__swhatbuf_r
-                0x00000000200a586e       0x58 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-makebuf.o)
-                0x00000000200a586e                __swhatbuf_r
+                0x00000000200a5914       0x58 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-makebuf.o)
+                0x00000000200a5914                __swhatbuf_r
  .text.__smakebuf_r
-                0x00000000200a58c6       0x96 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-makebuf.o)
-                0x00000000200a58c6                __smakebuf_r
- .text.memchr   0x00000000200a595c       0x18 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-memchr.o)
-                0x00000000200a595c                memchr
+                0x00000000200a596c       0x96 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-makebuf.o)
+                0x00000000200a596c                __smakebuf_r
+ .text.memchr   0x00000000200a5a02       0x18 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-memchr.o)
+                0x00000000200a5a02                memchr
  .text.__malloc_lock
-                0x00000000200a5974        0x8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-mlock.o)
-                0x00000000200a5974                __malloc_lock
+                0x00000000200a5a1a        0x8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-mlock.o)
+                0x00000000200a5a1a                __malloc_lock
  .text.__malloc_unlock
-                0x00000000200a597c        0x8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-mlock.o)
-                0x00000000200a597c                __malloc_unlock
- .text._free_r  0x00000000200a5984       0xa2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-freer.o)
-                0x00000000200a5984                _free_r
+                0x00000000200a5a22        0x8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-mlock.o)
+                0x00000000200a5a22                __malloc_unlock
+ .text._free_r  0x00000000200a5a2a       0xa2 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-freer.o)
+                0x00000000200a5a2a                _free_r
  .text._printf_common
-                0x00000000200a5a26      0x10a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x00000000200a5a26                _printf_common
+                0x00000000200a5acc      0x10a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000200a5acc                _printf_common
  .text._printf_i
-                0x00000000200a5b30      0x27c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x00000000200a5b30                _printf_i
- .text._read_r  0x00000000200a5dac       0x2a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-readr.o)
-                0x00000000200a5dac                _read_r
+                0x00000000200a5bd6      0x27c /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000200a5bd6                _printf_i
+ .text._read_r  0x00000000200a5e52       0x2a /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-readr.o)
+                0x00000000200a5e52                _read_r
  .text._fstat_r
-                0x00000000200a5dd6       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fstatr.o)
-                0x00000000200a5dd6                _fstat_r
+                0x00000000200a5e7c       0x28 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-fstatr.o)
+                0x00000000200a5e7c                _fstat_r
  .text._isatty_r
-                0x00000000200a5dfe       0x26 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-isattyr.o)
-                0x00000000200a5dfe                _isatty_r
- .text._close   0x00000000200a5e24        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(close.o)
-                0x00000000200a5e24                _close
- .text._fstat   0x00000000200a5e30        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(fstat.o)
-                0x00000000200a5e30                _fstat
- .text._isatty  0x00000000200a5e3c        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(isatty.o)
-                0x00000000200a5e3c                _isatty
- .text._lseek   0x00000000200a5e48        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(lseek.o)
-                0x00000000200a5e48                _lseek
- .text._read    0x00000000200a5e54        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(read.o)
-                0x00000000200a5e54                _read
+                0x00000000200a5ea4       0x26 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-isattyr.o)
+                0x00000000200a5ea4                _isatty_r
+ .text._close   0x00000000200a5eca        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(close.o)
+                0x00000000200a5eca                _close
+ .text._fstat   0x00000000200a5ed6        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(fstat.o)
+                0x00000000200a5ed6                _fstat
+ .text._isatty  0x00000000200a5ee2        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(isatty.o)
+                0x00000000200a5ee2                _isatty
+ .text._lseek   0x00000000200a5eee        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(lseek.o)
+                0x00000000200a5eee                _lseek
+ .text._read    0x00000000200a5efa        0xc /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(read.o)
+                0x00000000200a5efa                _read
  *(.rodata)
  *(.rodata*)
- *fill*         0x00000000200a5e60        0x0 
+ *fill*         0x00000000200a5f06        0x2 
  .rodata.tasks_create_all.str1.4
-                0x00000000200a5e60       0x3f ./tasks/Src/initial_task.o
- *fill*         0x00000000200a5e9f        0x1 
+                0x00000000200a5f08       0x3f ./tasks/Src/initial_task.o
+ *fill*         0x00000000200a5f47        0x1 
  .rodata.imu_uart_process
-                0x00000000200a5ea0       0x14 ./drivers/sensors/imu.o
+                0x00000000200a5f48       0x14 ./drivers/sensors/imu.o
  .rodata.imu_retry_init.str1.4
-                0x00000000200a5eb4       0x2a ./drivers/sensors/imu.o
- *fill*         0x00000000200a5ede        0x2 
+                0x00000000200a5f5c       0x2a ./drivers/sensors/imu.o
+ *fill*         0x00000000200a5f86        0x2 
  .rodata.imu_init.str1.4
-                0x00000000200a5ee0       0x2c ./drivers/sensors/imu.o
+                0x00000000200a5f88       0x2c ./drivers/sensors/imu.o
  .rodata.str1.4
-                0x00000000200a5f0c       0x35 ./drivers/sensors/imu.o
- *fill*         0x00000000200a5f41        0x3 
+                0x00000000200a5fb4       0x35 ./drivers/sensors/imu.o
+ *fill*         0x00000000200a5fe9        0x3 
  .rodata.CSWTCH.30
-                0x00000000200a5f44       0x10 ./drivers/sensors/imu.o
+                0x00000000200a5fec       0x10 ./drivers/sensors/imu.o
  .rodata.bsp_board_init.str1.4
-                0x00000000200a5f54       0x88 ./bsp/bsp_board.o
+                0x00000000200a5ffc       0x88 ./bsp/bsp_board.o
  .rodata.pvPortMalloc.str1.4
-                0x00000000200a5fdc       0x26 ./FreeRTOS/portable/MemMang/heap_4.o
- *fill*         0x00000000200a6002        0x2 
+                0x00000000200a6084       0x26 ./FreeRTOS/portable/MemMang/heap_4.o
+ *fill*         0x00000000200a60aa        0x2 
  .rodata.xPortStartScheduler.str1.4
-                0x00000000200a6004       0x27 ./FreeRTOS/portable/GCC/RISC-V/port.o
- *fill*         0x00000000200a602b        0x1 
+                0x00000000200a60ac       0x27 ./FreeRTOS/portable/GCC/RISC-V/port.o
+ *fill*         0x00000000200a60d3        0x1 
  .rodata.prvTaskIsTaskSuspended.str1.4
-                0x00000000200a602c       0x14 ./FreeRTOS/tasks.o
+                0x00000000200a60d4       0x14 ./FreeRTOS/tasks.o
  .rodata.vTaskStartScheduler.str1.4
-                0x00000000200a6040        0x5 ./FreeRTOS/tasks.o
- *fill*         0x00000000200a6045        0x3 
+                0x00000000200a60e8        0x5 ./FreeRTOS/tasks.o
+ *fill*         0x00000000200a60ed        0x3 
  .rodata.__divsf3
-                0x00000000200a6048       0xa8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(divsf3.o)
+                0x00000000200a60f0       0xa8 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(divsf3.o)
  .rodata.__clz_tab
-                0x00000000200a60f0      0x100 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(_clz.o)
-                0x00000000200a60f0                __clz_tab
+                0x00000000200a6198      0x100 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libgcc.a(_clz.o)
+                0x00000000200a6198                __clz_tab
  .rodata.__sf_fake_stderr
-                0x00000000200a61f0       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a61f0                __sf_fake_stderr
+                0x00000000200a6298       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a6298                __sf_fake_stderr
  .rodata.__sf_fake_stdout
-                0x00000000200a6210       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a6210                __sf_fake_stdout
+                0x00000000200a62b8       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a62b8                __sf_fake_stdout
  .rodata.__sf_fake_stdin
-                0x00000000200a6230       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
-                0x00000000200a6230                __sf_fake_stdin
+                0x00000000200a62d8       0x20 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-findfp.o)
+                0x00000000200a62d8                __sf_fake_stdin
  .rodata._vfprintf_r.str1.4
-                0x00000000200a6250       0x13 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
- *fill*         0x00000000200a6263        0x1 
+                0x00000000200a62f8       0x13 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf.o)
+ *fill*         0x00000000200a630b        0x1 
  .rodata._printf_i.str1.4
-                0x00000000200a6264       0x25 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
- *fill*         0x00000000200a6289        0x3 
+                0x00000000200a630c       0x25 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
+ *fill*         0x00000000200a6331        0x3 
  .rodata._printf_i
-                0x00000000200a628c       0x58 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000200a6334       0x58 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-vfprintf_i.o)
  *(.sdata2.*)
  *(.glue_7)
  *(.glue_7t)
  *(.gnu.linkonce.t.*)
-                0x00000000200a62e4                . = ALIGN (0x4)
-                0x00000000200a62e4                PROVIDE (_highcode_vma_end = .)
+                0x00000000200a638c                . = ALIGN (0x4)
+                0x00000000200a638c                PROVIDE (_highcode_vma_end = .)
 
-.text           0x00000000000063c8       0x50
-                0x00000000000063c8                . = ALIGN (0x4)
+.text           0x0000000000006470       0x50
+                0x0000000000006470                . = ALIGN (0x4)
  *(SORT_NONE(.handle_reset))
- .handle_reset  0x00000000000063c8       0x4e ./Startup/startup_ch32h417_v5f.o
-                0x00000000000063c8                handle_reset
-                0x0000000000006418                . = ALIGN (0x4)
- *fill*         0x0000000000006416        0x2 
+ .handle_reset  0x0000000000006470       0x4e ./Startup/startup_ch32h417_v5f.o
+                0x0000000000006470                handle_reset
+                0x00000000000064c0                . = ALIGN (0x4)
+ *fill*         0x00000000000064be        0x2 
 
-.rela.dyn       0x0000000000006418        0x0
- .rela.init     0x0000000000006418        0x0 ./tasks/Src/commander_task.o
- .rela.vector   0x0000000000006418        0x0 ./tasks/Src/commander_task.o
- .rela.load     0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+.rela.dyn       0x00000000000064c0        0x0
+ .rela.init     0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
+ .rela.vector   0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
+ .rela.load     0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.handle_reset
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.text.xPortStartScheduler
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.srodata.xISRStackTop
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.text._sbrk
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.sdata.curbrk.0
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
  .rela.text._vfprintf_r
-                0x0000000000006418        0x0 ./tasks/Src/commander_task.o
+                0x00000000000064c0        0x0 ./tasks/Src/commander_task.o
 
 .shared         0x0000000020178000        0x0
                 0x0000000020178000                . = ALIGN (0x4)
@@ -4452,30 +4446,30 @@ END GROUP
                 0x0000000020178000                . = ALIGN (0x4)
 
 .highcodelalign1
-                0x0000000000006418        0x0
-                0x0000000000006418                . = ALIGN (0x4)
-                0x0000000000006418                PROVIDE (_highcode_lma1 = .)
+                0x00000000000064c0        0x0
+                0x00000000000064c0                . = ALIGN (0x4)
+                0x00000000000064c0                PROVIDE (_highcode_lma1 = .)
 
-.fini           0x00000000200a62e4        0x0 load address 0x0000000000006418
-                0x00000000200a62e4                . = ALIGN (0x4)
-                0x00000000200a62e4                PROVIDE (_highcode_vma_start1 = .)
+.fini           0x00000000200a638c        0x0 load address 0x00000000000064c0
+                0x00000000200a638c                . = ALIGN (0x4)
+                0x00000000200a638c                PROVIDE (_highcode_vma_start1 = .)
  *(SORT_NONE(.fini))
-                0x00000000200a62e4                . = ALIGN (0x4)
+                0x00000000200a638c                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x00000000200a62e4        0x0 load address 0x0000000000006418
+.preinit_array  0x00000000200a638c        0x0 load address 0x00000000000064c0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x00000000200a62e4        0x0 load address 0x0000000000006418
+.init_array     0x00000000200a638c        0x0 load address 0x00000000000064c0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x00000000200a62e4        0x0 load address 0x0000000000006418
+.fini_array     0x00000000200a638c        0x0 load address 0x00000000000064c0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -4488,24 +4482,24 @@ END GROUP
  *(SORT_BY_NAME(.ctors.*))
  *(.ctors)
 
-.dtors          0x00000000200a62e4        0x0 load address 0x0000000000006418
+.dtors          0x00000000200a638c        0x0 load address 0x00000000000064c0
  *crtbegin.o(.dtors)
  *crtbegin?.o(.dtors)
  *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
-                0x00000000200a62e4                . = ALIGN (0x4)
-                0x00000000200a62e4                PROVIDE (_highcode_vma_end1 = .)
+                0x00000000200a638c                . = ALIGN (0x4)
+                0x00000000200a638c                PROVIDE (_highcode_vma_end1 = .)
 
-.dalign         0x00000000200c0300        0x0 load address 0x0000000000006418
+.dalign         0x00000000200c0300        0x0 load address 0x00000000000064c0
                 0x00000000200c0300                . = ALIGN (0x4)
                 0x00000000200c0300                PROVIDE (_data_vma = .)
 
-.dlalign        0x0000000000006418        0x0
-                0x0000000000006418                . = ALIGN (0x4)
-                0x0000000000006418                PROVIDE (_data_lma = .)
+.dlalign        0x00000000000064c0        0x0
+                0x00000000000064c0                . = ALIGN (0x4)
+                0x00000000000064c0                PROVIDE (_data_lma = .)
 
-.data           0x00000000200c0300      0x158 load address 0x0000000000006418
+.data           0x00000000200c0300      0x158 load address 0x00000000000064c0
                 0x00000000200c0300                . = ALIGN (0x4)
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
@@ -4567,372 +4561,172 @@ END GROUP
                 0x00000000200c0458                . = ALIGN (0x4)
                 0x00000000200c0458                PROVIDE (_edata = .)
 
-.bss            0x00000000200c0458    0x1879c load address 0x0000000000006570
+.bss            0x00000000200c0458    0x187ac load address 0x0000000000006618
                 0x00000000200c0458                . = ALIGN (0x4)
                 0x00000000200c0458                PROVIDE (_sbss = .)
  *(.sbss*)
- .sbss.g_dbg_runtime_heap_min_free
-                0x00000000200c0458        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c0458                g_dbg_runtime_heap_min_free
- .sbss.g_dbg_runtime_heap_free
-                0x00000000200c045c        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c045c                g_dbg_runtime_heap_free
- .sbss.g_dbg_heap_before_task_create
-                0x00000000200c0460        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c0460                g_dbg_heap_before_task_create
  .sbss.loggerTaskHandle
-                0x00000000200c0464        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c0464                loggerTaskHandle
+                0x00000000200c0458        0x4 ./tasks/Src/initial_task.o
+                0x00000000200c0458                loggerTaskHandle
  .sbss.commanderTaskHandle
-                0x00000000200c0468        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c0468                commanderTaskHandle
+                0x00000000200c045c        0x4 ./tasks/Src/initial_task.o
+                0x00000000200c045c                commanderTaskHandle
  .sbss.controlTaskHandle
-                0x00000000200c046c        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c046c                controlTaskHandle
+                0x00000000200c0460        0x4 ./tasks/Src/initial_task.o
+                0x00000000200c0460                controlTaskHandle
  .sbss.sensorTaskHandle
-                0x00000000200c0470        0x4 ./tasks/Src/initial_task.o
-                0x00000000200c0470                sensorTaskHandle
+                0x00000000200c0464        0x4 ./tasks/Src/initial_task.o
+                0x00000000200c0464                sensorTaskHandle
  .sbss.frame_index.1
-                0x00000000200c0474        0x1 ./drivers/sensors/imu.o
+                0x00000000200c0468        0x1 ./drivers/sensors/imu.o
  .sbss.frame_function.2
-                0x00000000200c0475        0x1 ./drivers/sensors/imu.o
+                0x00000000200c0469        0x1 ./drivers/sensors/imu.o
  .sbss.frame_len.3
-                0x00000000200c0476        0x1 ./drivers/sensors/imu.o
+                0x00000000200c046a        0x1 ./drivers/sensors/imu.o
  .sbss.rx_state.4
-                0x00000000200c0477        0x1 ./drivers/sensors/imu.o
- .sbss.g_dbg_adc_timeout_count
-                0x00000000200c0478        0x4 ./bsp/bsp_adc.o
-                0x00000000200c0478                g_dbg_adc_timeout_count
- .sbss.g_dbg_tick_hook_count
-                0x00000000200c047c        0x4 ./bsp/bsp_board.o
-                0x00000000200c047c                g_dbg_tick_hook_count
+                0x00000000200c046b        0x1 ./drivers/sensors/imu.o
  .sbss.g_board_millis
-                0x00000000200c0480        0x4 ./bsp/bsp_board.o
- .sbss.g_dbg_uart_tx_timeout_count
-                0x00000000200c0484        0x4 ./bsp/bsp_uart.o
-                0x00000000200c0484                g_dbg_uart_tx_timeout_count
- .sbss.g_dbg_usart4_rx_irq_start_count
-                0x00000000200c0488        0x4 ./bsp/bsp_uart.o
-                0x00000000200c0488                g_dbg_usart4_rx_irq_start_count
- .sbss.g_dbg_usart4_nvic_own_core
-                0x00000000200c048c        0x4 ./bsp/bsp_uart.o
-                0x00000000200c048c                g_dbg_usart4_nvic_own_core
- .sbss.g_dbg_usart4_nvic_active
-                0x00000000200c0490        0x4 ./bsp/bsp_uart.o
-                0x00000000200c0490                g_dbg_usart4_nvic_active
- .sbss.g_dbg_usart4_nvic_pending
-                0x00000000200c0494        0x4 ./bsp/bsp_uart.o
-                0x00000000200c0494                g_dbg_usart4_nvic_pending
- .sbss.g_dbg_usart4_nvic_enabled
-                0x00000000200c0498        0x4 ./bsp/bsp_uart.o
-                0x00000000200c0498                g_dbg_usart4_nvic_enabled
- .sbss.g_dbg_usart4_brr
-                0x00000000200c049c        0x4 ./bsp/bsp_uart.o
-                0x00000000200c049c                g_dbg_usart4_brr
- .sbss.g_dbg_usart4_ctlr3
-                0x00000000200c04a0        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04a0                g_dbg_usart4_ctlr3
- .sbss.g_dbg_usart4_ctlr2
-                0x00000000200c04a4        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04a4                g_dbg_usart4_ctlr2
- .sbss.g_dbg_usart4_ctlr1
-                0x00000000200c04a8        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04a8                g_dbg_usart4_ctlr1
- .sbss.g_dbg_afio_pcfr1
-                0x00000000200c04ac        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04ac                g_dbg_afio_pcfr1
- .sbss.g_dbg_gpiof_pf3_af
-                0x00000000200c04b0        0x1 ./bsp/bsp_uart.o
-                0x00000000200c04b0                g_dbg_gpiof_pf3_af
- *fill*         0x00000000200c04b1        0x1 
- .sbss.g_dbg_gpiof_indr
-                0x00000000200c04b2        0x2 ./bsp/bsp_uart.o
-                0x00000000200c04b2                g_dbg_gpiof_indr
- .sbss.g_dbg_pf3_level
-                0x00000000200c04b4        0x1 ./bsp/bsp_uart.o
-                0x00000000200c04b4                g_dbg_pf3_level
- .sbss.g_dbg_usart4_last_byte
-                0x00000000200c04b5        0x1 ./bsp/bsp_uart.o
-                0x00000000200c04b5                g_dbg_usart4_last_byte
- *fill*         0x00000000200c04b6        0x2 
- .sbss.g_dbg_usart4_statr
-                0x00000000200c04b8        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04b8                g_dbg_usart4_statr
- .sbss.g_dbg_usart4_error_flags
-                0x00000000200c04bc        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04bc                g_dbg_usart4_error_flags
- .sbss.g_dbg_usart4_spurious_count
-                0x00000000200c04c0        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04c0                g_dbg_usart4_spurious_count
- .sbss.g_dbg_usart4_pe_count
-                0x00000000200c04c4        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04c4                g_dbg_usart4_pe_count
- .sbss.g_dbg_usart4_ne_count
-                0x00000000200c04c8        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04c8                g_dbg_usart4_ne_count
- .sbss.g_dbg_usart4_fe_count
-                0x00000000200c04cc        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04cc                g_dbg_usart4_fe_count
- .sbss.g_dbg_usart4_ore_count
-                0x00000000200c04d0        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04d0                g_dbg_usart4_ore_count
- .sbss.g_dbg_usart4_rx_count
-                0x00000000200c04d4        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04d4                g_dbg_usart4_rx_count
- .sbss.g_dbg_usart4_irq_count
-                0x00000000200c04d8        0x4 ./bsp/bsp_uart.o
-                0x00000000200c04d8                g_dbg_usart4_irq_count
+                0x00000000200c046c        0x4 ./bsp/bsp_board.o
  .sbss.g_imu_uart_rx_started
-                0x00000000200c04dc        0x1 ./bsp/bsp_uart.o
- *fill*         0x00000000200c04dd        0x1 
+                0x00000000200c0470        0x1 ./bsp/bsp_uart.o
+ *fill*         0x00000000200c0471        0x1 
  .sbss.g_imu_uart_rx_read
-                0x00000000200c04de        0x2 ./bsp/bsp_uart.o
+                0x00000000200c0472        0x2 ./bsp/bsp_uart.o
  .sbss.g_imu_uart_rx_write
-                0x00000000200c04e0        0x2 ./bsp/bsp_uart.o
- *fill*         0x00000000200c04e2        0x2 
- .sbss.g_dbg_heap_before_scheduler
-                0x00000000200c04e4        0x4 ./app/app.o
-                0x00000000200c04e4                g_dbg_heap_before_scheduler
- .sbss.g_dbg_fault_task_name
-                0x00000000200c04e8        0x4 ./app/app.o
-                0x00000000200c04e8                g_dbg_fault_task_name
- .sbss.g_dbg_fault_task
-                0x00000000200c04ec        0x4 ./app/app.o
-                0x00000000200c04ec                g_dbg_fault_task
- .sbss.g_dbg_fault_reason
-                0x00000000200c04f0        0x4 ./app/app.o
-                0x00000000200c04f0                g_dbg_fault_reason
- .sbss.g_dbg_assert_current_task
-                0x00000000200c04f4        0x4 ./app/app.o
-                0x00000000200c04f4                g_dbg_assert_current_task
- .sbss.g_dbg_assert_tick
-                0x00000000200c04f8        0x4 ./app/app.o
-                0x00000000200c04f8                g_dbg_assert_tick
- .sbss.g_dbg_assert_scheduler_state
-                0x00000000200c04fc        0x4 ./app/app.o
-                0x00000000200c04fc                g_dbg_assert_scheduler_state
- .sbss.g_dbg_assert_return_address
-                0x00000000200c0500        0x4 ./app/app.o
-                0x00000000200c0500                g_dbg_assert_return_address
- .sbss.g_dbg_assert_heap_min_free
-                0x00000000200c0504        0x4 ./app/app.o
-                0x00000000200c0504                g_dbg_assert_heap_min_free
- .sbss.g_dbg_assert_heap_free
-                0x00000000200c0508        0x4 ./app/app.o
-                0x00000000200c0508                g_dbg_assert_heap_free
- .sbss.g_dbg_assert_count
-                0x00000000200c050c        0x4 ./app/app.o
-                0x00000000200c050c                g_dbg_assert_count
- .sbss.g_dbg_assert_line
-                0x00000000200c0510        0x4 ./app/app.o
-                0x00000000200c0510                g_dbg_assert_line
- .sbss.g_dbg_assert_file
-                0x00000000200c0514        0x4 ./app/app.o
-                0x00000000200c0514                g_dbg_assert_file
- .sbss.g_dbg_hardfault_sp
-                0x00000000200c0518        0x4 ./User/ch32h417_it.o
-                0x00000000200c0518                g_dbg_hardfault_sp
- .sbss.g_dbg_hardfault_mstatus
-                0x00000000200c051c        0x4 ./User/ch32h417_it.o
-                0x00000000200c051c                g_dbg_hardfault_mstatus
- .sbss.g_dbg_hardfault_mtval
-                0x00000000200c0520        0x4 ./User/ch32h417_it.o
-                0x00000000200c0520                g_dbg_hardfault_mtval
- .sbss.g_dbg_hardfault_mepc
-                0x00000000200c0524        0x4 ./User/ch32h417_it.o
-                0x00000000200c0524                g_dbg_hardfault_mepc
- .sbss.g_dbg_hardfault_mcause
-                0x00000000200c0528        0x4 ./User/ch32h417_it.o
-                0x00000000200c0528                g_dbg_hardfault_mcause
- .sbss.g_dbg_hardfault_count
-                0x00000000200c052c        0x4 ./User/ch32h417_it.o
-                0x00000000200c052c                g_dbg_hardfault_count
- .sbss.g_dbg_nmi_count
-                0x00000000200c0530        0x4 ./User/ch32h417_it.o
-                0x00000000200c0530                g_dbg_nmi_count
- .sbss.g_dbg_task_entry_mask
-                0x00000000200c0534        0x4 ./User/main.o
-                0x00000000200c0534                g_dbg_task_entry_mask
- .sbss.g_dbg_startup_phase
-                0x00000000200c0538        0x4 ./User/main.o
-                0x00000000200c0538                g_dbg_startup_phase
+                0x00000000200c0474        0x2 ./bsp/bsp_uart.o
+ *fill*         0x00000000200c0476        0x2 
  .sbss.SystemCoreClock
-                0x00000000200c053c        0x4 ./User/system_ch32h417.o
-                0x00000000200c053c                SystemCoreClock
+                0x00000000200c0478        0x4 ./User/system_ch32h417.o
+                0x00000000200c0478                SystemCoreClock
  .sbss.SystemClock
-                0x00000000200c0540        0x4 ./User/system_ch32h417.o
-                0x00000000200c0540                SystemClock
+                0x00000000200c047c        0x4 ./User/system_ch32h417.o
+                0x00000000200c047c                SystemClock
  .sbss.HCLKClock
-                0x00000000200c0544        0x4 ./User/system_ch32h417.o
-                0x00000000200c0544                HCLKClock
+                0x00000000200c0480        0x4 ./User/system_ch32h417.o
+                0x00000000200c0480                HCLKClock
  .sbss.xNumberOfSuccessfulFrees
-                0x00000000200c0548        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200c0484        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
  .sbss.xNumberOfSuccessfulAllocations
-                0x00000000200c054c        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200c0488        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
  .sbss.xMinimumEverFreeBytesRemaining
-                0x00000000200c0550        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000200c048c        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
  .sbss.xFreeBytesRemaining
-                0x00000000200c0554        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
- .sbss.pxEnd    0x00000000200c0558        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
- .sbss.xStart   0x00000000200c055c        0x8 ./FreeRTOS/portable/MemMang/heap_4.o
- .sbss.g_dbg_systick_pended_switch_count
-                0x00000000200c0564        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0564                g_dbg_systick_pended_switch_count
- .sbss.g_dbg_systick_last_cnt
-                0x00000000200c0568        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0568                g_dbg_systick_last_cnt
- .sbss.g_dbg_systick_last_isr
-                0x00000000200c056c        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c056c                g_dbg_systick_last_isr
- .sbss.g_dbg_systick_last_cmp
-                0x00000000200c0570        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0570                g_dbg_systick_last_cmp
- .sbss.g_dbg_systick_last_ctlr
-                0x00000000200c0574        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0574                g_dbg_systick_last_ctlr
- .sbss.g_dbg_systick_yield_count
-                0x00000000200c0578        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0578                g_dbg_systick_yield_count
- .sbss.g_dbg_systick_isr_count
-                0x00000000200c057c        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c057c                g_dbg_systick_isr_count
- .sbss.g_dbg_systick_setup_count
-                0x00000000200c0580        0x4 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                0x00000000200c0580                g_dbg_systick_setup_count
- .sbss.g_dbg_switch_current_tcb
-                0x00000000200c0584        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c0584                g_dbg_switch_current_tcb
- .sbss.g_dbg_switch_scheduler_suspended
-                0x00000000200c0588        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c0588                g_dbg_switch_scheduler_suspended
- .sbss.g_dbg_switch_current_priority
-                0x00000000200c058c        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c058c                g_dbg_switch_current_priority
- .sbss.g_dbg_switch_top_ready_priority
-                0x00000000200c0590        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c0590                g_dbg_switch_top_ready_priority
- .sbss.g_dbg_switch_count
-                0x00000000200c0594        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c0594                g_dbg_switch_count
+                0x00000000200c0490        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
+ .sbss.pxEnd    0x00000000200c0494        0x4 ./FreeRTOS/portable/MemMang/heap_4.o
+ .sbss.xStart   0x00000000200c0498        0x8 ./FreeRTOS/portable/MemMang/heap_4.o
  .sbss.uxSchedulerSuspended
-                0x00000000200c0598        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04a0        0x4 ./FreeRTOS/tasks.o
  .sbss.xIdleTaskHandles
-                0x00000000200c059c        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04a4        0x4 ./FreeRTOS/tasks.o
  .sbss.xNextTaskUnblockTime
-                0x00000000200c05a0        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04a8        0x4 ./FreeRTOS/tasks.o
  .sbss.uxTaskNumber
-                0x00000000200c05a4        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04ac        0x4 ./FreeRTOS/tasks.o
  .sbss.xNumOfOverflows
-                0x00000000200c05a8        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04b0        0x4 ./FreeRTOS/tasks.o
  .sbss.xYieldPendings
-                0x00000000200c05ac        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04b4        0x4 ./FreeRTOS/tasks.o
  .sbss.xPendedTicks
-                0x00000000200c05b0        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04b8        0x4 ./FreeRTOS/tasks.o
  .sbss.xSchedulerRunning
-                0x00000000200c05b4        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04bc        0x4 ./FreeRTOS/tasks.o
  .sbss.uxTopReadyPriority
-                0x00000000200c05b8        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04c0        0x4 ./FreeRTOS/tasks.o
  .sbss.xTickCount
-                0x00000000200c05bc        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04c4        0x4 ./FreeRTOS/tasks.o
  .sbss.uxCurrentNumberOfTasks
-                0x00000000200c05c0        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04c8        0x4 ./FreeRTOS/tasks.o
  .sbss.uxDeletedTasksWaitingCleanUp
-                0x00000000200c05c4        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04cc        0x4 ./FreeRTOS/tasks.o
  .sbss.pxOverflowDelayedTaskList
-                0x00000000200c05c8        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04d0        0x4 ./FreeRTOS/tasks.o
  .sbss.pxDelayedTaskList
-                0x00000000200c05cc        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04d4        0x4 ./FreeRTOS/tasks.o
  .sbss.pxCurrentTCB
-                0x00000000200c05d0        0x4 ./FreeRTOS/tasks.o
-                0x00000000200c05d0                pxCurrentTCB
- .sbss.g_dbg_printf_timeout_count
-                0x00000000200c05d4        0x4 ./Debug/debug.o
-                0x00000000200c05d4                g_dbg_printf_timeout_count
- .sbss.g_dbg_delay_timeout_count
-                0x00000000200c05d8        0x4 ./Debug/debug.o
-                0x00000000200c05d8                g_dbg_delay_timeout_count
- .sbss.p_ms     0x00000000200c05dc        0x4 ./Debug/debug.o
- .sbss.p_us     0x00000000200c05e0        0x2 ./Debug/debug.o
- *fill*         0x00000000200c05e2        0x2 
+                0x00000000200c04d8        0x4 ./FreeRTOS/tasks.o
+                0x00000000200c04d8                pxCurrentTCB
+ .sbss.g_dbg_console
+                0x00000000200c04dc        0x8 ./Debug/debug.o
+                0x00000000200c04dc                g_dbg_console
+ .sbss.p_ms     0x00000000200c04e4        0x4 ./Debug/debug.o
+ .sbss.p_us     0x00000000200c04e8        0x2 ./Debug/debug.o
+ *fill*         0x00000000200c04ea        0x2 
  .sbss.__lock___malloc_recursive_mutex
-                0x00000000200c05e4        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200c05e4                __lock___malloc_recursive_mutex
- *fill*         0x00000000200c05e5        0x3 
+                0x00000000200c04ec        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200c04ec                __lock___malloc_recursive_mutex
+ *fill*         0x00000000200c04ed        0x3 
  .sbss.__lock___sfp_recursive_mutex
-                0x00000000200c05e8        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200c05e8                __lock___sfp_recursive_mutex
- *fill*         0x00000000200c05e9        0x3 
+                0x00000000200c04f0        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200c04f0                __lock___sfp_recursive_mutex
+ *fill*         0x00000000200c04f1        0x3 
  .sbss.__lock___sinit_recursive_mutex
-                0x00000000200c05ec        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
-                0x00000000200c05ec                __lock___sinit_recursive_mutex
- *fill*         0x00000000200c05ed        0x3 
+                0x00000000200c04f4        0x1 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-lock.o)
+                0x00000000200c04f4                __lock___sinit_recursive_mutex
+ *fill*         0x00000000200c04f5        0x3 
  .sbss.__malloc_sbrk_start
-                0x00000000200c05f0        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200c05f0                __malloc_sbrk_start
+                0x00000000200c04f8        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200c04f8                __malloc_sbrk_start
  .sbss.__malloc_free_list
-                0x00000000200c05f4        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200c05f4                __malloc_free_list
- .sbss.errno    0x00000000200c05f8        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-reent.o)
-                0x00000000200c05f8                errno
+                0x00000000200c04fc        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200c04fc                __malloc_free_list
+ .sbss.errno    0x00000000200c0500        0x4 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libg_nano.a(lib_a-reent.o)
+                0x00000000200c0500                errno
  *(.gnu.linkonce.sb.*)
  *(.bss*)
- .bss.g_dbg_task_period_ticks
-                0x00000000200c05fc       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c05fc                g_dbg_task_period_ticks
- .bss.g_dbg_task_stack_free_words
-                0x00000000200c060c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c060c                g_dbg_task_stack_free_words
- .bss.g_dbg_task_max_exec_ticks
-                0x00000000200c061c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c061c                g_dbg_task_max_exec_ticks
- .bss.g_dbg_task_last_tick
-                0x00000000200c062c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c062c                g_dbg_task_last_tick
- .bss.g_dbg_task_loop_count
-                0x00000000200c063c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c063c                g_dbg_task_loop_count
- .bss.g_dbg_task_create_result
-                0x00000000200c064c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c064c                g_dbg_task_create_result
- .bss.g_dbg_heap_after_task_create
-                0x00000000200c065c       0x10 ./tasks/Src/initial_task.o
-                0x00000000200c065c                g_dbg_heap_after_task_create
  .bss.g_yaw_rate_pid
-                0x00000000200c066c       0x24 ./modules/control/flight_controller.o
+                0x00000000200c0504       0x24 ./modules/control/flight_controller.o
  .bss.g_pitch_rate_pid
-                0x00000000200c0690       0x24 ./modules/control/flight_controller.o
+                0x00000000200c0528       0x24 ./modules/control/flight_controller.o
  .bss.g_roll_rate_pid
-                0x00000000200c06b4       0x24 ./modules/control/flight_controller.o
+                0x00000000200c054c       0x24 ./modules/control/flight_controller.o
  .bss.frame_data.0
-                0x00000000200c06d8       0x3c ./drivers/sensors/imu.o
+                0x00000000200c0570       0x3c ./drivers/sensors/imu.o
  .bss.g_imu_uart_ctx
-                0x00000000200c0714       0x44 ./drivers/sensors/imu.o
+                0x00000000200c05ac       0x44 ./drivers/sensors/imu.o
  .bss.g_imu_ctx
-                0x00000000200c0758       0x10 ./drivers/sensors/imu.o
+                0x00000000200c05f0       0x10 ./drivers/sensors/imu.o
  .bss.g_imu_uart_rx_buffer
-                0x00000000200c0768      0x200 ./bsp/bsp_uart.o
- .bss.g_state   0x00000000200c0968       0xc0 ./app/app.o
- .bss.ucHeap    0x00000000200c0a28    0x18000 ./FreeRTOS/portable/MemMang/heap_4.o
- .bss.g_dbg_switch_ready_lengths
-                0x00000000200d8a28       0x3c ./FreeRTOS/tasks.o
-                0x00000000200d8a28                g_dbg_switch_ready_lengths
+                0x00000000200c0600      0x200 ./bsp/bsp_uart.o
+ .bss.g_state   0x00000000200c0800       0xc0 ./app/app.o
+ .bss.ucHeap    0x00000000200c08c0    0x18000 ./FreeRTOS/portable/MemMang/heap_4.o
  .bss.xSuspendedTaskList
-                0x00000000200d8a64       0x14 ./FreeRTOS/tasks.o
+                0x00000000200d88c0       0x14 ./FreeRTOS/tasks.o
  .bss.xTasksWaitingTermination
-                0x00000000200d8a78       0x14 ./FreeRTOS/tasks.o
+                0x00000000200d88d4       0x14 ./FreeRTOS/tasks.o
  .bss.xPendingReadyList
-                0x00000000200d8a8c       0x14 ./FreeRTOS/tasks.o
+                0x00000000200d88e8       0x14 ./FreeRTOS/tasks.o
  .bss.xDelayedTaskList2
-                0x00000000200d8aa0       0x14 ./FreeRTOS/tasks.o
+                0x00000000200d88fc       0x14 ./FreeRTOS/tasks.o
  .bss.xDelayedTaskList1
-                0x00000000200d8ab4       0x14 ./FreeRTOS/tasks.o
+                0x00000000200d8910       0x14 ./FreeRTOS/tasks.o
  .bss.pxReadyTasksLists
-                0x00000000200d8ac8      0x12c ./FreeRTOS/tasks.o
+                0x00000000200d8924      0x12c ./FreeRTOS/tasks.o
+ .bss.g_dbg_kernel
+                0x00000000200d8a50       0x70 ./Debug/debug.o
+                0x00000000200d8a50                g_dbg_kernel
+ .bss.g_dbg_bus
+                0x00000000200d8ac0       0x14 ./Debug/debug.o
+                0x00000000200d8ac0                g_dbg_bus
+ .bss.g_dbg_uart
+                0x00000000200d8ad4       0x58 ./Debug/debug.o
+                0x00000000200d8ad4                g_dbg_uart
+ .bss.g_dbg_tasks
+                0x00000000200d8b2c       0x7c ./Debug/debug.o
+                0x00000000200d8b2c                g_dbg_tasks
+ .bss.g_dbg_trap
+                0x00000000200d8ba8       0x1c ./Debug/debug.o
+                0x00000000200d8ba8                g_dbg_trap
+ .bss.g_dbg_fault
+                0x00000000200d8bc4       0x30 ./Debug/debug.o
+                0x00000000200d8bc4                g_dbg_fault
+ .bss.g_dbg_boot
+                0x00000000200d8bf4       0x10 ./Debug/debug.o
+                0x00000000200d8bf4                g_dbg_boot
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x00000000200d8bf4                . = ALIGN (0x4)
-                0x00000000200d8bf4                PROVIDE (_ebss = .)
-                0x00000000200d8bf4                PROVIDE (_end = _ebss)
+                0x00000000200d8c04                . = ALIGN (0x4)
+                0x00000000200d8c04                PROVIDE (_ebss = .)
+                0x00000000200d8c04                PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
 
 .stack          0x00000000200ff000     0x1000
@@ -4945,84 +4739,84 @@ END GROUP
                 0x0000000020100000                __freertos_irq_stack_topV5 = .
 OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000    0x152ab
- .debug_info    0x0000000000000000      0x691 ./tasks/Src/commander_task.o
- .debug_info    0x0000000000000691      0x6e6 ./tasks/Src/control_task.o
- .debug_info    0x0000000000000d77      0x67d ./tasks/Src/initial_task.o
- .debug_info    0x00000000000013f4      0x619 ./tasks/Src/logger_task.o
- .debug_info    0x0000000000001a0d      0x6ec ./tasks/Src/sensor_task.o
- .debug_info    0x00000000000020f9      0x4a9 ./modules/safety/safety.o
- .debug_info    0x00000000000025a2      0x499 ./modules/navigation/mission.o
- .debug_info    0x0000000000002a3b      0x312 ./modules/estimator/attitude_estimator.o
- .debug_info    0x0000000000002d4d      0x9cb ./modules/control/flight_controller.o
- .debug_info    0x0000000000003718      0x358 ./modules/control/mixer.o
- .debug_info    0x0000000000003a70      0x2d4 ./modules/control/pid.o
- .debug_info    0x0000000000003d44      0x5b5 ./modules/comm/logger.o
- .debug_info    0x00000000000042f9      0x16d ./drivers/sensors/barometer.o
- .debug_info    0x0000000000004466      0x1dd ./drivers/sensors/gps.o
- .debug_info    0x0000000000004643      0xd1c ./drivers/sensors/imu.o
- .debug_info    0x000000000000535f      0x1e8 ./drivers/sensors/rc_input.o
- .debug_info    0x0000000000005547      0x8e0 ./bsp/bsp_adc.o
- .debug_info    0x0000000000005e27      0x5d1 ./bsp/bsp_board.o
- .debug_info    0x00000000000063f8      0xbbf ./bsp/bsp_pwm.o
- .debug_info    0x0000000000006fb7     0x186d ./bsp/bsp_uart.o
- .debug_info    0x0000000000008824      0x930 ./app/app.o
- .debug_info    0x0000000000009154      0x150 ./User/ch32h417_it.o
- .debug_info    0x00000000000092a4      0x782 ./User/main.o
- .debug_info    0x0000000000009a26      0x2cd ./User/system_ch32h417.o
- .debug_info    0x0000000000009cf3       0x23 ./Startup/startup_ch32h417_v5f.o
- .debug_info    0x0000000000009d16      0xe0e ./Peripheral/src/ch32h417_adc.o
- .debug_info    0x000000000000ab24      0xb73 ./Peripheral/src/ch32h417_gpio.o
- .debug_info    0x000000000000b697     0x12b3 ./Peripheral/src/ch32h417_rcc.o
- .debug_info    0x000000000000c94a     0x26b1 ./Peripheral/src/ch32h417_tim.o
- .debug_info    0x000000000000effb      0xb26 ./Peripheral/src/ch32h417_usart.o
- .debug_info    0x000000000000fb21      0x722 ./FreeRTOS/portable/MemMang/heap_4.o
- .debug_info    0x0000000000010243      0xadb ./FreeRTOS/portable/GCC/RISC-V/port.o
- .debug_info    0x0000000000010d1e       0x25 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
- .debug_info    0x0000000000010d43      0x29b ./FreeRTOS/list.o
- .debug_info    0x0000000000010fde     0x39ca ./FreeRTOS/tasks.o
- .debug_info    0x00000000000149a8      0x903 ./Debug/debug.o
+.debug_info     0x0000000000000000    0x15eef
+ .debug_info    0x0000000000000000      0x70b ./tasks/Src/commander_task.o
+ .debug_info    0x000000000000070b      0x760 ./tasks/Src/control_task.o
+ .debug_info    0x0000000000000e6b      0x623 ./tasks/Src/initial_task.o
+ .debug_info    0x000000000000148e      0x693 ./tasks/Src/logger_task.o
+ .debug_info    0x0000000000001b21      0x766 ./tasks/Src/sensor_task.o
+ .debug_info    0x0000000000002287      0x4a9 ./modules/safety/safety.o
+ .debug_info    0x0000000000002730      0x499 ./modules/navigation/mission.o
+ .debug_info    0x0000000000002bc9      0x312 ./modules/estimator/attitude_estimator.o
+ .debug_info    0x0000000000002edb      0x9cb ./modules/control/flight_controller.o
+ .debug_info    0x00000000000038a6      0x358 ./modules/control/mixer.o
+ .debug_info    0x0000000000003bfe      0x2d4 ./modules/control/pid.o
+ .debug_info    0x0000000000003ed2      0x5b5 ./modules/comm/logger.o
+ .debug_info    0x0000000000004487      0x16d ./drivers/sensors/barometer.o
+ .debug_info    0x00000000000045f4      0x1dd ./drivers/sensors/gps.o
+ .debug_info    0x00000000000047d1      0xd1c ./drivers/sensors/imu.o
+ .debug_info    0x00000000000054ed      0x1e8 ./drivers/sensors/rc_input.o
+ .debug_info    0x00000000000056d5      0x99f ./bsp/bsp_adc.o
+ .debug_info    0x0000000000006074      0x60f ./bsp/bsp_board.o
+ .debug_info    0x0000000000006683      0xbbf ./bsp/bsp_pwm.o
+ .debug_info    0x0000000000007242     0x18b0 ./bsp/bsp_uart.o
+ .debug_info    0x0000000000008af2      0x99e ./app/app.o
+ .debug_info    0x0000000000009490      0x174 ./User/ch32h417_it.o
+ .debug_info    0x0000000000009604      0x7c5 ./User/main.o
+ .debug_info    0x0000000000009dc9      0x2cd ./User/system_ch32h417.o
+ .debug_info    0x000000000000a096       0x23 ./Startup/startup_ch32h417_v5f.o
+ .debug_info    0x000000000000a0b9      0xe0e ./Peripheral/src/ch32h417_adc.o
+ .debug_info    0x000000000000aec7      0xb73 ./Peripheral/src/ch32h417_gpio.o
+ .debug_info    0x000000000000ba3a     0x12b3 ./Peripheral/src/ch32h417_rcc.o
+ .debug_info    0x000000000000cced     0x26b1 ./Peripheral/src/ch32h417_tim.o
+ .debug_info    0x000000000000f39e      0xb26 ./Peripheral/src/ch32h417_usart.o
+ .debug_info    0x000000000000fec4      0x722 ./FreeRTOS/portable/MemMang/heap_4.o
+ .debug_info    0x00000000000105e6      0xb91 ./FreeRTOS/portable/GCC/RISC-V/port.o
+ .debug_info    0x0000000000011177       0x25 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
+ .debug_info    0x000000000001119c      0x29b ./FreeRTOS/list.o
+ .debug_info    0x0000000000011437     0x3a71 ./FreeRTOS/tasks.o
+ .debug_info    0x0000000000014ea8     0x1047 ./Debug/debug.o
 
-.debug_abbrev   0x0000000000000000     0x46b5
- .debug_abbrev  0x0000000000000000      0x1d6 ./tasks/Src/commander_task.o
- .debug_abbrev  0x00000000000001d6      0x1d4 ./tasks/Src/control_task.o
- .debug_abbrev  0x00000000000003aa      0x241 ./tasks/Src/initial_task.o
- .debug_abbrev  0x00000000000005eb      0x1e4 ./tasks/Src/logger_task.o
- .debug_abbrev  0x00000000000007cf      0x1d7 ./tasks/Src/sensor_task.o
- .debug_abbrev  0x00000000000009a6       0xfb ./modules/safety/safety.o
- .debug_abbrev  0x0000000000000aa1       0xea ./modules/navigation/mission.o
- .debug_abbrev  0x0000000000000b8b      0x125 ./modules/estimator/attitude_estimator.o
- .debug_abbrev  0x0000000000000cb0      0x1f8 ./modules/control/flight_controller.o
- .debug_abbrev  0x0000000000000ea8      0x175 ./modules/control/mixer.o
- .debug_abbrev  0x000000000000101d      0x173 ./modules/control/pid.o
- .debug_abbrev  0x0000000000001190      0x17d ./modules/comm/logger.o
- .debug_abbrev  0x000000000000130d       0xdf ./drivers/sensors/barometer.o
- .debug_abbrev  0x00000000000013ec      0x11f ./drivers/sensors/gps.o
- .debug_abbrev  0x000000000000150b      0x398 ./drivers/sensors/imu.o
- .debug_abbrev  0x00000000000018a3      0x11f ./drivers/sensors/rc_input.o
- .debug_abbrev  0x00000000000019c2      0x289 ./bsp/bsp_adc.o
- .debug_abbrev  0x0000000000001c4b      0x231 ./bsp/bsp_board.o
- .debug_abbrev  0x0000000000001e7c      0x251 ./bsp/bsp_pwm.o
- .debug_abbrev  0x00000000000020cd      0x426 ./bsp/bsp_uart.o
- .debug_abbrev  0x00000000000024f3      0x25b ./app/app.o
- .debug_abbrev  0x000000000000274e       0x94 ./User/ch32h417_it.o
- .debug_abbrev  0x00000000000027e2      0x198 ./User/main.o
- .debug_abbrev  0x000000000000297a      0x100 ./User/system_ch32h417.o
- .debug_abbrev  0x0000000000002a7a       0x12 ./Startup/startup_ch32h417_v5f.o
- .debug_abbrev  0x0000000000002a8c      0x22a ./Peripheral/src/ch32h417_adc.o
- .debug_abbrev  0x0000000000002cb6      0x27a ./Peripheral/src/ch32h417_gpio.o
- .debug_abbrev  0x0000000000002f30      0x36e ./Peripheral/src/ch32h417_rcc.o
- .debug_abbrev  0x000000000000329e      0x337 ./Peripheral/src/ch32h417_tim.o
- .debug_abbrev  0x00000000000035d5      0x210 ./Peripheral/src/ch32h417_usart.o
- .debug_abbrev  0x00000000000037e5      0x2ca ./FreeRTOS/portable/MemMang/heap_4.o
- .debug_abbrev  0x0000000000003aaf      0x2d9 ./FreeRTOS/portable/GCC/RISC-V/port.o
- .debug_abbrev  0x0000000000003d88       0x14 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
- .debug_abbrev  0x0000000000003d9c      0x10f ./FreeRTOS/list.o
- .debug_abbrev  0x0000000000003eab      0x4e0 ./FreeRTOS/tasks.o
- .debug_abbrev  0x000000000000438b      0x32a ./Debug/debug.o
+.debug_abbrev   0x0000000000000000     0x4708
+ .debug_abbrev  0x0000000000000000      0x1d2 ./tasks/Src/commander_task.o
+ .debug_abbrev  0x00000000000001d2      0x1d0 ./tasks/Src/control_task.o
+ .debug_abbrev  0x00000000000003a2      0x24e ./tasks/Src/initial_task.o
+ .debug_abbrev  0x00000000000005f0      0x1e0 ./tasks/Src/logger_task.o
+ .debug_abbrev  0x00000000000007d0      0x1d3 ./tasks/Src/sensor_task.o
+ .debug_abbrev  0x00000000000009a3       0xfb ./modules/safety/safety.o
+ .debug_abbrev  0x0000000000000a9e       0xea ./modules/navigation/mission.o
+ .debug_abbrev  0x0000000000000b88      0x125 ./modules/estimator/attitude_estimator.o
+ .debug_abbrev  0x0000000000000cad      0x1f8 ./modules/control/flight_controller.o
+ .debug_abbrev  0x0000000000000ea5      0x175 ./modules/control/mixer.o
+ .debug_abbrev  0x000000000000101a      0x173 ./modules/control/pid.o
+ .debug_abbrev  0x000000000000118d      0x17d ./modules/comm/logger.o
+ .debug_abbrev  0x000000000000130a       0xdf ./drivers/sensors/barometer.o
+ .debug_abbrev  0x00000000000013e9      0x11f ./drivers/sensors/gps.o
+ .debug_abbrev  0x0000000000001508      0x398 ./drivers/sensors/imu.o
+ .debug_abbrev  0x00000000000018a0      0x11f ./drivers/sensors/rc_input.o
+ .debug_abbrev  0x00000000000019bf      0x287 ./bsp/bsp_adc.o
+ .debug_abbrev  0x0000000000001c46      0x21e ./bsp/bsp_board.o
+ .debug_abbrev  0x0000000000001e64      0x251 ./bsp/bsp_pwm.o
+ .debug_abbrev  0x00000000000020b5      0x3fe ./bsp/bsp_uart.o
+ .debug_abbrev  0x00000000000024b3      0x262 ./app/app.o
+ .debug_abbrev  0x0000000000002715       0xc6 ./User/ch32h417_it.o
+ .debug_abbrev  0x00000000000027db      0x1a4 ./User/main.o
+ .debug_abbrev  0x000000000000297f      0x100 ./User/system_ch32h417.o
+ .debug_abbrev  0x0000000000002a7f       0x12 ./Startup/startup_ch32h417_v5f.o
+ .debug_abbrev  0x0000000000002a91      0x22a ./Peripheral/src/ch32h417_adc.o
+ .debug_abbrev  0x0000000000002cbb      0x27a ./Peripheral/src/ch32h417_gpio.o
+ .debug_abbrev  0x0000000000002f35      0x36e ./Peripheral/src/ch32h417_rcc.o
+ .debug_abbrev  0x00000000000032a3      0x337 ./Peripheral/src/ch32h417_tim.o
+ .debug_abbrev  0x00000000000035da      0x210 ./Peripheral/src/ch32h417_usart.o
+ .debug_abbrev  0x00000000000037ea      0x2ca ./FreeRTOS/portable/MemMang/heap_4.o
+ .debug_abbrev  0x0000000000003ab4      0x2f7 ./FreeRTOS/portable/GCC/RISC-V/port.o
+ .debug_abbrev  0x0000000000003dab       0x14 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
+ .debug_abbrev  0x0000000000003dbf      0x10f ./FreeRTOS/list.o
+ .debug_abbrev  0x0000000000003ece      0x4fe ./FreeRTOS/tasks.o
+ .debug_abbrev  0x00000000000043cc      0x33c ./Debug/debug.o
 
 .debug_loclists
-                0x0000000000000000     0x69bf
+                0x0000000000000000     0x69e3
  .debug_loclists
                 0x0000000000000000       0x3e ./tasks/Src/commander_task.o
  .debug_loclists
@@ -5062,31 +4856,31 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
  .debug_loclists
                 0x0000000000000f57      0x3a6 ./bsp/bsp_uart.o
  .debug_loclists
-                0x00000000000012fd       0x7b ./app/app.o
+                0x00000000000012fd       0x92 ./app/app.o
  .debug_loclists
-                0x0000000000001378       0x28 ./User/main.o
+                0x000000000000138f       0x28 ./User/main.o
  .debug_loclists
-                0x00000000000013a0      0x1b5 ./User/system_ch32h417.o
+                0x00000000000013b7      0x1b5 ./User/system_ch32h417.o
  .debug_loclists
-                0x0000000000001555      0x871 ./Peripheral/src/ch32h417_adc.o
+                0x000000000000156c      0x871 ./Peripheral/src/ch32h417_adc.o
  .debug_loclists
-                0x0000000000001dc6      0x882 ./Peripheral/src/ch32h417_gpio.o
+                0x0000000000001ddd      0x882 ./Peripheral/src/ch32h417_gpio.o
  .debug_loclists
-                0x0000000000002648      0x7d8 ./Peripheral/src/ch32h417_rcc.o
+                0x000000000000265f      0x7d8 ./Peripheral/src/ch32h417_rcc.o
  .debug_loclists
-                0x0000000000002e20     0x1409 ./Peripheral/src/ch32h417_tim.o
+                0x0000000000002e37     0x1409 ./Peripheral/src/ch32h417_tim.o
  .debug_loclists
-                0x0000000000004229      0x6d8 ./Peripheral/src/ch32h417_usart.o
+                0x0000000000004240      0x6d8 ./Peripheral/src/ch32h417_usart.o
  .debug_loclists
-                0x0000000000004901      0x3b7 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x0000000000004918      0x3b7 ./FreeRTOS/portable/MemMang/heap_4.o
  .debug_loclists
-                0x0000000000004cb8       0x81 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x0000000000004ccf       0x81 ./FreeRTOS/portable/GCC/RISC-V/port.o
  .debug_loclists
-                0x0000000000004d39       0x6c ./FreeRTOS/list.o
+                0x0000000000004d50       0x6c ./FreeRTOS/list.o
  .debug_loclists
-                0x0000000000004da5     0x1a23 ./FreeRTOS/tasks.o
+                0x0000000000004dbc     0x1a23 ./FreeRTOS/tasks.o
  .debug_loclists
-                0x00000000000067c8      0x1f7 ./Debug/debug.o
+                0x00000000000067df      0x204 ./Debug/debug.o
 
 .debug_aranges  0x0000000000000000     0x10b8
  .debug_aranges
@@ -5163,7 +4957,7 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
                 0x0000000000001068       0x50 ./Debug/debug.o
 
 .debug_rnglists
-                0x0000000000000000     0x1763
+                0x0000000000000000     0x1750
  .debug_rnglists
                 0x0000000000000000       0x16 ./tasks/Src/commander_task.o
  .debug_rnglists
@@ -5203,259 +4997,259 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
  .debug_rnglists
                 0x00000000000004c4       0x57 ./bsp/bsp_pwm.o
  .debug_rnglists
-                0x000000000000051b      0x13e ./bsp/bsp_uart.o
+                0x000000000000051b      0x122 ./bsp/bsp_uart.o
  .debug_rnglists
-                0x0000000000000659       0x56 ./app/app.o
+                0x000000000000063d       0x5f ./app/app.o
  .debug_rnglists
-                0x00000000000006af       0x1f ./User/ch32h417_it.o
+                0x000000000000069c       0x1f ./User/ch32h417_it.o
  .debug_rnglists
-                0x00000000000006ce       0x29 ./User/main.o
+                0x00000000000006bb       0x29 ./User/main.o
  .debug_rnglists
-                0x00000000000006f7       0x16 ./User/system_ch32h417.o
+                0x00000000000006e4       0x16 ./User/system_ch32h417.o
  .debug_rnglists
-                0x000000000000070d       0x26 ./Startup/startup_ch32h417_v5f.o
+                0x00000000000006fa       0x26 ./Startup/startup_ch32h417_v5f.o
  .debug_rnglists
-                0x0000000000000733      0x1a2 ./Peripheral/src/ch32h417_adc.o
+                0x0000000000000720      0x1a2 ./Peripheral/src/ch32h417_adc.o
  .debug_rnglists
-                0x00000000000008d5       0xa6 ./Peripheral/src/ch32h417_gpio.o
+                0x00000000000008c2       0xa6 ./Peripheral/src/ch32h417_gpio.o
  .debug_rnglists
-                0x000000000000097b      0x258 ./Peripheral/src/ch32h417_rcc.o
+                0x0000000000000968      0x258 ./Peripheral/src/ch32h417_rcc.o
  .debug_rnglists
-                0x0000000000000bd3      0x40f ./Peripheral/src/ch32h417_tim.o
+                0x0000000000000bc0      0x40f ./Peripheral/src/ch32h417_tim.o
  .debug_rnglists
-                0x0000000000000fe2      0x112 ./Peripheral/src/ch32h417_usart.o
+                0x0000000000000fcf      0x112 ./Peripheral/src/ch32h417_usart.o
  .debug_rnglists
-                0x00000000000010f4       0x84 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x00000000000010e1       0x84 ./FreeRTOS/portable/MemMang/heap_4.o
  .debug_rnglists
-                0x0000000000001178       0x7b ./FreeRTOS/portable/GCC/RISC-V/port.o
+                0x0000000000001165       0x7b ./FreeRTOS/portable/GCC/RISC-V/port.o
  .debug_rnglists
-                0x00000000000011f3       0x3a ./FreeRTOS/list.o
+                0x00000000000011e0       0x3a ./FreeRTOS/list.o
  .debug_rnglists
-                0x000000000000122d      0x4bb ./FreeRTOS/tasks.o
+                0x000000000000121a      0x4bb ./FreeRTOS/tasks.o
  .debug_rnglists
-                0x00000000000016e8       0x7b ./Debug/debug.o
+                0x00000000000016d5       0x7b ./Debug/debug.o
 
-.debug_line     0x0000000000000000    0x15d2f
- .debug_line    0x0000000000000000      0x1bc ./tasks/Src/commander_task.o
- .debug_line    0x00000000000001bc      0x1da ./tasks/Src/control_task.o
- .debug_line    0x0000000000000396      0x4df ./tasks/Src/initial_task.o
- .debug_line    0x0000000000000875      0x175 ./tasks/Src/logger_task.o
- .debug_line    0x00000000000009ea      0x216 ./tasks/Src/sensor_task.o
- .debug_line    0x0000000000000c00      0x16a ./modules/safety/safety.o
- .debug_line    0x0000000000000d6a       0xc4 ./modules/navigation/mission.o
- .debug_line    0x0000000000000e2e      0x232 ./modules/estimator/attitude_estimator.o
- .debug_line    0x0000000000001060      0x30a ./modules/control/flight_controller.o
- .debug_line    0x000000000000136a      0x33b ./modules/control/mixer.o
- .debug_line    0x00000000000016a5      0x2e8 ./modules/control/pid.o
- .debug_line    0x000000000000198d      0x153 ./modules/comm/logger.o
- .debug_line    0x0000000000001ae0       0xa4 ./drivers/sensors/barometer.o
- .debug_line    0x0000000000001b84      0x18d ./drivers/sensors/gps.o
- .debug_line    0x0000000000001d11      0xe53 ./drivers/sensors/imu.o
- .debug_line    0x0000000000002b64      0x193 ./drivers/sensors/rc_input.o
- .debug_line    0x0000000000002cf7      0x3fa ./bsp/bsp_adc.o
- .debug_line    0x00000000000030f1      0x2cb ./bsp/bsp_board.o
- .debug_line    0x00000000000033bc      0x3fb ./bsp/bsp_pwm.o
- .debug_line    0x00000000000037b7     0x1035 ./bsp/bsp_uart.o
- .debug_line    0x00000000000047ec      0x5d3 ./app/app.o
- .debug_line    0x0000000000004dbf      0x12f ./User/ch32h417_it.o
- .debug_line    0x0000000000004eee      0x13c ./User/main.o
- .debug_line    0x000000000000502a      0x335 ./User/system_ch32h417.o
- .debug_line    0x000000000000535f      0x1f7 ./Startup/startup_ch32h417_v5f.o
- .debug_line    0x0000000000005556     0x1558 ./Peripheral/src/ch32h417_adc.o
- .debug_line    0x0000000000006aae     0x14f3 ./Peripheral/src/ch32h417_gpio.o
- .debug_line    0x0000000000007fa1     0x1bb9 ./Peripheral/src/ch32h417_rcc.o
- .debug_line    0x0000000000009b5a     0x39c1 ./Peripheral/src/ch32h417_tim.o
- .debug_line    0x000000000000d51b      0xeb8 ./Peripheral/src/ch32h417_usart.o
- .debug_line    0x000000000000e3d3      0xcf7 ./FreeRTOS/portable/MemMang/heap_4.o
- .debug_line    0x000000000000f0ca      0x4fe ./FreeRTOS/portable/GCC/RISC-V/port.o
- .debug_line    0x000000000000f5c8      0x364 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
- .debug_line    0x000000000000f92c      0x43b ./FreeRTOS/list.o
- .debug_line    0x000000000000fd67     0x59fb ./FreeRTOS/tasks.o
- .debug_line    0x0000000000015762      0x5cd ./Debug/debug.o
+.debug_line     0x0000000000000000    0x15da2
+ .debug_line    0x0000000000000000      0x1c5 ./tasks/Src/commander_task.o
+ .debug_line    0x00000000000001c5      0x1e3 ./tasks/Src/control_task.o
+ .debug_line    0x00000000000003a8      0x4c8 ./tasks/Src/initial_task.o
+ .debug_line    0x0000000000000870      0x17c ./tasks/Src/logger_task.o
+ .debug_line    0x00000000000009ec      0x21f ./tasks/Src/sensor_task.o
+ .debug_line    0x0000000000000c0b      0x16a ./modules/safety/safety.o
+ .debug_line    0x0000000000000d75       0xc4 ./modules/navigation/mission.o
+ .debug_line    0x0000000000000e39      0x232 ./modules/estimator/attitude_estimator.o
+ .debug_line    0x000000000000106b      0x30a ./modules/control/flight_controller.o
+ .debug_line    0x0000000000001375      0x33b ./modules/control/mixer.o
+ .debug_line    0x00000000000016b0      0x2e8 ./modules/control/pid.o
+ .debug_line    0x0000000000001998      0x153 ./modules/comm/logger.o
+ .debug_line    0x0000000000001aeb       0xa4 ./drivers/sensors/barometer.o
+ .debug_line    0x0000000000001b8f      0x18d ./drivers/sensors/gps.o
+ .debug_line    0x0000000000001d1c      0xe53 ./drivers/sensors/imu.o
+ .debug_line    0x0000000000002b6f      0x193 ./drivers/sensors/rc_input.o
+ .debug_line    0x0000000000002d02      0x41b ./bsp/bsp_adc.o
+ .debug_line    0x000000000000311d      0x2df ./bsp/bsp_board.o
+ .debug_line    0x00000000000033fc      0x3fb ./bsp/bsp_pwm.o
+ .debug_line    0x00000000000037f7     0x1012 ./bsp/bsp_uart.o
+ .debug_line    0x0000000000004809      0x5ea ./app/app.o
+ .debug_line    0x0000000000004df3      0x148 ./User/ch32h417_it.o
+ .debug_line    0x0000000000004f3b      0x145 ./User/main.o
+ .debug_line    0x0000000000005080      0x335 ./User/system_ch32h417.o
+ .debug_line    0x00000000000053b5      0x1f7 ./Startup/startup_ch32h417_v5f.o
+ .debug_line    0x00000000000055ac     0x1558 ./Peripheral/src/ch32h417_adc.o
+ .debug_line    0x0000000000006b04     0x14f3 ./Peripheral/src/ch32h417_gpio.o
+ .debug_line    0x0000000000007ff7     0x1bb9 ./Peripheral/src/ch32h417_rcc.o
+ .debug_line    0x0000000000009bb0     0x39c1 ./Peripheral/src/ch32h417_tim.o
+ .debug_line    0x000000000000d571      0xeb8 ./Peripheral/src/ch32h417_usart.o
+ .debug_line    0x000000000000e429      0xcf7 ./FreeRTOS/portable/MemMang/heap_4.o
+ .debug_line    0x000000000000f120      0x517 ./FreeRTOS/portable/GCC/RISC-V/port.o
+ .debug_line    0x000000000000f637      0x364 ./FreeRTOS/portable/GCC/RISC-V/portASM.o
+ .debug_line    0x000000000000f99b      0x43b ./FreeRTOS/list.o
+ .debug_line    0x000000000000fdd6     0x59f2 ./FreeRTOS/tasks.o
+ .debug_line    0x00000000000157c8      0x5da ./Debug/debug.o
 
-.debug_str      0x0000000000000000     0x5993
- .debug_str     0x0000000000000000      0x521 ./tasks/Src/commander_task.o
-                                        0x5f8 (size before relaxing)
- .debug_str     0x0000000000000521       0x59 ./tasks/Src/control_task.o
-                                        0x614 (size before relaxing)
- .debug_str     0x000000000000057a      0x275 ./tasks/Src/initial_task.o
-                                        0x502 (size before relaxing)
- .debug_str     0x00000000000007ef        0xa ./tasks/Src/logger_task.o
-                                        0x5d0 (size before relaxing)
- .debug_str     0x00000000000007f9       0x66 ./tasks/Src/sensor_task.o
-                                        0x62c (size before relaxing)
- .debug_str     0x000000000000085f       0x13 ./modules/safety/safety.o
+.debug_str      0x0000000000000000     0x5808
+ .debug_str     0x0000000000000000      0x576 ./tasks/Src/commander_task.o
+                                        0x62f (size before relaxing)
+ .debug_str     0x0000000000000576       0x59 ./tasks/Src/control_task.o
+                                        0x64b (size before relaxing)
+ .debug_str     0x00000000000005cf      0x222 ./tasks/Src/initial_task.o
+                                        0x4b1 (size before relaxing)
+ .debug_str     0x00000000000007f1        0xa ./tasks/Src/logger_task.o
+                                        0x607 (size before relaxing)
+ .debug_str     0x00000000000007fb       0x66 ./tasks/Src/sensor_task.o
+                                        0x663 (size before relaxing)
+ .debug_str     0x0000000000000861       0x13 ./modules/safety/safety.o
                                         0x4af (size before relaxing)
- .debug_str     0x0000000000000872        0xd ./modules/navigation/mission.o
+ .debug_str     0x0000000000000874        0xd ./modules/navigation/mission.o
                                         0x4aa (size before relaxing)
- .debug_str     0x000000000000087f       0x4b ./modules/estimator/attitude_estimator.o
+ .debug_str     0x0000000000000881       0x4b ./modules/estimator/attitude_estimator.o
                                         0x309 (size before relaxing)
- .debug_str     0x00000000000008ca      0x17d ./modules/control/flight_controller.o
+ .debug_str     0x00000000000008cc      0x17d ./modules/control/flight_controller.o
                                         0x64d (size before relaxing)
- .debug_str     0x0000000000000a47       0x4c ./modules/control/mixer.o
+ .debug_str     0x0000000000000a49       0x4c ./modules/control/mixer.o
                                         0x2a2 (size before relaxing)
- .debug_str     0x0000000000000a93       0x48 ./modules/control/pid.o
+ .debug_str     0x0000000000000a95       0x48 ./modules/control/pid.o
                                         0x1e6 (size before relaxing)
- .debug_str     0x0000000000000adb       0x36 ./modules/comm/logger.o
+ .debug_str     0x0000000000000add       0x36 ./modules/comm/logger.o
                                         0x4ea (size before relaxing)
- .debug_str     0x0000000000000b11       0x29 ./drivers/sensors/barometer.o
+ .debug_str     0x0000000000000b13       0x29 ./drivers/sensors/barometer.o
                                         0x22b (size before relaxing)
- .debug_str     0x0000000000000b3a       0x2f ./drivers/sensors/gps.o
+ .debug_str     0x0000000000000b3c       0x2f ./drivers/sensors/gps.o
                                         0x269 (size before relaxing)
- .debug_str     0x0000000000000b69      0x3c1 ./drivers/sensors/imu.o
+ .debug_str     0x0000000000000b6b      0x3c1 ./drivers/sensors/imu.o
                                         0x6dc (size before relaxing)
- .debug_str     0x0000000000000f2a       0x24 ./drivers/sensors/rc_input.o
+ .debug_str     0x0000000000000f2c       0x24 ./drivers/sensors/rc_input.o
                                         0x25d (size before relaxing)
- .debug_str     0x0000000000000f4e      0x494 ./bsp/bsp_adc.o
-                                        0x6a4 (size before relaxing)
- .debug_str     0x00000000000013e2      0x14a ./bsp/bsp_board.o
-                                        0x4d5 (size before relaxing)
- .debug_str     0x000000000000152c      0x3f0 ./bsp/bsp_pwm.o
+ .debug_str     0x0000000000000f50      0x4ee ./bsp/bsp_adc.o
+                                        0x70c (size before relaxing)
+ .debug_str     0x000000000000143e      0x134 ./bsp/bsp_board.o
+                                        0x50c (size before relaxing)
+ .debug_str     0x0000000000001572      0x3f0 ./bsp/bsp_pwm.o
                                         0x789 (size before relaxing)
- .debug_str     0x000000000000191c      0xc75 ./bsp/bsp_uart.o
-                                       0x1189 (size before relaxing)
- .debug_str     0x0000000000002591      0x1d1 ./app/app.o
-                                        0x882 (size before relaxing)
- .debug_str     0x0000000000002762       0xbf ./User/ch32h417_it.o
-                                        0x241 (size before relaxing)
- .debug_str     0x0000000000002821        0x5 ./User/main.o
-                                        0x9a3 (size before relaxing)
- .debug_str     0x0000000000002826       0xbc ./User/system_ch32h417.o
+ .debug_str     0x0000000000001962      0xbba ./bsp/bsp_uart.o
+                                       0x10e2 (size before relaxing)
+ .debug_str     0x000000000000251c      0x138 ./app/app.o
+                                        0x7e0 (size before relaxing)
+ .debug_str     0x0000000000002654       0x8e ./User/ch32h417_it.o
+                                        0x216 (size before relaxing)
+ .debug_str     0x00000000000026e2        0x5 ./User/main.o
+                                        0x9da (size before relaxing)
+ .debug_str     0x00000000000026e7       0xbc ./User/system_ch32h417.o
                                         0x29f (size before relaxing)
- .debug_str     0x00000000000028e2       0x59 ./Startup/startup_ch32h417_v5f.o
- .debug_str     0x000000000000293b      0x481 ./Peripheral/src/ch32h417_adc.o
+ .debug_str     0x00000000000027a3       0x59 ./Startup/startup_ch32h417_v5f.o
+ .debug_str     0x00000000000027fc      0x481 ./Peripheral/src/ch32h417_adc.o
                                         0x896 (size before relaxing)
- .debug_str     0x0000000000002dbc      0x157 ./Peripheral/src/ch32h417_gpio.o
+ .debug_str     0x0000000000002c7d      0x157 ./Peripheral/src/ch32h417_gpio.o
                                         0x61c (size before relaxing)
- .debug_str     0x0000000000002f13      0x77d ./Peripheral/src/ch32h417_rcc.o
+ .debug_str     0x0000000000002dd4      0x77d ./Peripheral/src/ch32h417_rcc.o
                                         0xd22 (size before relaxing)
- .debug_str     0x0000000000003690      0xafd ./Peripheral/src/ch32h417_tim.o
+ .debug_str     0x0000000000003551      0xafd ./Peripheral/src/ch32h417_tim.o
                                        0x1107 (size before relaxing)
- .debug_str     0x000000000000418d      0x339 ./Peripheral/src/ch32h417_usart.o
+ .debug_str     0x000000000000404e      0x339 ./Peripheral/src/ch32h417_usart.o
                                         0x738 (size before relaxing)
- .debug_str     0x00000000000044c6      0x31f ./FreeRTOS/portable/MemMang/heap_4.o
+ .debug_str     0x0000000000004387      0x31f ./FreeRTOS/portable/MemMang/heap_4.o
                                         0x576 (size before relaxing)
- .debug_str     0x00000000000047e5      0x1fc ./FreeRTOS/portable/GCC/RISC-V/port.o
-                                        0xbf3 (size before relaxing)
- .debug_str     0x00000000000049e1       0x2a ./FreeRTOS/portable/GCC/RISC-V/portASM.o
+ .debug_str     0x00000000000046a6      0x23f ./FreeRTOS/portable/GCC/RISC-V/port.o
+                                        0xc3c (size before relaxing)
+ .debug_str     0x00000000000048e5       0x2a ./FreeRTOS/portable/GCC/RISC-V/portASM.o
                                          0x61 (size before relaxing)
- .debug_str     0x0000000000004a0b      0x112 ./FreeRTOS/list.o
+ .debug_str     0x000000000000490f      0x112 ./FreeRTOS/list.o
                                         0x2c1 (size before relaxing)
- .debug_str     0x0000000000004b1d      0xdbc ./FreeRTOS/tasks.o
-                                       0x1a3f (size before relaxing)
- .debug_str     0x00000000000058d9       0xba ./Debug/debug.o
-                                        0x636 (size before relaxing)
+ .debug_str     0x0000000000004a21      0xd16 ./FreeRTOS/tasks.o
+                                       0x1aad (size before relaxing)
+ .debug_str     0x0000000000005737       0xd1 ./Debug/debug.o
+                                        0xb85 (size before relaxing)
 
 .debug_line_str
-                0x0000000000000000      0xc3b
+                0x0000000000000000      0xc4f
  .debug_line_str
-                0x0000000000000000      0x374 ./tasks/Src/commander_task.o
-                                        0x3c1 (size before relaxing)
+                0x0000000000000000      0x3b5 ./tasks/Src/commander_task.o
+                                        0x402 (size before relaxing)
  .debug_line_str
-                0x0000000000000374       0xbf ./tasks/Src/control_task.o
+                0x00000000000003b5       0xbf ./tasks/Src/control_task.o
+                                        0x410 (size before relaxing)
+ .debug_line_str
+                0x0000000000000474      0x123 ./tasks/Src/initial_task.o
+                                        0x40c (size before relaxing)
+ .debug_line_str
+                0x0000000000000597       0x1b ./tasks/Src/logger_task.o
+                                        0x33f (size before relaxing)
+ .debug_line_str
+                0x00000000000005b2       0x80 ./tasks/Src/sensor_task.o
                                         0x3cf (size before relaxing)
  .debug_line_str
-                0x0000000000000433      0x123 ./tasks/Src/initial_task.o
-                                        0x3cb (size before relaxing)
- .debug_line_str
-                0x0000000000000556       0x1b ./tasks/Src/logger_task.o
-                                        0x2fe (size before relaxing)
- .debug_line_str
-                0x0000000000000571       0x80 ./tasks/Src/sensor_task.o
-                                        0x38e (size before relaxing)
- .debug_line_str
-                0x00000000000005f1       0x2d ./modules/safety/safety.o
+                0x0000000000000632       0x2d ./modules/safety/safety.o
                                         0x22b (size before relaxing)
  .debug_line_str
-                0x000000000000061e       0x36 ./modules/navigation/mission.o
+                0x000000000000065f       0x36 ./modules/navigation/mission.o
                                         0x236 (size before relaxing)
  .debug_line_str
-                0x0000000000000654       0x4a ./modules/estimator/attitude_estimator.o
+                0x0000000000000695       0x4a ./modules/estimator/attitude_estimator.o
                                         0x260 (size before relaxing)
  .debug_line_str
-                0x000000000000069e       0x48 ./modules/control/flight_controller.o
+                0x00000000000006df       0x48 ./modules/control/flight_controller.o
                                         0x293 (size before relaxing)
  .debug_line_str
-                0x00000000000006e6       0x1b ./modules/control/mixer.o
+                0x0000000000000727       0x1b ./modules/control/mixer.o
                                         0x22a (size before relaxing)
  .debug_line_str
-                0x0000000000000701       0x19 ./modules/control/pid.o
+                0x0000000000000742       0x19 ./modules/control/pid.o
                                          0xcb (size before relaxing)
  .debug_line_str
-                0x000000000000071a       0xcd ./modules/comm/logger.o
+                0x000000000000075b       0xcd ./modules/comm/logger.o
                                         0x2cb (size before relaxing)
  .debug_line_str
-                0x00000000000007e7       0x32 ./drivers/sensors/barometer.o
+                0x0000000000000828       0x32 ./drivers/sensors/barometer.o
                                         0x273 (size before relaxing)
  .debug_line_str
-                0x0000000000000819       0x19 ./drivers/sensors/gps.o
+                0x000000000000085a       0x19 ./drivers/sensors/gps.o
                                         0x266 (size before relaxing)
  .debug_line_str
-                0x0000000000000832       0x57 ./drivers/sensors/imu.o
+                0x0000000000000873       0x2a ./drivers/sensors/imu.o
                                         0x407 (size before relaxing)
  .debug_line_str
-                0x0000000000000889       0x1e ./drivers/sensors/rc_input.o
+                0x000000000000089d       0x1e ./drivers/sensors/rc_input.o
                                         0x275 (size before relaxing)
  .debug_line_str
-                0x00000000000008a7       0xbf ./bsp/bsp_adc.o
-                                        0x2c9 (size before relaxing)
+                0x00000000000008bb       0xbf ./bsp/bsp_adc.o
+                                        0x30a (size before relaxing)
  .debug_line_str
-                0x0000000000000966       0x25 ./bsp/bsp_board.o
-                                        0x3e1 (size before relaxing)
+                0x000000000000097a       0x25 ./bsp/bsp_board.o
+                                        0x3f5 (size before relaxing)
  .debug_line_str
-                0x000000000000098b       0x20 ./bsp/bsp_pwm.o
+                0x000000000000099f       0x20 ./bsp/bsp_pwm.o
                                         0x2c7 (size before relaxing)
  .debug_line_str
-                0x00000000000009ab       0x23 ./bsp/bsp_uart.o
-                                        0x28e (size before relaxing)
+                0x00000000000009bf       0x23 ./bsp/bsp_uart.o
+                                        0x2cf (size before relaxing)
  .debug_line_str
-                0x00000000000009ce       0x51 ./app/app.o
-                                        0x62b (size before relaxing)
+                0x00000000000009e2       0x51 ./app/app.o
+                                        0x66c (size before relaxing)
  .debug_line_str
-                0x0000000000000a1f       0x1e ./User/ch32h417_it.o
-                                        0x228 (size before relaxing)
+                0x0000000000000a33       0x1e ./User/ch32h417_it.o
+                                        0x269 (size before relaxing)
  .debug_line_str
-                0x0000000000000a3d        0xf ./User/main.o
-                                        0x2bc (size before relaxing)
+                0x0000000000000a51        0xf ./User/main.o
+                                        0x2fd (size before relaxing)
  .debug_line_str
-                0x0000000000000a4c       0x1a ./User/system_ch32h417.o
+                0x0000000000000a60       0x1a ./User/system_ch32h417.o
                                         0x27a (size before relaxing)
  .debug_line_str
-                0x0000000000000a66       0x22 ./Startup/startup_ch32h417_v5f.o
+                0x0000000000000a7a       0x22 ./Startup/startup_ch32h417_v5f.o
                                          0x64 (size before relaxing)
  .debug_line_str
-                0x0000000000000a88       0x44 ./Peripheral/src/ch32h417_adc.o
+                0x0000000000000a9c       0x44 ./Peripheral/src/ch32h417_adc.o
                                         0x2af (size before relaxing)
  .debug_line_str
-                0x0000000000000acc       0x22 ./Peripheral/src/ch32h417_gpio.o
+                0x0000000000000ae0       0x22 ./Peripheral/src/ch32h417_gpio.o
                                         0x2b3 (size before relaxing)
  .debug_line_str
-                0x0000000000000aee       0x21 ./Peripheral/src/ch32h417_rcc.o
+                0x0000000000000b02       0x21 ./Peripheral/src/ch32h417_rcc.o
                                         0x29f (size before relaxing)
  .debug_line_str
-                0x0000000000000b0f       0x21 ./Peripheral/src/ch32h417_tim.o
+                0x0000000000000b23       0x21 ./Peripheral/src/ch32h417_tim.o
                                         0x29e (size before relaxing)
  .debug_line_str
-                0x0000000000000b30       0x23 ./Peripheral/src/ch32h417_usart.o
+                0x0000000000000b44       0x23 ./Peripheral/src/ch32h417_usart.o
                                         0x2a6 (size before relaxing)
  .debug_line_str
-                0x0000000000000b53       0x43 ./FreeRTOS/portable/MemMang/heap_4.o
+                0x0000000000000b67       0x43 ./FreeRTOS/portable/MemMang/heap_4.o
                                         0x445 (size before relaxing)
  .debug_line_str
-                0x0000000000000b96       0x47 ./FreeRTOS/portable/GCC/RISC-V/port.o
-                                        0x416 (size before relaxing)
+                0x0000000000000baa       0x47 ./FreeRTOS/portable/GCC/RISC-V/port.o
+                                        0x457 (size before relaxing)
  .debug_line_str
-                0x0000000000000bdd        0xa ./FreeRTOS/portable/GCC/RISC-V/portASM.o
+                0x0000000000000bf1        0xa ./FreeRTOS/portable/GCC/RISC-V/portASM.o
                                          0x5f (size before relaxing)
  .debug_line_str
-                0x0000000000000be7       0x26 ./FreeRTOS/list.o
+                0x0000000000000bfb       0x26 ./FreeRTOS/list.o
                                         0x271 (size before relaxing)
  .debug_line_str
-                0x0000000000000c0d       0x14 ./FreeRTOS/tasks.o
-                                        0x4ac (size before relaxing)
+                0x0000000000000c21       0x14 ./FreeRTOS/tasks.o
+                                        0x4ed (size before relaxing)
  .debug_line_str
-                0x0000000000000c21       0x1a ./Debug/debug.o
-                                        0x40a (size before relaxing)
+                0x0000000000000c35       0x1a ./Debug/debug.o
+                                        0x41e (size before relaxing)
 
 .comment        0x0000000000000000       0x65
  .comment       0x0000000000000000       0x32 ./tasks/Src/commander_task.o
@@ -5696,7 +5490,7 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
  .riscv.attributes
                 0x0000000000001a2a       0x56 /Users/litianyi/Desktop/MounRiver Studio 2.app/Contents/Resources/app/resources/darwin/components/WCH/Toolchain/RISC-V Embedded GCC12/bin/../lib/gcc/riscv-wch-elf/12.2.0/../../../../riscv-wch-elf/lib/rv32imac_zba_zbb_zbc_zbs_xw/ilp32/libnosys.a(read.o)
 
-.debug_frame    0x0000000000000000     0x2708
+.debug_frame    0x0000000000000000     0x270c
  .debug_frame   0x0000000000000000       0x30 ./tasks/Src/commander_task.o
  .debug_frame   0x0000000000000030       0x38 ./tasks/Src/control_task.o
  .debug_frame   0x0000000000000068       0x6c ./tasks/Src/initial_task.o
@@ -5714,10 +5508,10 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
  .debug_frame   0x00000000000003f0      0x12c ./drivers/sensors/imu.o
  .debug_frame   0x000000000000051c       0x48 ./drivers/sensors/rc_input.o
  .debug_frame   0x0000000000000564       0x84 ./bsp/bsp_adc.o
- .debug_frame   0x00000000000005e8       0x98 ./bsp/bsp_board.o
- .debug_frame   0x0000000000000680       0x9c ./bsp/bsp_pwm.o
- .debug_frame   0x000000000000071c      0x238 ./bsp/bsp_uart.o
- .debug_frame   0x0000000000000954       0x8c ./app/app.o
+ .debug_frame   0x00000000000005e8       0x94 ./bsp/bsp_board.o
+ .debug_frame   0x000000000000067c       0x9c ./bsp/bsp_pwm.o
+ .debug_frame   0x0000000000000718      0x238 ./bsp/bsp_uart.o
+ .debug_frame   0x0000000000000950       0x90 ./app/app.o
  .debug_frame   0x00000000000009e0       0x30 ./User/ch32h417_it.o
  .debug_frame   0x0000000000000a10       0x28 ./User/main.o
  .debug_frame   0x0000000000000a38       0x20 ./User/system_ch32h417.o
@@ -5727,7 +5521,7 @@ OUTPUT(FlightControl_V5F.elf elf32-littleriscv)
  .debug_frame   0x000000000000129c      0x79c ./Peripheral/src/ch32h417_tim.o
  .debug_frame   0x0000000000001a38      0x204 ./Peripheral/src/ch32h417_usart.o
  .debug_frame   0x0000000000001c3c      0x118 ./FreeRTOS/portable/MemMang/heap_4.o
- .debug_frame   0x0000000000001d54       0xf4 ./FreeRTOS/portable/GCC/RISC-V/port.o
- .debug_frame   0x0000000000001e48       0x60 ./FreeRTOS/list.o
- .debug_frame   0x0000000000001ea8      0x788 ./FreeRTOS/tasks.o
- .debug_frame   0x0000000000002630       0xd8 ./Debug/debug.o
+ .debug_frame   0x0000000000001d54       0xf8 ./FreeRTOS/portable/GCC/RISC-V/port.o
+ .debug_frame   0x0000000000001e4c       0x60 ./FreeRTOS/list.o
+ .debug_frame   0x0000000000001eac      0x788 ./FreeRTOS/tasks.o
+ .debug_frame   0x0000000000002634       0xd8 ./Debug/debug.o
