@@ -21,7 +21,7 @@ void safety_update(flight_state_t *state)
         errors |= FC_ERR_BARO_UNHEALTHY;
     }
 
-    if ((!state->rc.healthy) || state->rc.failsafe) {
+    if ((!state->rc.healthy) || state->rc.failsafe || state->rc.frame_lost) {
         errors |= FC_ERR_RC_FAILSAFE;
     }
 
@@ -30,18 +30,4 @@ void safety_update(flight_state_t *state)
 #endif
 
     state->error_flags = errors;
-
-    if (errors != 0U) {
-        state->armed = false;
-        state->mode = FLIGHT_MODE_FAILSAFE;
-        return;
-    }
-
-    if (state->rc.arm_switch && state->rc.throttle_us <= (FC_MOTOR_PWM_MIN_US + 30U)) {
-        state->armed = true;
-        state->mode = FLIGHT_MODE_MANUAL_STAB;
-    } else if (!state->rc.arm_switch) {
-        state->armed = false;
-        state->mode = FLIGHT_MODE_STANDBY;
-    }
 }

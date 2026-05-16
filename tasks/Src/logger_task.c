@@ -9,7 +9,7 @@ void LoggerTask(void *argument)
 {
     (void)argument;
     g_dbg_boot.startup_phase = 104U;
-    g_dbg_boot.task_entry_mask |= (1UL << 3);
+    g_dbg_boot.task_entry_mask |= (1UL << TASK_INDEX_LOGGER);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_LOGGER_TASK_HZ);
     flight_state_t *state = app_state();

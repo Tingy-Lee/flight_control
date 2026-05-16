@@ -28,6 +28,8 @@ volatile debug_fault_diag_t g_dbg_fault;
 volatile debug_trap_diag_t g_dbg_trap;
 volatile debug_task_diag_t g_dbg_tasks;
 volatile debug_uart_diag_t g_dbg_uart;
+volatile debug_gps_diag_t g_dbg_gps;
+volatile debug_rc_input_diag_t g_dbg_rc_input;
 volatile debug_bus_diag_t g_dbg_bus;
 volatile debug_console_diag_t g_dbg_console;
 volatile debug_kernel_diag_t g_dbg_kernel;

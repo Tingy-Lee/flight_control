@@ -5,7 +5,10 @@
 #include <stdint.h>
 
 void bsp_uart_gps_init(uint32_t baudrate);
+void bsp_uart_gps_start_rx_irq(void);
 void bsp_uart_rc_init(uint32_t baudrate);
+void bsp_uart_rc_start_rx_irq(void);
+void bsp_uart_debug_sample_rc_rx(void);
 void bsp_uart_imu_init(uint32_t baudrate);
 void bsp_uart_imu_start_rx_irq(void);
 void bsp_uart_debug_sample_imu_rx(void);

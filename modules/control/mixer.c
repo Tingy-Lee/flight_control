@@ -39,9 +39,9 @@ void mixer_mix_x_quad(const control_setpoint_t *setpoint, bool armed, motor_outp
     }
 
     const float t = setpoint->throttle_norm;
-    const float r = setpoint->roll_rate_dps * 0.0015f;
-    const float p = setpoint->pitch_rate_dps * 0.0015f;
-    const float y = setpoint->yaw_rate_dps * 0.0010f;
+    const float r = setpoint->roll_cmd * 0.0015f;
+    const float p = setpoint->pitch_cmd * 0.0015f;
+    const float y = setpoint->yaw_cmd * 0.0010f;
 
     /* X-quad order:
      * M1 front-left,  M2 front-right, M3 rear-right, M4 rear-left.

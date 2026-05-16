@@ -11,7 +11,7 @@ void ControlTask(void *argument)
 {
     (void)argument;
     g_dbg_boot.startup_phase = 102U;
-    g_dbg_boot.task_entry_mask |= (1UL << 1);
+    g_dbg_boot.task_entry_mask |= (1UL << TASK_INDEX_CONTROL);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_CONTROL_TASK_HZ);
     const float dt_s = 1.0f / (float)FC_CONTROL_TASK_HZ;
@@ -21,7 +21,8 @@ void ControlTask(void *argument)
         const TickType_t loop_start = xTaskGetTickCount();
         attitude_estimator_update(&state->estimate, &state->imu, &state->baro, dt_s);
         flight_controller_update(state, dt_s);
-        bsp_pwm_motors_write(state->motors.motor_us);
+       // bsp_pwm_motors_write(state->motors.motor_us);
+       bsp_pwm_motors_debug();
 
         task_record_heartbeat(TASK_INDEX_CONTROL, loop_start);
         vTaskDelayUntil(&last_wake, period);

@@ -4,11 +4,13 @@
 #include "debug_diagnostics.h"
 
 #define TASK_PRIO_SENSOR       8
+#define TASK_PRIO_DECISION     7
 #define TASK_PRIO_CONTROL      9
 #define TASK_PRIO_COMMANDER    6
 #define TASK_PRIO_LOGGER       3
 
 #define TASK_STACK_SENSOR      1024
+#define TASK_STACK_DECISION    768
 #define TASK_STACK_CONTROL     1024
 #define TASK_STACK_COMMANDER   768
 #define TASK_STACK_LOGGER      768
@@ -16,6 +18,7 @@
 #define TASK_STACK_SAMPLE_MASK 0x7FU
 
 TaskHandle_t sensorTaskHandle;
+TaskHandle_t decisionTaskHandle;
 TaskHandle_t controlTaskHandle;
 TaskHandle_t commanderTaskHandle;
 TaskHandle_t loggerTaskHandle;
@@ -25,6 +28,8 @@ static TaskHandle_t task_handle_for_index(uint8_t index)
     switch (index) {
     case TASK_INDEX_SENSOR:
         return sensorTaskHandle;
+    case TASK_INDEX_DECISION:
+        return decisionTaskHandle;
     case TASK_INDEX_CONTROL:
         return controlTaskHandle;
     case TASK_INDEX_COMMANDER:
@@ -81,6 +86,7 @@ void tasks_create_all(void)
 {
     g_dbg_tasks.heap_before_create = (uint32_t)xPortGetFreeHeapSize();
     g_dbg_tasks.period_ticks[TASK_INDEX_SENSOR] = (uint32_t)task_period_ticks(FC_SENSOR_TASK_HZ);
+    g_dbg_tasks.period_ticks[TASK_INDEX_DECISION] = (uint32_t)task_period_ticks(FC_DECISION_TASK_HZ);
     g_dbg_tasks.period_ticks[TASK_INDEX_CONTROL] = (uint32_t)task_period_ticks(FC_CONTROL_TASK_HZ);
     g_dbg_tasks.period_ticks[TASK_INDEX_COMMANDER] = (uint32_t)task_period_ticks(FC_COMMANDER_TASK_HZ);
     g_dbg_tasks.period_ticks[TASK_INDEX_LOGGER] = (uint32_t)task_period_ticks(FC_LOGGER_TASK_HZ);
@@ -89,15 +95,19 @@ void tasks_create_all(void)
     g_dbg_tasks.heap_after_create[0] = (uint32_t)xPortGetFreeHeapSize();
     configASSERT(g_dbg_tasks.create_result[0] == pdPASS);
 
-    g_dbg_tasks.create_result[1] = xTaskCreate(ControlTask, "control", TASK_STACK_CONTROL, 0, TASK_PRIO_CONTROL, &controlTaskHandle);
+    g_dbg_tasks.create_result[1] = xTaskCreate(DecisionTask, "decision", TASK_STACK_DECISION, 0, TASK_PRIO_DECISION, &decisionTaskHandle);
     g_dbg_tasks.heap_after_create[1] = (uint32_t)xPortGetFreeHeapSize();
     configASSERT(g_dbg_tasks.create_result[1] == pdPASS);
 
-    g_dbg_tasks.create_result[2] = xTaskCreate(CommanderTask, "commander", TASK_STACK_COMMANDER, 0, TASK_PRIO_COMMANDER, &commanderTaskHandle);
+    g_dbg_tasks.create_result[2] = xTaskCreate(ControlTask, "control", TASK_STACK_CONTROL, 0, TASK_PRIO_CONTROL, &controlTaskHandle);
     g_dbg_tasks.heap_after_create[2] = (uint32_t)xPortGetFreeHeapSize();
     configASSERT(g_dbg_tasks.create_result[2] == pdPASS);
 
-    g_dbg_tasks.create_result[3] = xTaskCreate(LoggerTask, "logger", TASK_STACK_LOGGER, 0, TASK_PRIO_LOGGER, &loggerTaskHandle);
+    g_dbg_tasks.create_result[3] = xTaskCreate(CommanderTask, "commander", TASK_STACK_COMMANDER, 0, TASK_PRIO_COMMANDER, &commanderTaskHandle);
     g_dbg_tasks.heap_after_create[3] = (uint32_t)xPortGetFreeHeapSize();
     configASSERT(g_dbg_tasks.create_result[3] == pdPASS);
+
+    g_dbg_tasks.create_result[4] = xTaskCreate(LoggerTask, "logger", TASK_STACK_LOGGER, 0, TASK_PRIO_LOGGER, &loggerTaskHandle);
+    g_dbg_tasks.heap_after_create[4] = (uint32_t)xPortGetFreeHeapSize();
+    configASSERT(g_dbg_tasks.create_result[4] == pdPASS);
 }

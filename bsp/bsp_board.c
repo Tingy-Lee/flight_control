@@ -43,11 +43,11 @@ void bsp_board_init(void)
 #endif
 
 #if FC_ENABLE_GPS_USART2
-    bsp_uart_gps_init(115200U);
+    bsp_uart_gps_init(FC_GPS_UART_BAUD);
 #endif
 
 #if FC_ENABLE_RC_USART3
-    bsp_uart_rc_init(100000U);
+    bsp_uart_rc_init(FC_RC_IBUS_BAUD);
 #endif
 
 #if FC_ENABLE_BATTERY_ADC

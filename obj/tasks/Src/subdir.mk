@@ -7,6 +7,7 @@
 C_SRCS += \
 ../tasks/Src/commander_task.c \
 ../tasks/Src/control_task.c \
+../tasks/Src/decision_task.c \
 ../tasks/Src/initial_task.c \
 ../tasks/Src/logger_task.c \
 ../tasks/Src/sensor_task.c 
@@ -14,6 +15,7 @@ C_SRCS += \
 C_DEPS += \
 ./tasks/Src/commander_task.d \
 ./tasks/Src/control_task.d \
+./tasks/Src/decision_task.d \
 ./tasks/Src/initial_task.d \
 ./tasks/Src/logger_task.d \
 ./tasks/Src/sensor_task.d 
@@ -21,6 +23,7 @@ C_DEPS += \
 OBJS += \
 ./tasks/Src/commander_task.o \
 ./tasks/Src/control_task.o \
+./tasks/Src/decision_task.o \
 ./tasks/Src/initial_task.o \
 ./tasks/Src/logger_task.o \
 ./tasks/Src/sensor_task.o 

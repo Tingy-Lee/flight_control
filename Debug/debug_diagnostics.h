@@ -4,7 +4,8 @@
 #include "FreeRTOS.h"
 #include <stdint.h>
 
-#define DEBUG_DIAG_APP_TASK_COUNT  4U
+#define DEBUG_DIAG_APP_TASK_COUNT  5U
+#define DEBUG_GPS_LAST_SENTENCE_LEN  96U
 
 typedef struct {
     uint32_t startup_phase;
@@ -75,6 +76,13 @@ typedef struct {
 } debug_imu_uart_pin_diag_t;
 
 typedef struct {
+    uint16_t gpiob_indr;
+    uint8_t pb11_level;
+    uint8_t pb11_af;
+    uint32_t afio_pcfr1;
+} debug_rc_uart_pin_diag_t;
+
+typedef struct {
     uint32_t enabled;
     uint32_t pending;
     uint32_t active;
@@ -84,6 +92,9 @@ typedef struct {
 typedef struct {
     uint32_t irq_count;
     uint32_t rx_count;
+    uint32_t read_count;
+    uint32_t empty_read_count;
+    uint32_t overflow_count;
     uint32_t ore_count;
     uint32_t fe_count;
     uint32_t ne_count;
@@ -98,9 +109,92 @@ typedef struct {
 } debug_imu_uart_diag_t;
 
 typedef struct {
+    uint32_t irq_count;
+    uint32_t rx_count;
+    uint32_t overflow_count;
+    uint32_t ore_count;
+    uint32_t fe_count;
+    uint32_t ne_count;
+    uint32_t pe_count;
+    uint32_t spurious_count;
+    uint32_t error_flags;
+    uint8_t last_byte;
+    uint32_t rx_irq_start_count;
+    debug_usart_register_diag_t regs;
+    debug_rc_uart_pin_diag_t rx_pin;
+    debug_irq_route_diag_t nvic;
+} debug_rc_uart_diag_t;
+
+typedef struct {
+    uint32_t irq_count;
+    uint32_t rx_count;
+    uint32_t read_count;
+    uint32_t empty_read_count;
+    uint32_t overflow_count;
+    uint32_t ore_count;
+    uint32_t fe_count;
+    uint32_t ne_count;
+    uint32_t pe_count;
+    uint32_t spurious_count;
+    uint32_t error_flags;
+    uint32_t rx_irq_start_count;
+    uint8_t last_byte;
+    uint16_t rx_read;
+    uint16_t rx_write;
+    debug_usart_register_diag_t regs;
+    debug_irq_route_diag_t nvic;
+} debug_gps_uart_diag_t;
+
+typedef struct {
+    uint32_t poll_count;
+    uint32_t poll_byte_count;
+    uint32_t valid_frame_count;
+    uint32_t inverted_frame_count;
+    uint32_t invalid_frame_count;
+    uint32_t stale_count;
+    uint32_t failsafe_count;
+    uint32_t frame_lost_count;
+    uint32_t healthy_count;
+    uint32_t bad_header_count;
+    uint32_t bad_footer_count;
+    uint32_t no_data_count;
+    uint32_t last_frame_ms;
+    uint8_t frame_index;
+    uint8_t last_byte;
+    uint8_t last_flags;
+    uint8_t last_footer;
+    uint8_t last_frame_inverted;
+    uint8_t byte_window_index;
+    uint8_t byte_window[32];
+    uint16_t raw_channels[18];
+    uint16_t channels_us[10];
+} debug_rc_input_diag_t;
+
+typedef struct {
+    debug_gps_uart_diag_t gps;
+    debug_rc_uart_diag_t rc;
     debug_imu_uart_diag_t imu;
     uint32_t tx_timeout_count;
 } debug_uart_diag_t;
+
+typedef struct {
+    uint32_t poll_count;
+    uint32_t poll_byte_count;
+    uint32_t line_start_count;
+    uint32_t line_complete_count;
+    uint32_t line_overflow_count;
+    uint32_t checksum_fail_count;
+    uint32_t unsupported_sentence_count;
+    uint32_t rmc_sentence_count;
+    uint32_t gga_sentence_count;
+    uint32_t parse_fail_count;
+    uint32_t valid_fix_count;
+    uint32_t no_fix_count;
+    uint32_t stale_count;
+    uint32_t last_sentence_ms;
+    uint8_t line_len;
+    char last_sentence[DEBUG_GPS_LAST_SENTENCE_LEN];
+} debug_gps_diag_t;
 
 typedef struct {
     uint32_t timeout_count;
@@ -157,6 +251,8 @@ extern volatile debug_fault_diag_t g_dbg_fault;
 extern volatile debug_trap_diag_t g_dbg_trap;
 extern volatile debug_task_diag_t g_dbg_tasks;
 extern volatile debug_uart_diag_t g_dbg_uart;
+extern volatile debug_gps_diag_t g_dbg_gps;
+extern volatile debug_rc_input_diag_t g_dbg_rc_input;
 extern volatile debug_bus_diag_t g_dbg_bus;
 extern volatile debug_console_diag_t g_dbg_console;
 extern volatile debug_kernel_diag_t g_dbg_kernel;

@@ -13,7 +13,7 @@ void SensorTask(void *argument)
 {
     (void)argument;
     g_dbg_boot.startup_phase = 101U;
-    g_dbg_boot.task_entry_mask |= (1UL << 0);
+    g_dbg_boot.task_entry_mask |= (1UL << TASK_INDEX_SENSOR);
     TickType_t last_wake = xTaskGetTickCount();
     const TickType_t period = task_period_ticks(FC_SENSOR_TASK_HZ);
     flight_state_t *state = app_state();
@@ -21,11 +21,17 @@ void SensorTask(void *argument)
 #if FC_ENABLE_IMU_UART
     bsp_uart_imu_start_rx_irq();
 #endif
+#if FC_ENABLE_GPS_USART2
+    bsp_uart_gps_start_rx_irq();
+#endif
 
     while (1) {
         const TickType_t loop_start = xTaskGetTickCount();
 #if FC_ENABLE_IMU_UART
         bsp_uart_debug_sample_imu_rx();
+#endif
+#if FC_ENABLE_RC_USART3
+        bsp_uart_debug_sample_rc_rx();
 #endif
         (void)imu_read(&state->imu);
         (void)barometer_read(&state->baro);
