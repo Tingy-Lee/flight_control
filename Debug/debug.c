@@ -33,6 +33,8 @@ volatile debug_rc_input_diag_t g_dbg_rc_input;
 volatile debug_bus_diag_t g_dbg_bus;
 volatile debug_console_diag_t g_dbg_console;
 volatile debug_kernel_diag_t g_dbg_kernel;
+volatile debug_pwm_diag_t g_dbg_pwm;
+volatile debug_imu_sensor_diag_t g_dbg_imu;
 
 static int debug_scheduler_started(void)
 {

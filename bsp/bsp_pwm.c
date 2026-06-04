@@ -1,5 +1,6 @@
 #include "bsp/bsp_pwm.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 
 static uint16_t clamp_pulse_us(uint16_t pulse_us)
 {
@@ -82,6 +83,11 @@ void bsp_pwm_motor_set_us(uint8_t motor_index, uint16_t pulse_us)
 {
     const uint16_t pulse = clamp_pulse_us(pulse_us);
 
+    if (motor_index < 4U) {
+        g_dbg_pwm.requested_us[motor_index] = pulse_us;
+        g_dbg_pwm.clamped_us[motor_index] = pulse;
+    }
+
     switch (motor_index) {
     case 0:
         TIM_SetCompare1(TIM1, pulse);
@@ -98,6 +104,11 @@ void bsp_pwm_motor_set_us(uint8_t motor_index, uint16_t pulse_us)
     default:
         break;
     }
+
+    g_dbg_pwm.tim1_ccr[0] = TIM1->CH1CVR;
+    g_dbg_pwm.tim1_ccr[1] = TIM1->CH2CVR;
+    g_dbg_pwm.tim1_ccr[2] = TIM1->CH3CVR;
+    g_dbg_pwm.tim1_ccr[3] = TIM1->CH4CVR;
 }
 
 void bsp_pwm_motors_set_all_us(uint16_t pulse_us)
@@ -109,6 +120,7 @@ void bsp_pwm_motors_set_all_us(uint16_t pulse_us)
 
 void bsp_pwm_motors_write(const uint16_t pulse_us[FC_MOTOR_COUNT])
 {
+    g_dbg_pwm.write_count++;
     for (uint8_t i = 0; i < FC_MOTOR_COUNT; i++) {
         bsp_pwm_motor_set_us(i, pulse_us[i]);
     }

@@ -246,6 +246,51 @@ typedef struct {
     debug_switch_diag_t context_switch;
 } debug_kernel_diag_t;
 
+typedef struct {
+    uint32_t write_count;
+    uint16_t requested_us[4];
+    uint16_t clamped_us[4];
+    uint16_t tim1_ccr[4];
+} debug_pwm_diag_t;
+
+typedef struct {
+    uint32_t process_call_count;
+    uint32_t process_byte_count;
+    uint32_t invalid_length_count;
+    uint32_t checksum_fail_count;
+    uint32_t short_payload_count;
+    uint32_t unknown_frame_count;
+    uint32_t motion_frame_count;
+    uint32_t euler_frame_count;
+    uint32_t baro_frame_count;
+    uint32_t version_frame_count;
+    uint32_t last_read_ms;
+    uint32_t last_motion_ms;
+    uint32_t last_euler_ms;
+    uint32_t last_baro_ms;
+    uint32_t motion_age_ms;
+    uint32_t euler_age_ms;
+    uint32_t baro_age_ms;
+    uint32_t motion_gap_ms;
+    uint32_t euler_gap_ms;
+    uint32_t baro_gap_ms;
+    uint32_t max_motion_gap_ms;
+    uint32_t max_euler_gap_ms;
+    uint32_t max_baro_gap_ms;
+    uint32_t unhealthy_count;
+    uint32_t stale_motion_edge_count;
+    uint32_t stale_euler_edge_count;
+    uint32_t stale_baro_edge_count;
+    uint8_t ready;
+    uint8_t motion_valid;
+    uint8_t euler_valid;
+    uint8_t baro_valid;
+    uint8_t healthy;
+    uint8_t motion_stale;
+    uint8_t euler_stale;
+    uint8_t baro_stale;
+} debug_imu_sensor_diag_t;
+
 extern volatile debug_boot_diag_t g_dbg_boot;
 extern volatile debug_fault_diag_t g_dbg_fault;
 extern volatile debug_trap_diag_t g_dbg_trap;
@@ -256,5 +301,7 @@ extern volatile debug_rc_input_diag_t g_dbg_rc_input;
 extern volatile debug_bus_diag_t g_dbg_bus;
 extern volatile debug_console_diag_t g_dbg_console;
 extern volatile debug_kernel_diag_t g_dbg_kernel;
+extern volatile debug_pwm_diag_t g_dbg_pwm;
+extern volatile debug_imu_sensor_diag_t g_dbg_imu;
 
 #endif

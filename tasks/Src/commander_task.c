@@ -12,6 +12,36 @@ static float abs_float(float value)
     return (value < 0.0f) ? -value : value;
 }
 
+#define MODE_XLOG_LEN   16U
+
+typedef struct {
+    uint32_t ms;
+    uint32_t errors;
+    uint16_t throttle_us;
+    uint8_t  prev;
+    uint8_t  next;
+    uint8_t  armed;
+    uint8_t  arm_switch;
+    uint8_t  rc_healthy;
+} __attribute__((aligned(4))) mode_xlog_t;
+
+static mode_xlog_t g_xlog[MODE_XLOG_LEN];
+static uint8_t    g_xlog_idx;
+
+static void xlog_record(const flight_state_t *state, flight_mode_t prev, flight_mode_t next)
+{
+    mode_xlog_t *e = &g_xlog[g_xlog_idx];
+    e->ms = bsp_board_millis();
+    e->errors = state->error_flags;
+    e->throttle_us = state->rc.throttle_us;
+    e->prev = (uint8_t)prev;
+    e->next = (uint8_t)next;
+    e->armed = state->armed ? 1U : 0U;
+    e->arm_switch = state->rc.arm_switch ? 1U : 0U;
+    e->rc_healthy = state->rc.healthy ? 1U : 0U;
+    g_xlog_idx = (uint8_t)((g_xlog_idx + 1U) % MODE_XLOG_LEN);
+}
+
 static bool attitude_is_safe_to_arm(const flight_state_t *state)
 {
     if ((state == 0) || (!state->estimate.attitude_valid)) {
@@ -39,6 +69,11 @@ static bool takeoff_requested(const flight_state_t *state)
            (state->rc.throttle_us >= FC_TAKEOFF_TRIGGER_US);
 }
 
+static bool throttle_abort_requested(const flight_state_t *state)
+{
+    return (state != 0) && (state->rc.throttle_us <= FC_ARM_THROTTLE_MAX_US);
+}
+
 static bool only_rc_failsafe(uint32_t errors)
 {
     return (errors != 0U) && ((errors & ~FC_ERR_RC_FAILSAFE) == 0U);
@@ -49,8 +84,9 @@ static void enter_mode(flight_state_t *state, flight_mode_t next_mode)
     const uint32_t now_ms = bsp_board_millis();
     const bool altitude_valid = state->estimate.altitude_valid;
     const float current_altitude_m = state->estimate.altitude_m;
+    const flight_mode_t prev = state->mode;
 
-    if ((state->mode == next_mode) && (state->mode_entry_ms != 0U)) {
+    if ((prev == next_mode) && (state->mode_entry_ms != 0U)) {
         return;
     }
 
@@ -114,6 +150,8 @@ static void enter_mode(flight_state_t *state, flight_mode_t next_mode)
         state->armed = true;
         break;
     }
+
+    xlog_record(state, prev, next_mode);
 }
 
 static bool takeoff_complete(const flight_state_t *state)
@@ -160,6 +198,14 @@ static void commander_update_state(flight_state_t *state)
         return;
     }
 
+    if (state->armed &&
+        ((!state->rc.arm_switch) ||
+         (((state->mode == FLIGHT_MODE_TAKEOFF) || (state->mode == FLIGHT_MODE_ALT_HOLD)) &&
+          throttle_abort_requested(state)))) {
+        enter_mode(state, FLIGHT_MODE_STANDBY);
+        return;
+    }
+
     switch (state->mode) {
     case FLIGHT_MODE_LOCKED:
         enter_mode(state, FLIGHT_MODE_STANDBY);
@@ -183,18 +229,13 @@ static void commander_update_state(flight_state_t *state)
         break;
 
     case FLIGHT_MODE_TAKEOFF:
-        if (!state->rc.arm_switch) {
-            enter_mode(state, FLIGHT_MODE_LAND);
-        } else if (takeoff_complete(state)) {
+        if (takeoff_complete(state)) {
             enter_mode(state, FLIGHT_MODE_ALT_HOLD);
         }
         break;
 
     case FLIGHT_MODE_ALT_HOLD:
     case FLIGHT_MODE_MISSION:
-        if (!state->rc.arm_switch) {
-            enter_mode(state, FLIGHT_MODE_LAND);
-        }
         break;
 
     case FLIGHT_MODE_LAND:
@@ -204,9 +245,7 @@ static void commander_update_state(flight_state_t *state)
         break;
 
     case FLIGHT_MODE_FAILSAFE:
-        if (!state->rc.arm_switch) {
-            enter_mode(state, FLIGHT_MODE_LOCKED);
-        }
+        enter_mode(state, FLIGHT_MODE_LOCKED);
         break;
 
     case FLIGHT_MODE_MANUAL_STAB:

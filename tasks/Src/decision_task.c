@@ -74,12 +74,32 @@ static void decision_reset_target(target_state_t *target, uint32_t timestamp_ms)
     target->valid = false;
 }
 
+static bool height_switch_is_active(uint16_t pulse_us)
+{
+    return pulse_us >= FC_RC_SWITCH_ACTIVE_THRESHOLD_US;
+}
+
+static bool g_height_mode_was_active;
+
 static void decision_update_target(flight_state_t *state, float dt_s)
 {
     const float roll_axis = rc_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_ROLL));
-    const float pitch_axis = rc_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_PITCH));
     const float yaw_axis = rc_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_YAW));
-    const float hover_axis = rc_hover_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_HOVER_HEIGHT));
+    const bool height_mode = height_switch_is_active(rc_channel_us(&state->rc, FC_RC_CHANNEL_HEIGHT_SWITCH));
+    float pitch_axis;
+    float hover_axis;
+
+    if (height_mode) {
+        if (!g_height_mode_was_active) {
+            state->target.hover_height_delta_m = 0.0f;
+        }
+        pitch_axis = 0.0f;
+        hover_axis = rc_hover_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_PITCH));
+    } else {
+        pitch_axis = rc_channel_to_axis(rc_channel_us(&state->rc, FC_RC_CHANNEL_PITCH));
+        hover_axis = 0.0f;
+    }
+    g_height_mode_was_active = height_mode;
 
     state->target.timestamp_ms = state->rc.timestamp_ms;
     state->target.roll_rad = roll_axis * FC_TARGET_MAX_ROLL_RAD;

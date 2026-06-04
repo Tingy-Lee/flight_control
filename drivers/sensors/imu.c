@@ -3,6 +3,7 @@
 #include "bsp/bsp_i2c.h"
 #include "bsp/bsp_uart.h"
 #include "debug.h"
+#include "debug_diagnostics.h"
 #include <string.h>
 
 #define IMU_I2C_ADDR_7BIT         0x23U              /* IMU I2C 7位从机地址。 */
@@ -119,9 +120,34 @@ static const char *imu_init_status_text(imu_init_status_t status)
 }
 
 #if FC_ENABLE_IMU_UART
-static bool imu_uart_is_fresh(uint32_t now_ms, uint32_t timestamp_ms)
+static bool imu_uart_is_fresh(uint32_t now_ms, uint32_t timestamp_ms, uint32_t timeout_ms)
 {
-    return (now_ms - timestamp_ms) <= FC_IMU_UART_STALE_TIMEOUT_MS;
+    return (now_ms - timestamp_ms) <= timeout_ms;
+}
+
+static uint32_t imu_uart_age_or_never(bool valid, uint32_t now_ms, uint32_t timestamp_ms)
+{
+    return valid ? (now_ms - timestamp_ms) : 0xFFFFFFFFUL;
+}
+
+static void imu_debug_record_frame(uint32_t now_ms,
+                                   volatile uint32_t *count,
+                                   volatile uint32_t *last_ms,
+                                   volatile uint32_t *gap_ms,
+                                   volatile uint32_t *max_gap_ms)
+{
+    const uint32_t previous_ms = *last_ms;
+
+    (*count)++;
+    if (previous_ms != 0U) {
+        const uint32_t gap = now_ms - previous_ms;
+
+        *gap_ms = gap;
+        if (gap > *max_gap_ms) {
+            *max_gap_ms = gap;
+        }
+    }
+    *last_ms = now_ms;
 }
 
 static bool imu_uart_send_command(uint8_t function, const uint8_t *params, uint8_t param_len)
@@ -157,6 +183,7 @@ static void imu_uart_parse_frame(uint8_t function, const uint8_t *payload, uint8
     switch (function) {
     case IMU_UART_FUNC_RAW_MOTION:
         if (payload_len < IMU_RAW_BLOCK_LEN) {
+            g_dbg_imu.short_payload_count++;
             return;
         }
 
@@ -168,10 +195,16 @@ static void imu_uart_parse_frame(uint8_t function, const uint8_t *payload, uint8
         g_imu_uart_ctx.gyro_dps.z = (float)imu_decode_i16_le(&payload[10]) * IMU_GYRO_LSB_TO_DPS;
         g_imu_uart_ctx.motion_timestamp_ms = now_ms;
         g_imu_uart_ctx.motion_valid = true;
+        imu_debug_record_frame(now_ms,
+                               &g_dbg_imu.motion_frame_count,
+                               &g_dbg_imu.last_motion_ms,
+                               &g_dbg_imu.motion_gap_ms,
+                               &g_dbg_imu.max_motion_gap_ms);
         break;
 
     case IMU_UART_FUNC_EULER:
         if (payload_len < 12U) {
+            g_dbg_imu.short_payload_count++;
             return;
         }
 
@@ -180,10 +213,16 @@ static void imu_uart_parse_frame(uint8_t function, const uint8_t *payload, uint8
         g_imu_uart_ctx.euler_rad.yaw_rad = imu_decode_f32_le(&payload[8]);
         g_imu_uart_ctx.euler_timestamp_ms = now_ms;
         g_imu_uart_ctx.euler_valid = true;
+        imu_debug_record_frame(now_ms,
+                               &g_dbg_imu.euler_frame_count,
+                               &g_dbg_imu.last_euler_ms,
+                               &g_dbg_imu.euler_gap_ms,
+                               &g_dbg_imu.max_euler_gap_ms);
         break;
 
     case IMU_UART_FUNC_BARO:
         if (payload_len < 16U) {
+            g_dbg_imu.short_payload_count++;
             return;
         }
 
@@ -193,19 +232,27 @@ static void imu_uart_parse_frame(uint8_t function, const uint8_t *payload, uint8
         g_imu_uart_ctx.baro_pressure_reference_pa = imu_decode_f32_le(&payload[12]);
         g_imu_uart_ctx.baro_timestamp_ms = now_ms;
         g_imu_uart_ctx.baro_valid = true;
+        imu_debug_record_frame(now_ms,
+                               &g_dbg_imu.baro_frame_count,
+                               &g_dbg_imu.last_baro_ms,
+                               &g_dbg_imu.baro_gap_ms,
+                               &g_dbg_imu.max_baro_gap_ms);
         break;
 
     case IMU_UART_FUNC_VERSION:
         if (payload_len < 3U) {
+            g_dbg_imu.short_payload_count++;
             return;
         }
 
         g_imu_ctx.version_h = payload[0];
         g_imu_ctx.version_m = payload[1];
         g_imu_ctx.version_l = payload[2];
+        g_dbg_imu.version_frame_count++;
         break;
 
     default:
+        g_dbg_imu.unknown_frame_count++;
         break;
     }
 }
@@ -227,10 +274,13 @@ static void imu_uart_process(void)
     static uint8_t frame_index = 0U;
 
     uint8_t byte = 0U;
+    uint16_t processed = 0U;
 
     uint16_t budget = IMU_UART_PROCESS_MAX_BYTES;
 
+    g_dbg_imu.process_call_count++;
     while ((budget-- != 0U) && bsp_uart_imu_read_byte(&byte)) {
+        processed++;
         switch (rx_state) {
         case RX_WAIT_HEAD1:
             rx_state = (byte == IMU_UART_FRAME_HEAD1) ? RX_WAIT_HEAD2 : RX_WAIT_HEAD1;
@@ -247,6 +297,7 @@ static void imu_uart_process(void)
         case RX_WAIT_LENGTH:
             frame_len = byte;
             if ((frame_len < 5U) || (frame_len > IMU_UART_MAX_FRAME_LEN)) {
+                g_dbg_imu.invalid_length_count++;
                 rx_state = RX_WAIT_HEAD1;
             } else {
                 rx_state = RX_WAIT_FUNCTION;
@@ -272,6 +323,8 @@ static void imu_uart_process(void)
 
                 if (checksum == frame_data[data_len - 1U]) {
                     imu_uart_parse_frame(frame_function, frame_data, (uint8_t)(data_len - 1U));
+                } else {
+                    g_dbg_imu.checksum_fail_count++;
                 }
 
                 rx_state = RX_WAIT_HEAD1;
@@ -284,6 +337,7 @@ static void imu_uart_process(void)
             break;
         }
     }
+    g_dbg_imu.process_byte_count += processed;
 }
 
 static void imu_uart_configure_device(void)
@@ -411,6 +465,9 @@ bool imu_read(imu_sample_t *sample)
 #if FC_ENABLE_IMU_UART
     const uint32_t now_ms = bsp_board_millis();
     bool healthy = false;
+    static bool motion_was_stale;
+    static bool euler_was_stale;
+    static bool baro_was_stale;
 
     if (sample == 0) {
         return false;
@@ -422,11 +479,53 @@ bool imu_read(imu_sample_t *sample)
 
     imu_uart_process();
 
+    g_dbg_imu.motion_age_ms = imu_uart_age_or_never(g_imu_uart_ctx.motion_valid,
+                                                    now_ms,
+                                                    g_imu_uart_ctx.motion_timestamp_ms);
+    g_dbg_imu.euler_age_ms = imu_uart_age_or_never(g_imu_uart_ctx.euler_valid,
+                                                   now_ms,
+                                                   g_imu_uart_ctx.euler_timestamp_ms);
+    g_dbg_imu.baro_age_ms = imu_uart_age_or_never(g_imu_uart_ctx.baro_valid,
+                                                  now_ms,
+                                                  g_imu_uart_ctx.baro_timestamp_ms);
+    g_dbg_imu.ready = g_imu_ctx.ready ? 1U : 0U;
+    g_dbg_imu.motion_valid = g_imu_uart_ctx.motion_valid ? 1U : 0U;
+    g_dbg_imu.euler_valid = g_imu_uart_ctx.euler_valid ? 1U : 0U;
+    g_dbg_imu.baro_valid = g_imu_uart_ctx.baro_valid ? 1U : 0U;
+    g_dbg_imu.motion_stale =
+        (!g_imu_uart_ctx.motion_valid) ||
+        (!imu_uart_is_fresh(now_ms, g_imu_uart_ctx.motion_timestamp_ms, FC_IMU_UART_STALE_TIMEOUT_MS));
+    g_dbg_imu.euler_stale =
+        (!g_imu_uart_ctx.euler_valid) ||
+        (!imu_uart_is_fresh(now_ms, g_imu_uart_ctx.euler_timestamp_ms, FC_IMU_UART_STALE_TIMEOUT_MS));
+    g_dbg_imu.baro_stale =
+        (!g_imu_uart_ctx.baro_valid) ||
+        (!imu_uart_is_fresh(now_ms, g_imu_uart_ctx.baro_timestamp_ms, FC_IMU_BARO_STALE_TIMEOUT_MS));
+
+    if ((g_dbg_imu.motion_stale != 0U) && (!motion_was_stale)) {
+        g_dbg_imu.stale_motion_edge_count++;
+    }
+    if ((g_dbg_imu.euler_stale != 0U) && (!euler_was_stale)) {
+        g_dbg_imu.stale_euler_edge_count++;
+    }
+    if ((g_dbg_imu.baro_stale != 0U) && (!baro_was_stale)) {
+        g_dbg_imu.stale_baro_edge_count++;
+    }
+    motion_was_stale = g_dbg_imu.motion_stale != 0U;
+    euler_was_stale = g_dbg_imu.euler_stale != 0U;
+    baro_was_stale = g_dbg_imu.baro_stale != 0U;
+
     healthy = g_imu_ctx.ready &&
               g_imu_uart_ctx.motion_valid &&
               g_imu_uart_ctx.euler_valid &&
-              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.motion_timestamp_ms) &&
-              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.euler_timestamp_ms);
+              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.motion_timestamp_ms, FC_IMU_UART_STALE_TIMEOUT_MS) &&
+              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.euler_timestamp_ms, FC_IMU_UART_STALE_TIMEOUT_MS);
+
+    g_dbg_imu.last_read_ms = now_ms;
+    g_dbg_imu.healthy = healthy ? 1U : 0U;
+    if (!healthy) {
+        g_dbg_imu.unhealthy_count++;
+    }
 
     sample->timestamp_ms = now_ms;
     sample->euler_rad = g_imu_uart_ctx.euler_rad;
@@ -514,11 +613,9 @@ bool imu_read_barometer(baro_sample_t *sample)
         return false;
     }
 
-    imu_uart_process();
-
     healthy = g_imu_ctx.ready &&
               g_imu_uart_ctx.baro_valid &&
-              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.baro_timestamp_ms);
+              imu_uart_is_fresh(now_ms, g_imu_uart_ctx.baro_timestamp_ms, FC_IMU_BARO_STALE_TIMEOUT_MS);
 
     sample->timestamp_ms = now_ms;
     sample->pressure_pa = g_imu_uart_ctx.baro_valid ? g_imu_uart_ctx.baro_pressure_pa : FC_SEA_LEVEL_PRESSURE_PA;

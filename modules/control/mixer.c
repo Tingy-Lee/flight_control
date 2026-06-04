@@ -21,6 +21,20 @@ static uint16_t norm_to_pwm(float norm)
     return (uint16_t)(FC_MOTOR_PWM_MIN_US + (uint16_t)(safe_norm * (float)span));
 }
 
+static uint16_t apply_spin_min(uint16_t pulse_us)
+{
+    uint16_t spin_min_us = FC_MOTOR_PWM_SPIN_MIN_US;
+
+    if (spin_min_us < FC_MOTOR_PWM_MIN_US) {
+        spin_min_us = FC_MOTOR_PWM_MIN_US;
+    }
+    if (spin_min_us > FC_MOTOR_BRINGUP_LIMIT_US) {
+        spin_min_us = FC_MOTOR_BRINGUP_LIMIT_US;
+    }
+
+    return (pulse_us < spin_min_us) ? spin_min_us : pulse_us;
+}
+
 void mixer_init(void)
 {
 }
@@ -42,6 +56,7 @@ void mixer_mix_x_quad(const control_setpoint_t *setpoint, bool armed, motor_outp
     const float r = setpoint->roll_cmd * 0.0015f;
     const float p = setpoint->pitch_cmd * 0.0015f;
     const float y = setpoint->yaw_cmd * 0.0010f;
+    const bool spin_floor_enabled = t > 0.0f;
 
     /* X-quad order:
      * M1 front-left,  M2 front-right, M3 rear-right, M4 rear-left.
@@ -51,4 +66,10 @@ void mixer_mix_x_quad(const control_setpoint_t *setpoint, bool armed, motor_outp
     outputs->motor_us[1] = norm_to_pwm(t + p - r + y);
     outputs->motor_us[2] = norm_to_pwm(t - p - r - y);
     outputs->motor_us[3] = norm_to_pwm(t - p + r + y);
+
+    if (spin_floor_enabled) {
+        for (uint8_t i = 0U; i < FC_MOTOR_COUNT; i++) {
+            outputs->motor_us[i] = apply_spin_min(outputs->motor_us[i]);
+        }
+    }
 }

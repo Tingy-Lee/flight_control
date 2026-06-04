@@ -384,6 +384,7 @@ bool bsp_uart_imu_read_byte(uint8_t *byte)
 
     *byte = g_imu_uart_rx_buffer[g_imu_uart_rx_read];
     g_imu_uart_rx_read = imu_uart_rx_next(g_imu_uart_rx_read);
+    g_dbg_uart.imu.read_count++;
     if (irq_enabled != 0U) {
         NVIC_EnableIRQ(USART4_IRQn);
     }

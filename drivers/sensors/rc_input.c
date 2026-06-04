@@ -43,6 +43,15 @@ static uint16_t rc_pwm_clamp_us(uint16_t value)
     return value;
 }
 
+static bool rc_arm_channel_is_active(uint16_t pulse_us)
+{
+#if FC_RC_ARM_ACTIVE_HIGH
+    return pulse_us >= FC_RC_ARM_THRESHOLD_US;
+#else
+    return pulse_us <= FC_RC_ARM_LOW_THRESHOLD_US;
+#endif
+}
+
 static void rc_input_set_default(rc_input_t *rc, uint32_t timestamp_ms)
 {
     uint8_t channel;
@@ -215,7 +224,7 @@ bool rc_input_poll(rc_input_t *rc)
     rc->pitch_us = rc->channels_us[FC_RC_CHANNEL_PITCH];
     rc->throttle_us = rc->channels_us[FC_RC_CHANNEL_THROTTLE];
     rc->yaw_us = rc->channels_us[FC_RC_CHANNEL_YAW];
-    rc->arm_switch = rc->channels_us[FC_RC_CHANNEL_ARM] >= FC_RC_ARM_THRESHOLD_US;
+    rc->arm_switch = rc_arm_channel_is_active(rc->channels_us[FC_RC_CHANNEL_ARM]);
     rc->frame_lost = g_rc_ctx.frame_lost;
     rc->failsafe = g_rc_ctx.failsafe;
     rc->healthy = !rc->failsafe && !frame_stale;
