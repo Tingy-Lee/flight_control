@@ -25,8 +25,8 @@ typedef struct {
     uint8_t  rc_healthy;
 } __attribute__((aligned(4))) mode_xlog_t;
 
-static mode_xlog_t g_xlog[MODE_XLOG_LEN];
-static uint8_t    g_xlog_idx;
+static volatile mode_xlog_t g_xlog[MODE_XLOG_LEN];
+static volatile uint8_t    g_xlog_idx;
 
 static void xlog_record(const flight_state_t *state, flight_mode_t prev, flight_mode_t next)
 {
@@ -188,8 +188,21 @@ static bool land_complete(const flight_state_t *state)
 static void commander_update_state(flight_state_t *state)
 {
     const uint32_t errors = state->error_flags;
+    static uint8_t error_streak;
+    const bool flying = (state->mode == FLIGHT_MODE_TAKEOFF) ||
+                        (state->mode == FLIGHT_MODE_ALT_HOLD) ||
+                        (state->mode == FLIGHT_MODE_LAND);
 
     if (errors != 0U) {
+        if (flying) {
+            error_streak++;
+            if (error_streak < 5U) {
+                return;
+            }
+        }
+
+        error_streak = 5U;
+
         if (state->armed && only_rc_failsafe(errors) && state->estimate.altitude_valid) {
             enter_mode(state, FLIGHT_MODE_LAND);
         } else {
@@ -197,6 +210,8 @@ static void commander_update_state(flight_state_t *state)
         }
         return;
     }
+
+    error_streak = 0U;
 
     if (state->armed &&
         ((!state->rc.arm_switch) ||
@@ -245,7 +260,9 @@ static void commander_update_state(flight_state_t *state)
         break;
 
     case FLIGHT_MODE_FAILSAFE:
-        enter_mode(state, FLIGHT_MODE_LOCKED);
+        if (state->error_flags == 0U) {
+            enter_mode(state, FLIGHT_MODE_STANDBY);
+        }
         break;
 
     case FLIGHT_MODE_MANUAL_STAB:

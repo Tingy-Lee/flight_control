@@ -2,6 +2,7 @@
 
 #include "app/app.h"
 #include "app/app_config.h"
+#include "bsp/bsp_board.h"
 #include "bsp/bsp_pwm.h"
 #include "debug_diagnostics.h"
 #include "modules/control/flight_controller.h"
@@ -162,6 +163,18 @@ void ControlTask(void *argument)
             control_set_motors_min(state);
         }
         bsp_pwm_motors_write(state->motors.motor_us);
+        {
+            static uint32_t last_ms;
+            const uint32_t now_ms = bsp_board_millis();
+            if ((now_ms - last_ms) >= 100U) {
+                last_ms = now_ms;
+                printf("M:%u %u %u %u\r\n",
+                       (unsigned)state->motors.motor_us[0],
+                       (unsigned)state->motors.motor_us[1],
+                       (unsigned)state->motors.motor_us[2],
+                       (unsigned)state->motors.motor_us[3]);
+            }
+        }
 #if FC_ENABLE_MOTOR_TEST_TELEMETRY
         motor_telemetry_print(state);
 #endif

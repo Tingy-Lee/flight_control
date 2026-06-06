@@ -60,6 +60,7 @@ tasks/Src/control_task.o: ../tasks/Src/control_task.c \
  /Users/litianyi/Desktop/flight_control/app/app.h \
  /Users/litianyi/Desktop/flight_control/app/app_types.h \
  /Users/litianyi/Desktop/flight_control/app/app_config.h \
+ /Users/litianyi/Desktop/flight_control/bsp/bsp_board.h \
  /Users/litianyi/Desktop/flight_control/bsp/bsp_pwm.h \
  /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h \
  /Users/litianyi/Desktop/flight_control/modules/control/flight_controller.h \
@@ -125,6 +126,7 @@ tasks/Src/control_task.o: ../tasks/Src/control_task.c \
 /Users/litianyi/Desktop/flight_control/app/app.h:
 /Users/litianyi/Desktop/flight_control/app/app_types.h:
 /Users/litianyi/Desktop/flight_control/app/app_config.h:
+/Users/litianyi/Desktop/flight_control/bsp/bsp_board.h:
 /Users/litianyi/Desktop/flight_control/bsp/bsp_pwm.h:
 /Users/litianyi/Desktop/flight_control/Debug/debug_diagnostics.h:
 /Users/litianyi/Desktop/flight_control/modules/control/flight_controller.h:

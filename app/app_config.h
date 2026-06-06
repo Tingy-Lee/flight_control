@@ -77,7 +77,7 @@
  * 0-based, so CH1 -> 0, CH2 -> 1, and so on.
  */
 #define FC_RC_IBUS_BAUD                 115200U
-#define FC_RC_IBUS_STALE_TIMEOUT_MS     100U
+#define FC_RC_IBUS_STALE_TIMEOUT_MS     250U
 #define FC_RC_INPUT_CHANNEL_COUNT       10U
 #define FC_RC_CHANNEL_ROLL              0U
 #define FC_RC_CHANNEL_PITCH             1U
