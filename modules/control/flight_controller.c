@@ -12,6 +12,7 @@ static pid_t g_vertical_speed_pid;
 static bool g_altitude_reference_valid;
 static float g_altitude_reference_m;
 static float g_hover_delta_reference_m;
+static float g_hover_throttle = FC_ALTITUDE_HOVER_THROTTLE_NORM;
 static flight_mode_t g_last_mode = FLIGHT_MODE_LOCKED;
 
 static float clamp_float(float value, float min_value, float max_value)
@@ -114,6 +115,49 @@ static float apply_tilt_compensation(const flight_state_t *state, float throttle
     return throttle_norm / vertical_gain;
 }
 
+static float throttle_stick_to_vertical_speed(uint16_t throttle_us)
+{
+    const int32_t centered = (int32_t)throttle_us - (int32_t)FC_RC_PWM_CENTER_US;
+    const int32_t deadband = (int32_t)FC_RC_HOVER_DEADBAND_US;
+
+    if ((centered >= -deadband) && (centered <= deadband)) {
+        return 0.0f;
+    }
+
+    if (centered > deadband) {
+        const float span = (float)((int32_t)FC_MOTOR_PWM_MAX_US - (int32_t)FC_RC_PWM_CENTER_US - deadband);
+        return clamp_float((float)(centered - deadband) / span, 0.0f, 1.0f) *
+               FC_ALTITUDE_MAX_CLIMB_RATE_MPS;
+    }
+
+    const float span = (float)((int32_t)FC_RC_PWM_CENTER_US - (int32_t)FC_MOTOR_PWM_MIN_US - deadband);
+    return clamp_float((float)(centered + deadband) / span, -1.0f, 0.0f) *
+           FC_ALTITUDE_MAX_DESCENT_RATE_MPS;
+}
+
+static void hover_throttle_learn(const flight_state_t *state, float dt_s)
+{
+    const bool is_hovering = (state->mode == FLIGHT_MODE_ALT_HOLD) &&
+                             state->estimate.attitude_valid &&
+                             (fabsf(state->estimate.attitude.roll_rad) < 0.087f) &&
+                             (fabsf(state->estimate.attitude.pitch_rad) < 0.087f) &&
+                             state->estimate.altitude_valid &&
+                             (fabsf(state->estimate.vertical_speed_mps) < 0.5f);
+
+    if (!is_hovering) {
+        return;
+    }
+
+    const float pilot_norm = rc_throttle_to_norm(state->rc.throttle_us);
+
+    if (pilot_norm <= 0.0f) {
+        return;
+    }
+
+    g_hover_throttle += 0.005f * (pilot_norm - g_hover_throttle);
+    g_hover_throttle = clamp_float(g_hover_throttle, 0.2f, 0.9f);
+}
+
 static float altitude_hold_throttle(flight_state_t *state, float dt_s)
 {
     float altitude_target_m = state->estimate.altitude_m;
@@ -133,7 +177,8 @@ static float altitude_hold_throttle(flight_state_t *state, float dt_s)
             return 0.0f;
         }
         altitude_target_m = state->mode_target_altitude_m;
-        pilot_vertical_speed_mps = FC_TAKEOFF_CLIMB_RATE_MPS;
+        pilot_vertical_speed_mps = FC_TAKEOFF_CLIMB_RATE_MPS +
+                                  throttle_stick_to_vertical_speed(state->rc.throttle_us);
         break;
 
     case FLIGHT_MODE_ALT_HOLD:
@@ -145,7 +190,8 @@ static float altitude_hold_throttle(flight_state_t *state, float dt_s)
             altitude_target_m =
                 g_altitude_reference_m + (state->target.hover_height_delta_m - g_hover_delta_reference_m);
             pilot_vertical_speed_mps =
-                clamp_float(state->target.hover_height_rate_mps,
+                clamp_float(state->target.hover_height_rate_mps +
+                            throttle_stick_to_vertical_speed(state->rc.throttle_us),
                             -FC_ALTITUDE_MAX_DESCENT_RATE_MPS,
                             FC_ALTITUDE_MAX_CLIMB_RATE_MPS);
         } else {
@@ -159,7 +205,8 @@ static float altitude_hold_throttle(flight_state_t *state, float dt_s)
             return 0.0f;
         }
         altitude_target_m = state->mode_target_altitude_m;
-        pilot_vertical_speed_mps = -FC_LAND_DESCENT_RATE_MPS;
+        pilot_vertical_speed_mps = -FC_LAND_DESCENT_RATE_MPS +
+                                  throttle_stick_to_vertical_speed(state->rc.throttle_us);
         break;
 
     default:
@@ -180,7 +227,10 @@ static float altitude_hold_throttle(flight_state_t *state, float dt_s)
     const float throttle_correction_norm =
         pid_update(&g_vertical_speed_pid, vertical_speed_error_mps, dt_s);
 
-    float throttle_norm = FC_ALTITUDE_HOVER_THROTTLE_NORM + throttle_correction_norm;
+    const float pilot_throttle = rc_throttle_to_norm(state->rc.throttle_us);
+    const float stick_feedforward = (pilot_throttle - 0.5f) * 0.5f;
+
+    float throttle_norm = g_hover_throttle + stick_feedforward + throttle_correction_norm;
     throttle_norm = apply_tilt_compensation(state, throttle_norm);
 
     state->setpoint.altitude_target_m = altitude_target_m;
@@ -253,6 +303,7 @@ void flight_controller_update(flight_state_t *state, float dt_s)
     }
 
     state->setpoint.throttle_norm = altitude_hold_throttle(state, dt_s);
+    hover_throttle_learn(state, dt_s);
 
     const float roll_rate_meas = state->imu.gyro_dps.x;
     const float pitch_rate_meas = state->imu.gyro_dps.y;

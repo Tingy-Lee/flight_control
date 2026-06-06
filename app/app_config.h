@@ -14,7 +14,7 @@
 /* Scheduler rates */
 #define FC_SENSOR_TASK_HZ               250U
 #define FC_DECISION_TASK_HZ             50U
-#define FC_CONTROL_TASK_HZ              500U
+#define FC_CONTROL_TASK_HZ              250U
 #define FC_COMMANDER_TASK_HZ            50U
 #define FC_LOGGER_TASK_HZ               10U
 

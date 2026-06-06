@@ -168,11 +168,22 @@ void ControlTask(void *argument)
             const uint32_t now_ms = bsp_board_millis();
             if ((now_ms - last_ms) >= 100U) {
                 last_ms = now_ms;
-                printf("M:%u %u %u %u\r\n",
+                const int32_t p_dif = ((int32_t)state->motors.motor_us[0] + (int32_t)state->motors.motor_us[1]) -
+                                     ((int32_t)state->motors.motor_us[2] + (int32_t)state->motors.motor_us[3]);
+                const int32_t r_dif = ((int32_t)state->motors.motor_us[1] + (int32_t)state->motors.motor_us[2]) -
+                                     ((int32_t)state->motors.motor_us[0] + (int32_t)state->motors.motor_us[3]);
+                const int32_t y_dif = ((int32_t)state->motors.motor_us[1] + (int32_t)state->motors.motor_us[3]) -
+                                     ((int32_t)state->motors.motor_us[0] + (int32_t)state->motors.motor_us[2]);
+                printf("M:%u %u %u %u  dP:%+d dR:%+d  [%u] thr=%u rch=%u tgt=%u\r\n",
                        (unsigned)state->motors.motor_us[0],
                        (unsigned)state->motors.motor_us[1],
                        (unsigned)state->motors.motor_us[2],
-                       (unsigned)state->motors.motor_us[3]);
+                       (unsigned)state->motors.motor_us[3],
+                       (int)p_dif, (int)r_dif,
+                       (unsigned)state->mode,
+                       (unsigned)state->rc.throttle_us,
+                       (unsigned)(state->rc.healthy ? 1 : 0),
+                       (unsigned)(state->target.valid ? 1 : 0));
             }
         }
 #if FC_ENABLE_MOTOR_TEST_TELEMETRY
