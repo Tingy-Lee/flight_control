@@ -54,7 +54,9 @@ typedef struct {
     uint32_t loop_count[DEBUG_DIAG_APP_TASK_COUNT];
     uint32_t last_tick[DEBUG_DIAG_APP_TASK_COUNT];
     uint32_t max_exec_ticks[DEBUG_DIAG_APP_TASK_COUNT];
+    uint32_t overrun_count[DEBUG_DIAG_APP_TASK_COUNT];
     UBaseType_t stack_free_words[DEBUG_DIAG_APP_TASK_COUNT];
+    uint32_t stack_low_count[DEBUG_DIAG_APP_TASK_COUNT];
     uint32_t period_ticks[DEBUG_DIAG_APP_TASK_COUNT];
     uint32_t runtime_heap_free;
     uint32_t runtime_heap_min_free;

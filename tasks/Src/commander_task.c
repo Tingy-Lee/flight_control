@@ -30,7 +30,7 @@ static volatile uint8_t    g_xlog_idx;
 
 static void xlog_record(const flight_state_t *state, flight_mode_t prev, flight_mode_t next)
 {
-    mode_xlog_t *e = &g_xlog[g_xlog_idx];
+    volatile mode_xlog_t *e = &g_xlog[g_xlog_idx];
     e->ms = bsp_board_millis();
     e->errors = state->error_flags;
     e->throttle_us = state->rc.throttle_us;

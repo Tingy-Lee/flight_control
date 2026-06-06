@@ -64,6 +64,7 @@ void task_record_heartbeat(uint8_t index, TickType_t loop_start_tick)
     const TickType_t now = xTaskGetTickCount();
     const uint32_t elapsed = (uint32_t)(now - loop_start_tick);
     const uint32_t loop_count = g_dbg_tasks.loop_count[index] + 1U;
+    const uint32_t period = g_dbg_tasks.period_ticks[index];
 
     g_dbg_tasks.loop_count[index] = loop_count;
     g_dbg_tasks.last_tick[index] = (uint32_t)now;
@@ -71,10 +72,17 @@ void task_record_heartbeat(uint8_t index, TickType_t loop_start_tick)
         g_dbg_tasks.max_exec_ticks[index] = elapsed;
     }
 
+    if ((period > 0U) && (elapsed > period)) {
+        g_dbg_tasks.overrun_count[index]++;
+    }
+
     if ((loop_count & TASK_STACK_SAMPLE_MASK) == 0U) {
         TaskHandle_t handle = task_handle_for_index(index);
         if (handle != 0) {
             g_dbg_tasks.stack_free_words[index] = uxTaskGetStackHighWaterMark(handle);
+            if (g_dbg_tasks.stack_free_words[index] < 128U) {
+                g_dbg_tasks.stack_low_count[index]++;
+            }
         }
 
         g_dbg_tasks.runtime_heap_free = (uint32_t)xPortGetFreeHeapSize();

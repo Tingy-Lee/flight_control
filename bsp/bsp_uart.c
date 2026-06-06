@@ -550,6 +550,7 @@ void USART4_IRQHandler(void)
 
         if (next == g_imu_uart_rx_read) {
             g_imu_uart_rx_read = (uint16_t)((g_imu_uart_rx_read + 1U) & (IMU_UART_RX_BUFFER_SIZE - 1U));
+            g_dbg_uart.imu.overflow_count++;
         }
 
         g_imu_uart_rx_buffer[write] = g_dbg_uart.imu.last_byte;

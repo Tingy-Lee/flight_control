@@ -172,8 +172,6 @@ void ControlTask(void *argument)
                                      ((int32_t)state->motors.motor_us[2] + (int32_t)state->motors.motor_us[3]);
                 const int32_t r_dif = ((int32_t)state->motors.motor_us[1] + (int32_t)state->motors.motor_us[2]) -
                                      ((int32_t)state->motors.motor_us[0] + (int32_t)state->motors.motor_us[3]);
-                const int32_t y_dif = ((int32_t)state->motors.motor_us[1] + (int32_t)state->motors.motor_us[3]) -
-                                     ((int32_t)state->motors.motor_us[0] + (int32_t)state->motors.motor_us[2]);
                 printf("M:%u %u %u %u  dP:%+d dR:%+d  [%u] thr=%u rch=%u tgt=%u\r\n",
                        (unsigned)state->motors.motor_us[0],
                        (unsigned)state->motors.motor_us[1],
@@ -192,6 +190,9 @@ void ControlTask(void *argument)
      //  bsp_pwm_motors_debug();
 
         task_record_heartbeat(TASK_INDEX_CONTROL, loop_start);
+        if (g_dbg_tasks.overrun_count[TASK_INDEX_CONTROL] > 0U) {
+            vTaskDelay(1);
+        }
         vTaskDelayUntil(&last_wake, period);
     }
 }

@@ -22,6 +22,7 @@ static uint32_t p_ms = 0;
 #define DEBUG_SYSTICK_DONE_BIT    (1U << 1)
 #define DEBUG_DELAY_TIMEOUT_PAD   1024U
 #define DEBUG_UART_TIMEOUT_LOOPS  1000000U
+#define DEBUG_PRINTF_MAX_CHARS    128U
 
 volatile debug_boot_diag_t g_dbg_boot;
 volatile debug_fault_diag_t g_dbg_fault;
@@ -212,6 +213,10 @@ void USART_Printf_Init(uint32_t baudrate)
 __attribute__((used)) int _write(int fd, char *buf, int size)
 {
     int i = 0;
+
+    if (size > (int)DEBUG_PRINTF_MAX_CHARS) {
+        size = (int)DEBUG_PRINTF_MAX_CHARS;
+    }
 
     for(i = 0; i < size; i++)
     {
